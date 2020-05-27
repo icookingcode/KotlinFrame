@@ -44,7 +44,7 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
 
     private fun initView() {
         when (leftType) {
-            LEFT_TYPE_NONE -> titleBack.visibility = View.GONE
+            LEFT_TYPE_NONE -> titleBack.visibility = View.INVISIBLE
             LEFT_TYPE_FINISH -> {
                 titleBack.visibility = View.VISIBLE
                 titleBack.setOnClickListener(this)
