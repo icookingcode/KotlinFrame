@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white"
+    android:minWidth="280dp"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="14dp"
+            android:layout_marginRight="5dp"
+            android:background="#00BA80" />
+
+        <TextView
+            android:id="@+id/tvPleaseSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvSure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_div"
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_below="@+id/ll_header"
+        android:background="#999999" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlvContent"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_below="@+id/v_div"
+        android:overScrollMode="never"
+        android:padding="10dp" />
+</RelativeLayout>

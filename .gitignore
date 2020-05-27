@@ -13,6 +13,3 @@
 /captures
 .externalNativeBuild
 .cxx
-app/libs/
-kframe/libs/
-kframe/src/main/res/drawable/
