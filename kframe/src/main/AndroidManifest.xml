@@ -1,2 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.guc.kframe" />
+    package="com.guc.kframe">
+
+    <application>
+        <activity
+            android:name=".ui.SelectPictureActivity"
+            android:theme="@style/MyDialogBottom" />
+    </application>
+</manifest>

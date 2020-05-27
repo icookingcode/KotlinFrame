@@ -1,5 +1,6 @@
 *.iml
 .gradle
+.idea
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -12,3 +13,6 @@
 /captures
 .externalNativeBuild
 .cxx
+app/libs/
+kframe/libs/
+kframe/src/main/res/drawable/
