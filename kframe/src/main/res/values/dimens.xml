@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--进度条对话框-->
+    <dimen name="loading_dialog_size">130dp</dimen>
+    <dimen name="loading_dialog_icon_size">50dp</dimen>
+    <dimen name="radius">4dp</dimen>        <!--圆角 -->
+    <dimen name="blank_s">5dp</dimen>
+    <dimen name="text_s">12sp</dimen>
+</resources>

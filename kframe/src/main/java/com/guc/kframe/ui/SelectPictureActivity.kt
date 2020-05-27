@@ -1,5 +1,6 @@
 package com.guc.kframe.ui
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -69,7 +70,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.takePhoto -> takePhoto()
+            R.id.takePhoto -> requestRuntimePermissions(arrayOf(Manifest.permission.CAMERA)) { bool, _ -> if (bool) takePhoto() }
             R.id.selectAlbum -> selectAlbum()
             R.id.cancel -> finish()
         }
@@ -108,7 +109,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener {
         if (outputImage.exists()) outputImage.delete()
         outputImage.createNewFile()
         imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            FileProvider.getUriForFile(this, "com.guc.firstlinecode.fileprovider", outputImage)
+            FileProvider.getUriForFile(this, "${packageName}.fileProvider", outputImage)
         } else {
             Uri.fromFile(outputImage)
         }

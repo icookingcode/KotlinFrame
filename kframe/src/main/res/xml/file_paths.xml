@@ -2,5 +2,5 @@
 <paths>
     <external-path
         name="my_images"
-        path="/" /><!--将整个SD卡共享-->
+        path="." /><!--将整个SD卡共享-->
 </paths>
