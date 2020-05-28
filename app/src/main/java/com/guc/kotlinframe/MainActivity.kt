@@ -10,6 +10,16 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        tvSelPicture.setOnClickListener { DialogSelect<String>(this).show() }
+        tvSelPicture.setOnClickListener {
+            val dialog = DialogSelect<String>(this, false) { isSel, selDatas ->
+                run {
+                    if (isSel) selDatas?.apply {
+                        tvSelPicture.text = this[0]
+                    }
+                }
+            }
+            dialog.datas = listOf("Kotlin", "Java", "JavaScript", "c", "c++")
+            dialog.show()
+        }
     }
 }

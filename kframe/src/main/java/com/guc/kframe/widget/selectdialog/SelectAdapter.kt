@@ -12,10 +12,11 @@ import com.guc.kframe.adapter.ViewHolder4RecyclerView
  * Created by guc on 2020/5/27.
  * 描述：选择适配器
  */
-class SelectAdapter<T>(datas: List<T>, val isSingleSel: Boolean = false) :
+class SelectAdapter<T>(datas: List<T>, var isSingleSel: Boolean = true) :
     CommonAdapter4Rcv<T>(datas) {
 
     private var selIndicators: BooleanArray = BooleanArray(datas.size)
+    private var lastSelectIndex = -1
 
     override fun getRootView(parent: ViewGroup, viewType: Int): View =
         LayoutInflater.from(parent.context).inflate(R.layout.item_select, parent, false)
@@ -28,11 +29,28 @@ class SelectAdapter<T>(datas: List<T>, val isSingleSel: Boolean = false) :
     ) {
         viewHolder.setText(R.id.tvName, data.toString())
         val ivSel = viewHolder.getView<ImageView>(R.id.ivSelect)
+        ivSel.isSelected = selIndicators[position]
         ivSel.setOnClickListener {
             val sel: Boolean = !ivSel.isSelected
             ivSel.isSelected = sel
             selIndicators[position] = sel
-
+            if (isSingleSel && lastSelectIndex != -1) {
+                selIndicators[lastSelectIndex] = false
+                notifyDataSetChanged()
+            }
+            if (sel) lastSelectIndex = position else {
+                if (isSingleSel) lastSelectIndex = -1
+            }
         }
+    }
+
+
+    //获取选中
+    fun getSelected(): List<T> {
+        val list = ArrayList<T>();
+        for ((index, b) in selIndicators.withIndex()) {
+            if (b) list.add(datas[index])
+        }
+        return list
     }
 }

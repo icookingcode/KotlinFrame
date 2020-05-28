@@ -5,7 +5,10 @@ import android.content.Context
 import android.content.DialogInterface
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.guc.firstlinecode.utils.ToastUtil
 import com.guc.kframe.R
+import kotlinx.android.synthetic.main.layout_dialog_select.*
 
 /**
  * Created by guc on 2020/5/27.
@@ -13,11 +16,21 @@ import com.guc.kframe.R
  */
 class DialogSelect<T>(
     context: Context,
-    cancelable: Boolean = false,
-    cancelListener: DialogInterface.OnCancelListener? = null
+    private var isSingle: Boolean = true,
+    cancelable: Boolean = true,
+    cancelListener: DialogInterface.OnCancelListener? = null,
+    val callback: ((Boolean, List<T>?) -> Unit)?
 ) : Dialog(context, cancelable, cancelListener) {
-    private var mDatas: List<T>? = null
+    var datas: List<T>? = null
+        set(value) {
+            if (value != null) {
+                mAdapter = SelectAdapter(value, isSingle)
+                loadSelectors()
+            }
+            field = value
+        }
     private var mDataSel: T? = null
+    private var mAdapter: SelectAdapter<T>? = null
 
     init {
         setContentView(R.layout.layout_dialog_select)
@@ -27,6 +40,29 @@ class DialogSelect<T>(
         val params = window!!.attributes
         params.gravity = Gravity.CENTER
         window!!.attributes = params
+        setCancelable(cancelable)
+        initView()
+    }
+
+    private fun initView() {
+        tvSure.setOnClickListener {
+
+            callback?.let { cb ->
+                mAdapter?.let {
+                    val list = it.getSelected()
+                    val isSel = list.isNotEmpty()
+                    cb(isSel, list)
+                    if (isSel) dismiss() else ToastUtil.toast("您尚未选择")
+                } ?: run {
+                    cb(false, null)
+                }
+            }
+        }
+    }
+
+    private fun loadSelectors() {
+        rlvContent.layoutManager = LinearLayoutManager(context)
+        rlvContent.adapter = mAdapter
     }
 
     private fun dp2px(dp: Int): Int {

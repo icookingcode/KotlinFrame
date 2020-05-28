@@ -16,7 +16,6 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginRight="20dp"
         android:scaleType="centerInside"
         android:src="@drawable/image_select" />
 </LinearLayout>
