@@ -34,4 +34,18 @@ object HttpUtil {
         val request = Request.Builder().url(url).post(reqBody).build()
         client.newCall(request).enqueue(callback)
     }
+
+    /**
+     * POST 请求
+     */
+    fun setPostRequest(url: String, params: Map<String, String>, callback: Callback) {
+        val client = OkHttpClient()
+        val reqBody = FormBody.Builder().apply {
+            for (entry in params) {
+                add(entry.key, entry.value)
+            }
+        }.build()
+        val request = Request.Builder().url(url).post(reqBody).build()
+        client.newCall(request).enqueue(callback)
+    }
 }

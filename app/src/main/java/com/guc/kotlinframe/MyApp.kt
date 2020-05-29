@@ -1,6 +1,7 @@
 package com.guc.kotlinframe
 
 import android.app.Application
+import com.guc.kframe.Config
 import com.guc.kframe.Engine
 
 /**
@@ -11,6 +12,12 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Engine.init(this)
+        val config = Config().apply {
+            currentMode = Config.MODEL_DEBUG
+            urlDebug = "http://192.168.44.141:8099/"
+            urlBeta = "http://192.168.44.141:8099/"
+            urlRelease = "http://192.168.44.141:8099/"
+        }
+        Engine.init(this, config)
     }
 }
