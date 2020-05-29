@@ -3,6 +3,8 @@ package com.guc.kframe
 import android.content.Context
 import com.guc.firstlinecode.utils.SharedPreferencesUtils
 import com.guc.kframe.base.ActivityCollector
+import com.guc.kframe.base.SystemManager
+import com.guc.kframe.system.SystemCrash
 
 /**
  * Created by guc on 2020/5/22.
@@ -14,8 +16,14 @@ object Engine {
 
     fun init(context: Context, config: Config) {
         this.context = context
+        if (config.logNativeDir.isEmpty()) {
+            config.logNativeDir =
+                context.externalCacheDir?.absolutePath ?: context.cacheDir.absolutePath
+        }
         this.config = config
         SharedPreferencesUtils.init(name = "kframe")
+        //启动必要system
+        SystemManager.getSystem(SystemCrash::class.java)
     }
 
 

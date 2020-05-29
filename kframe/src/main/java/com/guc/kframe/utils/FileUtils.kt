@@ -2,6 +2,9 @@ package com.guc.kframe.utils
 
 import android.content.Context
 import android.content.res.AssetManager
+import android.net.Uri
+import android.os.Build
+import androidx.core.content.FileProvider
 import com.guc.kframe.Engine
 import com.guc.kframe.R
 import java.io.*
@@ -64,10 +67,11 @@ object FileUtils {
             false
         }
     }
+
     /**
      * 读取文件中内容
      */
-    fun readFile2String( fileName: String,context: Context = Engine.context): String {
+    fun readFile2String(fileName: String, context: Context = Engine.context): String {
         return try {
             val content = StringBuilder()
             val output = context.openFileInput(fileName)
@@ -110,7 +114,7 @@ object FileUtils {
     /**
      * 读取Assets下文件
      */
-    fun readRaw2String(context: Context =Engine.context, rawResId: Int): String {
+    fun readRaw2String(context: Context = Engine.context, rawResId: Int): String {
         return try {
             val content = java.lang.StringBuilder()
             val inputStream = context.resources.openRawResource(rawResId)
@@ -130,7 +134,7 @@ object FileUtils {
     /**
      * 读取Assets下文件
      */
-    fun readRaw2String(context: Context=Engine.context, rawName: String): String {
+    fun readRaw2String(context: Context = Engine.context, rawName: String): String {
         return try {
             val content = java.lang.StringBuilder()
             val field = R.raw::class.java.getField(rawName)
@@ -148,6 +152,17 @@ object FileUtils {
         } catch (e: NoSuchFieldException) {
             e.printStackTrace()
             "NoSuchFieldException"
+        }
+    }
+
+    fun getUriForFile(file: File): Uri? {
+        return if (Build.VERSION.SDK_INT >= 24) {
+            FileProvider.getUriForFile(
+                Engine.context,
+                Engine.context.packageName + ".fileProvider", file
+            )
+        } else {
+            Uri.fromFile(file)
         }
     }
 }

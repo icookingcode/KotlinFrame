@@ -5,6 +5,7 @@ package com.guc.kframe.base
  * 描述：管理
  */
 object SystemManager {
+
     private val mSystemPool = HashMap<String, BaseSystem>()
 
     fun <T> destroySystem(clazz: Class<T>) {

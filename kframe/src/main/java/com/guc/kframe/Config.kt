@@ -12,7 +12,17 @@ class Config {
     }
 
     var currentMode = MODEL_DEBUG
+        set(value) {
+            if (value == MODEL_RELEASE) {
+                enableSaveCrashLog = false
+                logEnable = false
+            }
+            field = value
+        }
     var logEnable = true //开启log
+    var enableSaveCrashLog = true; //保存崩溃日志
+    var logNativeDir = ""
+    var enableCrashReset = false; //关闭崩溃重启
     var urlDebug: String? = null //
     var urlBeta: String? = null //
     var urlRelease: String? = null //

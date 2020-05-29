@@ -39,4 +39,5 @@ fun getParameterizedType(genType: Class<*>?): ParameterizedType? {
     } else {
         null
     }
+
 }
