@@ -5,9 +5,9 @@ import com.guc.kframe.Engine
 import com.guc.kframe.base.BaseSystem
 import com.guc.kframe.utils.AppTools
 import com.guc.kframe.utils.FileUtils
+import com.guc.kframe.utils.hashMap
 import java.io.PrintWriter
 import java.io.StringWriter
-import java.util.*
 
 /**
  * Created by guc on 2020/5/29.
@@ -64,14 +64,11 @@ class SystemCrash : BaseSystem() {
         return builder.toString()
     }
 
-    private fun getBaseMessageMap(): HashMap<String, String> {
-        val map =
-            HashMap<String, String>()
-        map["versionName"] = AppTools.getVersionName()
-        map["versionCode"] = "" + AppTools.getVersionCode()
-        map["MODEL"] = "" + Build.MODEL
-        map["SDK_INT"] = "" + Build.VERSION.SDK_INT
-        map["PRODUCT"] = "" + Build.PRODUCT
-        return map
+    private fun getBaseMessageMap() = hashMap {
+        this["versionName"] = AppTools.getVersionName()
+        this["versionCode"] = "" + AppTools.getVersionCode()
+        this["MODEL"] = "" + Build.MODEL
+        this["SDK_INT"] = "" + Build.VERSION.SDK_INT
+        this["PRODUCT"] = "" + Build.PRODUCT
     }
 }

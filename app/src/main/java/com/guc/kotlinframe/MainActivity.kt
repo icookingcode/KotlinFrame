@@ -16,6 +16,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         tvSelPicture.setOnClickListener {
+            getNetData()
         }
     }
 

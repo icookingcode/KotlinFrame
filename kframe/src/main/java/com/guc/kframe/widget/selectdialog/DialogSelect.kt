@@ -6,8 +6,8 @@ import android.content.DialogInterface
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.guc.firstlinecode.utils.ToastUtil
 import com.guc.kframe.R
+import com.guc.kframe.utils.ToastUtil
 import kotlinx.android.synthetic.main.layout_dialog_select.*
 
 /**

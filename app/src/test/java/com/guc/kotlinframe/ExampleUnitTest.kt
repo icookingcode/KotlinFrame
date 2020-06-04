@@ -1,8 +1,7 @@
 package com.guc.kotlinframe
 
+import com.guc.kframe.utils.hashMap
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,7 +10,11 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testHashMap() {
+        val map = hashMap {
+            this["guc"] = "你好"
+            this["ok"] = "确定"
+        }
+        println(map)
     }
 }

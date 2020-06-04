@@ -1,9 +1,8 @@
-package com.guc.firstlinecode.utils
+package com.guc.kframe.utils
 
 import android.content.Context
 import android.content.SharedPreferences
 import com.guc.kframe.Engine
-import com.guc.kframe.utils.put
 import org.jetbrains.annotations.NotNull
 
 /**
@@ -14,7 +13,11 @@ object SharedPreferencesUtils {
     private lateinit var preferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
 
-    fun init(context: Context=Engine.context, name: String, mode: Int = Context.MODE_PRIVATE) {
+    fun init(
+        context: Context = Engine.context,
+        name: String = "sp_kframe",
+        mode: Int = Context.MODE_PRIVATE
+    ) {
         preferences = context.getSharedPreferences(name, mode)
         editor = preferences.edit()
     }
@@ -61,6 +64,6 @@ object SharedPreferencesUtils {
     }
 
     private fun isInit(): Boolean {
-        return ::preferences.isInitialized
+        return SharedPreferencesUtils::preferences.isInitialized
     }
 }
