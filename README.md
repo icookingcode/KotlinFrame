@@ -1,6 +1,9 @@
 # KotlinFrame
-Kotlin App 框架
-
+Kotlin App 框架（MVVM）
+* Model :数据模型部分
+* View ：界面展示部分
+* ViewModel ：Model和View的桥梁，从而实现业务与界面展示的分离
+![MVVM架构示意图](https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/mvvm.png)
 ## 自定义控件
 * TitleLayout   自定义标题栏
 * LoadingDialog 加载框
