@@ -1,5 +1,6 @@
 package com.guc.kotlinframe
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.guc.kframe.adapter.CommonAdapter4Rcv
 import com.guc.kframe.adapter.ViewHolder4RecyclerView
 import com.guc.kframe.base.BaseActivity
+import com.guc.kframe.system.SystemPermission
 import com.guc.kframe.system.net.KCallback
 import com.guc.kframe.system.net.KResponse
 import com.guc.kframe.utils.ToastUtil
@@ -17,6 +19,7 @@ import com.guc.kotlinframe.logic.model.AppInfo
 import com.guc.kotlinframe.logic.network.Api
 import com.guc.kotlinframe.ui.AppInfoViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.thread
 
 class MainActivity : BaseActivity() {
 
@@ -61,6 +64,28 @@ class MainActivity : BaseActivity() {
                 result.exceptionOrNull()?.printStackTrace()
             }
         })
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = true
+            thread {
+                Thread.sleep(1000)
+                runOnUiThread {
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            }
+        }
+
+        tvRequestCall.setOnClickListener {
+            getSystem(SystemPermission::class.java)?.request(
+                this,
+                Manifest.permission.CALL_PHONE
+            ) { allGranted, _ ->
+                if (allGranted) {
+                    ToastUtil.toast("同意该权限")
+                } else {
+                    ToastUtil.toast("不同意")
+                }
+            }
+        }
     }
 
     fun showDialog() {

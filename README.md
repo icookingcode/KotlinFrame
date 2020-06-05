@@ -3,6 +3,7 @@ Kotlin App 框架（MVVM）
 * Model :数据模型部分
 * View ：界面展示部分
 * ViewModel ：Model和View的桥梁，从而实现业务与界面展示的分离
+
 ![MVVM架构示意图](https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/mvvm.png)
 ## 自定义控件
 * TitleLayout   自定义标题栏
@@ -12,3 +13,4 @@ Kotlin App 框架（MVVM）
 ## 系统工具
 * SystemHttp 网络请求工具系统
 * SystemCrash 崩溃处理系统
+* SystemPermission 权限申请系统
