@@ -1,6 +1,5 @@
 package com.guc.kframe.ui
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -70,7 +69,7 @@ class SelectPictureActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.takePhoto -> requestRuntimePermissions(arrayOf(Manifest.permission.CAMERA)) { bool, _ -> if (bool) takePhoto() }
+            R.id.takePhoto -> takePhoto()
             R.id.selectAlbum -> selectAlbum()
             R.id.cancel -> finish()
         }

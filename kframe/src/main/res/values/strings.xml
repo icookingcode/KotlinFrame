@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="common_loading">加载中...</string>
+    <string name="ignore_this_version">忽略此版本</string>
+    <string name="update">升级</string>
 </resources>

@@ -13,6 +13,8 @@ import com.guc.kframe.base.BaseActivity
 import com.guc.kframe.system.SystemPermission
 import com.guc.kframe.system.net.KCallback
 import com.guc.kframe.system.net.KResponse
+import com.guc.kframe.system.update.BeanVersion
+import com.guc.kframe.system.update.DialogUpdate
 import com.guc.kframe.utils.ToastUtil
 import com.guc.kframe.widget.selectdialog.DialogSelect
 import com.guc.kotlinframe.logic.model.AppInfo
@@ -85,6 +87,31 @@ class MainActivity : BaseActivity() {
                     ToastUtil.toast("不同意")
                 }
             }
+        }
+        tvShowDialog.setOnClickListener {
+            getSystem(SystemPermission::class.java)?.request(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) { bool, _ ->
+                if (bool) {
+                    run {
+                        val dialogUpdate = DialogUpdate.getInstanceWithArguments {
+                            putParcelable(
+                                DialogUpdate.DATA,
+                                BeanVersion().apply {
+                                    fileUrl =
+                                        "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.3.6.4590_537064458.apk"
+                                })
+                        }
+                        dialogUpdate.show(supportFragmentManager, "dialog")
+                    }
+                } else {
+                    ToastUtil.toast("没有存储权限")
+                }
+
+            }
+
         }
     }
 
