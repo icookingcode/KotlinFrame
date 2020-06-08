@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="title" format="reference|string" />
+    <attr name="content" format="reference|string" />
+    <attr name="titleTextColor" format="color" />
+
     <declare-styleable name="TitleLayout">
         <attr name="leftType" format="enum">
             <enum name="none" value="0" />
             <enum name="finish" value="1" />
         </attr>
-        <attr name="title" format="string" />
+        <attr name="title" />
+    </declare-styleable>
+
+    <declare-styleable name="RichTextView">
+        <attr name="title" />
+        <attr name="content" />
+        <attr name="titleTextColor" />
+        <attr name="contentTextColor" format="color" />
     </declare-styleable>
 </resources>

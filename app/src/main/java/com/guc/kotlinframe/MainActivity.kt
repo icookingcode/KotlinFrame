@@ -58,7 +58,6 @@ class MainActivity : BaseActivity() {
         viewModel.appInfo.observe(this, Observer { result ->
             val apps = result.getOrNull()
             if (apps != null) {
-                viewModel.appInfoList.clear()
                 viewModel.appInfoList.addAll(apps)
                 rcvContent.adapter?.notifyDataSetChanged()
             } else {
@@ -113,6 +112,8 @@ class MainActivity : BaseActivity() {
             }
 
         }
+
+        looperText.setTipList(listOf("你好啊", "guc"))
     }
 
     fun showDialog() {

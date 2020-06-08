@@ -19,6 +19,10 @@ Kotlin App 框架（MVVM）
 ```
  <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591588183.png"  height="640" width="360">
 
+* LooperTextView  滚动展示的TextView
+* NoScrollViewPager  禁止滑动的ViewPager
+* RichTextView  标题和内容同行不同样式
+
 ## 系统工具
 * SystemHttp 网络请求工具系统
 * SystemCrash 崩溃处理系统
