@@ -79,7 +79,10 @@ class DownloadTask(val context: Context, val callback: (Task) -> Unit) :
             savedFile.seek(downloadedLength)
             val b = ByteArray(1024)
             var total = 0
+            var delSize = 0
+            var longTimeMillis: Long = 0
             inputStream.use {
+                longTimeMillis = System.currentTimeMillis()
                 var len = it.read(b)
                 while ((len) != -1) {
                     if (isCanceled) return task.apply { this.status = STATUS_CANCEL }
@@ -88,7 +91,20 @@ class DownloadTask(val context: Context, val callback: (Task) -> Unit) :
                         total += len
                         savedFile.write(b, 0, len)
                         val progress = ((total + downloadedLength) * 100 / contentLength).toInt()
-                        publishProgress(task.apply { this.progress = progress })
+                        publishProgress(task.apply {
+                            this.progress = progress
+                            if (System.currentTimeMillis() - longTimeMillis < 1000) {
+                                delSize += len
+                            } else {
+                                this.speed = calculateSpeed(
+                                    System.currentTimeMillis(),
+                                    longTimeMillis,
+                                    delSize
+                                )
+                                longTimeMillis = System.currentTimeMillis()
+                                delSize = 0
+                            }
+                        })
                         len = it.read(b)
                     }
 
@@ -134,6 +150,20 @@ class DownloadTask(val context: Context, val callback: (Task) -> Unit) :
 
         }
         return 0L
+    }
+
+    /**
+     * 网速计算
+     */
+    private fun calculateSpeed(endTime: Long, startTime: Long, size: Int): String {
+        val delTime = endTime - startTime
+        if (delTime.toInt() == 0) return "0 Kb/s"
+        val speed = size * 1.0 / (delTime / 1000) / 1024
+        return if (speed > 1024) {
+            String.format("%.2fMb/s", speed / 1024)
+        } else {
+            String.format("%.2fKb/s", speed)
+        }
     }
 
 }

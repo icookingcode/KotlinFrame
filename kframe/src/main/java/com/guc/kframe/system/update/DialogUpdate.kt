@@ -62,6 +62,7 @@ class DialogUpdate : DialogFragment(), View.OnClickListener {
                     if (downloadTask?.isCanceled != true) {
                         tvProgress.text = "${it.progress}%/100%"
                         progressBar.progress = it.progress
+                        tvSpeed.text = it.speed
                     }
                     if (it.status == DownloadTask.STATUS_SUCCESS) {
                         if (downloadTask?.isCanceled != true) {

@@ -12,5 +12,6 @@ data class Task(
     val url: String,
     var progress: Int = -1,
     var status: Int = DownloadTask.STATUS_WAIT,
-    var filePath: String = ""
+    var filePath: String = "",
+    var speed: String = "0Kb/s"
 ) : Parcelable
