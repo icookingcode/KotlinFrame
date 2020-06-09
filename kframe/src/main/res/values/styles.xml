@@ -64,4 +64,9 @@
     <style name="LoadingDialog" parent="@style/TransDialog">
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+    <style name="NoEdgeScroll">
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+    </style>
 </resources>

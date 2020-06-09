@@ -22,6 +22,8 @@ Kotlin App 框架（MVVM）
 * LooperTextView  滚动展示的TextView
 * NoScrollViewPager  禁止滑动的ViewPager
 * RichTextView  标题和内容同行不同样式
+* FixedGridView/FixedListView  解决ScrollView中嵌套高度显示不正常的问题（1行半）
+* SyncHorizontalScrollView  实现同步滚动HorizontalScrollView
 
 ## 系统工具
 * SystemHttp 网络请求工具系统

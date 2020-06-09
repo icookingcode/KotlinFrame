@@ -55,6 +55,9 @@ class MainActivity : BaseActivity() {
             viewModel.appInfoList.clear()
             rcvContent.adapter?.notifyDataSetChanged()
         }
+        tvSelFav.setOnClickListener {
+            showDialog()
+        }
         viewModel.appInfo.observe(this, Observer { result ->
             val apps = result.getOrNull()
             if (apps != null) {
@@ -114,13 +117,15 @@ class MainActivity : BaseActivity() {
         }
 
         looperText.setTipList(listOf("你好啊", "guc"))
+        syncView.syncView = syncView2
+        syncView2.syncView = syncView
     }
 
     fun showDialog() {
         val dialog = DialogSelect<String>(this, false) { isSel, selDatas ->
             run {
                 if (isSel) selDatas?.apply {
-                    tvSelPicture.text = this[0]
+                    tvSelFav.text = this[0]
                 }
             }
         }
