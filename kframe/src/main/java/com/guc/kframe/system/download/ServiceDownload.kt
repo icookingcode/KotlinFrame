@@ -2,6 +2,7 @@ package com.guc.kframe.system.download
 
 import android.app.Service
 import android.content.Intent
+import android.os.Binder
 import android.os.IBinder
 
 /**
@@ -9,11 +10,45 @@ import android.os.IBinder
  * 描述：下载服务
  */
 class ServiceDownload : Service() {
-    companion object {
+    val iBinder = DownloadBinder()
 
+    companion object {
+        const val TAG = "ServiceDownload"
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
-        TODO("Not yet implemented")
+    override fun onCreate() {
+        super.onCreate()
+    }
+
+    override fun onBind(intent: Intent?): IBinder? = iBinder
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return super.onStartCommand(intent, flags, startId)
+    }
+
+    inner class DownloadBinder : Binder() {
+        var callback: ((Task) -> Unit)? = null
+        var downloadTask: DownloadTask? = null
+        fun registerCallback(callback: (Task) -> Unit) {
+            this.callback = callback
+        }
+
+        fun download(task: Task) {
+            downloadTask = DownloadTask(this@ServiceDownload) { task ->
+                callback?.let {
+                    it(task)
+                }
+            }
+            downloadTask?.execute(task)
+        }
+
+        fun paused() {
+            downloadTask?.isPaused = true
+        }
+
+        fun cancel() {
+            downloadTask?.isCanceled = true
+        }
+
     }
 }

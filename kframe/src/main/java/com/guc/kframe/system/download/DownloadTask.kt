@@ -18,6 +18,7 @@ class DownloadTask(val context: Context, val callback: (Task) -> Unit) :
     var isCanceled = false
     var isPaused = false
     var lastProgress = 0
+    var file: File? = null
 
     companion object {
         const val STATUS_WAIT = -1
@@ -56,6 +57,7 @@ class DownloadTask(val context: Context, val callback: (Task) -> Unit) :
                 file.createNewFile()
             }
             task.filePath = file.absolutePath
+            this.file = file
             val contentLength = getContentLength(url)
             if (contentLength == 0L) {
                 return task.apply { this.status = STATUS_FAILED }
