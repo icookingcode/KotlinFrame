@@ -25,6 +25,7 @@ class DownloadTask(val context: Context, val callback: (Task) -> Unit) :
         const val STATUS_FAILED = 1
         const val STATUS_PAUSED = 2
         const val STATUS_CANCEL = 3
+        const val STATUS_LOADING = 4 //下载中
     }
 
     //后台任务开始执行前调用
@@ -93,6 +94,7 @@ class DownloadTask(val context: Context, val callback: (Task) -> Unit) :
                         val progress = ((total + downloadedLength) * 100 / contentLength).toInt()
                         publishProgress(task.apply {
                             this.progress = progress
+                            this.status = STATUS_LOADING
                             if (System.currentTimeMillis() - longTimeMillis < 1000) {
                                 delSize += len
                             } else {

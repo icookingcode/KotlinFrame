@@ -31,3 +31,13 @@ Kotlin App 框架（MVVM）
 * SystemHttp 网络请求工具系统
 * SystemCrash 崩溃处理系统
 * SystemPermission 权限申请系统
+* SystemImageLoader 图片加载工具
+* SystemDownload  下载工具
+
+## Android 进程间通讯
+* Intent
+* 使用文件共享
+* 使用Messager(底层AIDL实现)
+* 使用AIDL
+* 使用ContentProvider
+* 使用Socket

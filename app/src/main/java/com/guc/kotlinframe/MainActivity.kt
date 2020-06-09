@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.guc.kframe.adapter.CommonAdapter4Rcv
 import com.guc.kframe.adapter.ViewHolder4RecyclerView
 import com.guc.kframe.base.BaseActivity
+import com.guc.kframe.system.SystemDownload
 import com.guc.kframe.system.SystemPermission
+import com.guc.kframe.system.download.DownloadTask
+import com.guc.kframe.system.download.Task
 import com.guc.kframe.system.net.KCallback
 import com.guc.kframe.system.net.KResponse
 import com.guc.kframe.system.update.BeanVersion
@@ -128,6 +131,27 @@ class MainActivity : BaseActivity() {
             )
         ).setAutoPlay(true).start()
 
+        val task =
+            Task("https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.3.6.4590_537064458.apk")
+        tvDownload.setOnClickListener {
+            getSystem(SystemDownload::class.java)?.download(task) {
+                when (it.status) {
+                    DownloadTask.STATUS_WAIT ->
+                        tvDownload.text = "等待下载"
+                    DownloadTask.STATUS_SUCCESS ->
+                        tvDownload.text = "下载成功"
+                    DownloadTask.STATUS_CANCEL ->
+                        tvDownload.text = "取消下载"
+                    DownloadTask.STATUS_PAUSED ->
+                        tvDownload.text = "暂停下载"
+                    DownloadTask.STATUS_LOADING ->
+                        tvDownload.text = "下载中...${it.progress}/100"
+                }
+            }
+        }
+        tvPaused.setOnClickListener {
+            getSystem(SystemDownload::class.java)?.pause(task)
+        }
     }
 
     fun showDialog() {

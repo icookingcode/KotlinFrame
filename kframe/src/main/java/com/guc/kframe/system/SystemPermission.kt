@@ -11,7 +11,7 @@ import com.guc.kframe.system.permission.PermissionCallback
  */
 class SystemPermission : BaseSystem() {
     companion object {
-        private const val TAG = "InvisibleFragment"
+        private const val TAG = "SystemPermission"
     }
 
     override fun initSystem() {
