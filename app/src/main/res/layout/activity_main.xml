@@ -92,6 +92,11 @@
         </LinearLayout>
     </com.guc.kframe.widget.SyncHorizontalScrollView>
 
+    <com.guc.kframe.widget.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"

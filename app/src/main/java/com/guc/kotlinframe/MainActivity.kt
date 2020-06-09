@@ -119,6 +119,15 @@ class MainActivity : BaseActivity() {
         looperText.setTipList(listOf("你好啊", "guc"))
         syncView.syncView = syncView2
         syncView2.syncView = syncView
+
+        banner.setImages(
+            listOf(
+                "https://img.51miz.com/Element/00/58/81/79/73ede7c5_E588179_39772d60.jpg!/quality/90/unsharp/true/compress/true/format/jpg",
+                "https://img.51miz.com/Element/00/59/31/31/517f23f9_E593131_a0cd1b59.jpg!/quality/90/unsharp/true/compress/true/format/jpg",
+                "https://img.51miz.com/Element/00/59/47/06/40456783_E594706_33c392a8.jpg!/quality/90/unsharp/true/compress/true/format/jpg"
+            )
+        ).setAutoPlay(true).start()
+
     }
 
     fun showDialog() {
