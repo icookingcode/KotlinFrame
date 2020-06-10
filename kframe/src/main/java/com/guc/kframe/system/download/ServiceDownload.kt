@@ -29,6 +29,8 @@ class ServiceDownload : Service() {
     inner class DownloadBinder : Binder() {
         var callback: ((Task) -> Unit)? = null
         var downloadTask: DownloadTask? = null
+
+        //添加监听
         fun registerCallback(callback: (Task) -> Unit) {
             this.callback = callback
         }

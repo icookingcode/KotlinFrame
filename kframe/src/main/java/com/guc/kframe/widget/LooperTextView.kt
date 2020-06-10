@@ -78,13 +78,13 @@ class LooperTextView(context: Context, attrs: AttributeSet? = null, defStyleAttr
     private fun updateTipAndPlayAnimation() {
         if (curTipIndex % 2 == 0) {
             updateTip(tv_tip_out)
-            tv_tip_in!!.startAnimation(anim_out)
-            tv_tip_out!!.startAnimation(anim_in)
+            tv_tip_in.startAnimation(anim_out)
+            tv_tip_out.startAnimation(anim_in)
             bringChildToFront(tv_tip_in)
         } else {
             updateTip(tv_tip_in)
-            tv_tip_out!!.startAnimation(anim_out)
-            tv_tip_in!!.startAnimation(anim_in)
+            tv_tip_out.startAnimation(anim_out)
+            tv_tip_in.startAnimation(anim_in)
             bringChildToFront(tv_tip_out)
         }
     }

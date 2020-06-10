@@ -36,10 +36,10 @@ class DialogSelect<T>(
         setContentView(R.layout.layout_dialog_select)
         val window = window
         window!!.setBackgroundDrawable(ColorDrawable()) //去除默认背景
-        window!!.decorView.setPadding(dp2px(30), 0, dp2px(30), 0) //设置左右边距
-        val params = window!!.attributes
+        window.decorView.setPadding(dp2px(30), 0, dp2px(30), 0) //设置左右边距
+        val params = window.attributes
         params.gravity = Gravity.CENTER
-        window!!.attributes = params
+        window.attributes = params
         setCancelable(cancelable)
         initView()
     }
