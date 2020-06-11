@@ -5,6 +5,30 @@ Kotlin App 框架（MVVM）
 * ViewModel ：Model和View的桥梁，从而实现业务与界面展示的分离
 
 ![MVVM架构示意图](https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/mvvm.png)
+## How to use
+### adding to project
+To use this frmame,add this dependency to the build.gradle of the app:
+```
+implementation 'com.guc.kframe:kframe:1.0.0'
+```
+### Simple usage
+1. Config Engine at the app entry:
+```
+ val config = Config().apply {
+            currentMode = Config.MODEL_DEBUG
+            urlDebug = "http://192.168.44.141:8099/"
+            urlBeta = "http://192.168.44.141:8099/"
+            urlRelease = "http://192.168.44.141:8099/"
+        }
+ Engine.init(this, config)
+```
+2. Your Activity inheritance BaseActiviy,then you can use AcitvityCollector to manage you App.
+3. Get the http system:
+```
+val http = SystemManager.getSystem(SystemHttp::class.java)
+```
+4. More functions wait for you to discover.
+
 ## 自定义控件
 * TitleLayout   自定义标题栏
 * LoadingDialog 加载框
