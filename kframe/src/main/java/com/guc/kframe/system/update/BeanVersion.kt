@@ -33,6 +33,7 @@ class BeanVersion : Parcelable {
     }
 
     companion object {
+        @JvmField
         val CREATOR: Parcelable.Creator<BeanVersion> = object : Parcelable.Creator<BeanVersion> {
             override fun createFromParcel(source: Parcel): BeanVersion? {
                 return BeanVersion().apply {
