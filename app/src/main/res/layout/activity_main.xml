@@ -92,10 +92,10 @@
         </LinearLayout>
     </com.guc.kframe.widget.SyncHorizontalScrollView>
 
-  <!--  <com.guc.kframe.widget.banner.Banner
+    <com.guc.kframe.widget.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />-->
+        android:layout_height="200dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
