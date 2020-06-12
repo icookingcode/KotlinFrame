@@ -107,6 +107,9 @@ class MainActivity : BaseActivity() {
                                 BeanVersion().apply {
                                     fileUrl =
                                         "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.3.6.4590_537064458.apk"
+                                    fileSize = "84161244"
+                                    updateJournal = "1.bug修复"
+                                    newVersion = "V1.0.0"
                                 })
                         }
                         dialogUpdate.show(supportFragmentManager, "dialog")

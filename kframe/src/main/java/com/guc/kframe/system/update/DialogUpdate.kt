@@ -1,5 +1,6 @@
 package com.guc.kframe.system.update
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import com.guc.kframe.R
 import com.guc.kframe.system.download.DownloadTask
 import com.guc.kframe.system.download.Task
 import com.guc.kframe.utils.AppTools
+import com.guc.kframe.utils.FormatterUtils
 import com.guc.kframe.utils.ToastUtil
 import kotlinx.android.synthetic.main.layout_dialog_update.*
 
@@ -51,6 +53,17 @@ class DialogUpdate : DialogFragment(), View.OnClickListener {
         btnIgnore.setOnClickListener(this)
         btnUpdate.setOnClickListener(this)
         ivClose.setOnClickListener(this)
+        setData()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setData() {
+        beanVersion?.apply {
+            tvTitle.text = "是否升级到${this.newVersion}版本？"
+            val i = this.fileSize.toFloat() / (1024 * 1024)
+            val updateInfo = FormatterUtils.format("新版本大小：%.2fM\n\n${this.updateJournal}", i)
+            tvContent.text = updateInfo
+        }
     }
 
     override fun onClick(v: View?) {
