@@ -35,13 +35,21 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
 * DialogSelect  单选/多选框
 * DialogUpdate  升级框，带下载功能
 ```
-  // 仅需URL即可下载
-  val dialogUpdate = DialogUpdate.getInstanceWithArguments {
-       putParcelable(DialogUpdate.DATA,BeanVersion().apply { fileUrl = "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.3.6.4590_537064458.apk" })
-  }
-  dialogUpdate.show(supportFragmentManager,"dialog")
+   val dialogUpdate = DialogUpdate.getInstanceWithArguments {
+        putParcelable(
+             DialogUpdate.DATA,
+             BeanVersion().apply {
+                  fileUrl =
+                       "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.3.6.4590_537064458.apk"
+                  fileSize = "84161244"
+                  updateJournal = "1.bug修复"
+                  newVersion = "V1.0.0"
+           })
+       }
+   dialogUpdate.show(supportFragmentManager, "dialog")
 ```
  <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591588183.png"  height="640" width="360">
+ <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591922802.png"  height="640" width="360">
 
 * LooperTextView  滚动展示的TextView
 * NoScrollViewPager  禁止滑动的ViewPager
