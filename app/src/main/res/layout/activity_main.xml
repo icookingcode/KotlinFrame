@@ -11,7 +11,7 @@
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:leftType="finish"
+        app:leftType="none"
         app:title="@string/app_name" />
 
     <TextView
@@ -114,6 +114,13 @@
             android:layout_marginLeft="30dp"
             android:text="暂停" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvNextPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="next page" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"

@@ -57,6 +57,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+    //Viewpager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 }
 
 apply plugin: 'com.novoda.bintray-release'

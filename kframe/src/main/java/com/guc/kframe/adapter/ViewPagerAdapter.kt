@@ -9,9 +9,9 @@ import androidx.fragment.app.FragmentPagerAdapter
  * 描述：ViewPagerAdapter
  */
 class ViewPagerAdapter(
-    val fm: FragmentManager,
-    val fragments: List<Fragment>,
-    var titles: List<String>?
+    fm: FragmentManager,
+    private val fragments: List<Fragment>,
+    private var titles: List<String>?
 ) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     constructor(fm: FragmentManager, fragments: List<Fragment>) : this(fm, fragments, null)
 

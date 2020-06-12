@@ -1,6 +1,7 @@
 package com.guc.kotlinframe
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import com.guc.kframe.system.net.KResponse
 import com.guc.kframe.system.update.BeanVersion
 import com.guc.kframe.system.update.DialogUpdate
 import com.guc.kframe.utils.ToastUtil
+import com.guc.kframe.utils.quickStartActivity
 import com.guc.kframe.widget.selectdialog.DialogSelect
 import com.guc.kotlinframe.logic.model.AppInfo
 import com.guc.kotlinframe.logic.network.Api
@@ -32,6 +34,7 @@ class MainActivity : BaseActivity() {
         ViewModelProvider.AndroidViewModelFactory(application).create(AppInfoViewModel::class.java)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -156,6 +159,8 @@ class MainActivity : BaseActivity() {
         tvPaused.setOnClickListener {
             getSystem(SystemDownload::class.java)?.pause(task)
         }
+
+        tvNextPage.setOnClickListener { quickStartActivity<SecondActivity>(this) {} }
     }
 
     fun showDialog() {

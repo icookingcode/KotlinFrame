@@ -49,7 +49,7 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
    dialogUpdate.show(supportFragmentManager, "dialog")
 ```
 <center class="half">
- <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591588183.png"  height="640" width="360">  <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591922802.png"  height="640" width="360">
+ <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591588183.png"  height="576" width="306"/><img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591922802.png"  height="576" width="306"/>
 </center>
 
 * LooperTextView  滚动展示的TextView
@@ -66,6 +66,12 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
 * SystemPermission 权限申请系统
 * SystemImageLoader 图片加载工具
 * SystemDownload  下载工具
+
+## 适配器封装
+* CommonAdapter4ListView  通用ListView适配器封装
+* CommonAdapter4Rcv  通用RecyclerView适配器封装
+* ViewPager2FragmentStateAdapter  通用ViewPager2+Fragment适配器封装
+* ViewPagerAdapter  通用ViewPagerAdapter封装
 
 ## Android 进程间通讯
 * Intent
