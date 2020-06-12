@@ -48,8 +48,9 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
        }
    dialogUpdate.show(supportFragmentManager, "dialog")
 ```
- <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591588183.png"  height="640" width="360">
- <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591922802.png"  height="640" width="360">
+<center class="half">
+ <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591588183.png"  height="640" width="360">  <img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1591922802.png"  height="640" width="360">
+</center>
 
 * LooperTextView  滚动展示的TextView
 * NoScrollViewPager  禁止滑动的ViewPager
