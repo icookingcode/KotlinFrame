@@ -27,4 +27,12 @@
         <attr name="right_bottom_radius" format="dimension" />
         <attr name="left_bottom_radius" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="WaterMarkView">
+        <attr name="markerText" format="reference|string" />
+        <attr name="lineHeight" format="dimension" />
+        <attr name="markerTextSize" format="dimension" />
+        <attr name="markerSpace" format="dimension" />
+        <attr name="fixSpace" format="dimension" />
+    </declare-styleable>
 </resources>

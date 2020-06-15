@@ -106,6 +106,16 @@ class SystemHttp : BaseSystem() {
             })
     }
 
+    //cancel request
+    fun cancelRequest(tag: Any) {
+        poolCall[tag]?.let {
+            for (call in it) {
+                call.cancel()
+            }
+        }
+        poolCall.remove(tag)
+    }
+
     //获取返回结果
     private fun <T> getKResponse(
         resp: Response?,

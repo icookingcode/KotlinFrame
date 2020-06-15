@@ -8,6 +8,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.guc.kframe.Constant
+import com.guc.kframe.system.SystemHttp
+import com.guc.kframe.system.SystemWaterMark
 import com.guc.kframe.utils.LogG
 
 /**
@@ -29,6 +31,12 @@ open class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         ActivityCollector.removeActivity(this)
+        getSystem<SystemHttp>()?.cancelRequest(this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getSystem<SystemWaterMark>()?.onActivityStart(this)
     }
 
     override fun onResume() {
@@ -58,4 +66,5 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun <T : BaseSystem> getSystem(className: Class<T>?): T? = SystemManager.getSystem(className)
+    inline fun <reified T : BaseSystem> getSystem(): T? = getSystem(T::class.java)
 }

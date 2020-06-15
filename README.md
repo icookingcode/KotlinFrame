@@ -59,6 +59,7 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
 * SyncHorizontalScrollView  实现同步滚动HorizontalScrollView
 * CornerImageView  圆角矩形/圆形头像
 * Banner  广告轮播
+* WaterMarkView  自定义水印
 
 ## 系统工具
 * SystemHttp 网络请求工具系统
@@ -66,6 +67,15 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
 * SystemPermission 权限申请系统
 * SystemImageLoader 图片加载工具
 * SystemDownload  下载工具
+* SystemWaterMark  水印工具
+```
+    //开启水印  activity 需继承 BaseActivity
+    SystemManager.getSystem(SystemWaterMark::class.java)?.apply {
+        enable = true
+        text = "自定义水印"
+    }
+```
+<img src="https://github.com/icookingcode/KotlinFrame/blob/master/snapshoot/Screenshot_1592188658.png"  height="576" width="306"/>
 
 ## 适配器封装
 * CommonAdapter4ListView  通用ListView适配器封装
