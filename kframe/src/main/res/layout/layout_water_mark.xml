@@ -6,4 +6,5 @@
     android:alpha="0.2"
     app:lineHeight="80dp"
     app:markerSpace="50dp"
-    app:markerText="谷超超" />
+    app:markerText=""
+    app:radian="0.524" />

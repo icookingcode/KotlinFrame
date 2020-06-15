@@ -20,6 +20,7 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
 
     companion object {
         const val TAG = "WaterMarkView"
+        const val DEFAULT_RADIAN: Float = (PI / 6).toFloat()
     }
 
     var markText: CharSequence = "水印"
@@ -30,7 +31,7 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     private var singleMarkerHeight = 0
     private var markerSpace = 0//间距
     private var deltaFixSpace = 0//修正间距
-    var radian = PI / 6//弧度
+    var radian = DEFAULT_RADIAN//弧度
     private var repeatCountX = 1
     private var repeatCountY = 1
     private var repeatSpace = 1
@@ -55,6 +56,7 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
             a.getDimension(R.styleable.WaterMarkView_markerSpace, dp2px(30f).toFloat()).toInt()
         deltaFixSpace =
             a.getDimension(R.styleable.WaterMarkView_fixSpace, markerSpace.toFloat() / 2).toInt()
+        radian = a.getFloat(R.styleable.WaterMarkView_radian, DEFAULT_RADIAN)
         a.recycle()
     }
 
@@ -99,15 +101,14 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
                 times
             )
         ) width.toFloat() else (lineHeight * times * 1.0f / tan(
-            radian.toFloat()
+            radian
         ))
 
     private fun getEndY(itemHeight: Float, times: Int): Float =
         if (isEnoughHeight(itemHeight, times)) (lineHeight * times - itemHeight) else 0f
 
     private fun getItemHeight(): Float {
-        val h = width * tan(radian)
-        return h.toFloat()
+        return width * tan(radian)
     }
 
     private fun getLineText(): String {

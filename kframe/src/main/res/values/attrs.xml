@@ -34,5 +34,6 @@
         <attr name="markerTextSize" format="dimension" />
         <attr name="markerSpace" format="dimension" />
         <attr name="fixSpace" format="dimension" />
+        <attr name="radian" format="float" />
     </declare-styleable>
 </resources>
