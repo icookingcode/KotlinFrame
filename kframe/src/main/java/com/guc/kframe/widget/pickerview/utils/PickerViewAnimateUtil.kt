@@ -8,7 +8,6 @@ import com.guc.kframe.R
  * Description：
  */
 object PickerViewAnimateUtil {
-    private const val INVALID = -1
     fun getAnimationResource(gravity: Int, isInAnim: Boolean) =
         when (gravity) {
             Gravity.BOTTOM -> if (isInAnim) R.anim.push_bottom_in else R.anim.push_bottom_out

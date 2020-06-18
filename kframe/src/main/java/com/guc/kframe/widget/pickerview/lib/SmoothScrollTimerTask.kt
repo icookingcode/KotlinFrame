@@ -9,8 +9,8 @@ import kotlin.math.abs
  */
 class SmoothScrollTimerTask(private val loopView: WheelView, private var offset: Int) :
     TimerTask() {
-    var realTotalOffSet = Int.MAX_VALUE
-    var realOffSet = 0
+    private var realTotalOffSet = Int.MAX_VALUE
+    private var realOffSet = 0
 
     override fun run() {
         if (realTotalOffSet == Int.MAX_VALUE) {

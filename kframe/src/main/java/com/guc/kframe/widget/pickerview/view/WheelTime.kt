@@ -1,5 +1,6 @@
 package com.guc.kframe.widget.pickerview.view
 
+import android.annotation.SuppressLint
 import android.view.View
 import com.guc.kframe.R
 import com.guc.kframe.widget.pickerview.adapter.NumericWheelAdapter
@@ -26,6 +27,8 @@ class WheelTime(
         private const val DEFAULT_END_MONTH = 12
         private const val DEFAULT_START_DAY = 1
         private const val DEFAULT_END_DAY = 31
+
+        @SuppressLint("SimpleDateFormat")
         var dateFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     }
 

@@ -1,5 +1,6 @@
 package com.guc.kframe.widget.pickerview.lib
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -388,7 +389,7 @@ class WheelView(context: Context, var attributeSet: AttributeSet?) : View(contex
             } else {
                 //获取内容文字
                 //如果是label每项都显示的模式，并且item内容不为空、label 也不为空
-                var contentText =
+                val contentText =
                     if (!isCenterLabel && !TextUtils.isEmpty(label) && !TextUtils.isEmpty(
                             getContentText(
                                 visibles[counter]
@@ -505,6 +506,7 @@ class WheelView(context: Context, var attributeSet: AttributeSet?) : View(contex
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val eventConsumed = gestureDetector.onTouchEvent(event)
         when (event.action) {
@@ -596,34 +598,36 @@ class WheelView(context: Context, var attributeSet: AttributeSet?) : View(contex
         }
     }
 
+    @SuppressLint("RtlHardcoded")
     private fun measuredCenterContentStart(content: String) {
         val rect = Rect()
         paintCenterText.getTextBounds(content, 0, content.length, rect)
         when (mGravity) {
             Gravity.CENTER -> drawCenterContentStart =
-                if (isOptions || label == null || label == "" || !isCenterLabel) {
+                if (isOptions || label == "" || !isCenterLabel) {
                     ((measuredWidth - rect.width()) * 0.5).toInt()
                 } else { //只显示中间label时，时间选择器内容偏左一点，留出空间绘制单位标签
                     ((measuredWidth - rect.width()) * 0.25).toInt()
                 }
-            Gravity.LEFT -> drawCenterContentStart = 0
-            Gravity.RIGHT -> drawCenterContentStart =
-                measuredWidth - rect.width() - centerContentOffset as Int
+            Gravity.LEFT, Gravity.START -> drawCenterContentStart = 0
+            Gravity.RIGHT, Gravity.END -> drawCenterContentStart =
+                measuredWidth - rect.width() - centerContentOffset.toInt()
         }
     }
 
+    @SuppressLint("RtlHardcoded")
     private fun measuredOutContentStart(content: String) {
         val rect = Rect()
         paintOuterText.getTextBounds(content, 0, content.length, rect)
         when (mGravity) {
             Gravity.CENTER -> drawOutCenterContentStart =
-                if (isOptions || label == null || label == "" || !isCenterLabel) {
+                if (isOptions || label == "" || !isCenterLabel) {
                     ((measuredWidth - rect.width()) * 0.5).toInt()
                 } else { //只显示中间label时，时间选择器内容偏左一点，留出空间绘制单位标签
                     ((measuredWidth - rect.width()) * 0.25).toInt()
                 }
-            Gravity.LEFT -> drawOutCenterContentStart = 0
-            Gravity.RIGHT -> drawOutCenterContentStart =
+            Gravity.LEFT, Gravity.START -> drawOutCenterContentStart = 0
+            Gravity.RIGHT, Gravity.END -> drawOutCenterContentStart =
                 measuredWidth - rect.width() - centerContentOffset.toInt()
         }
     }
@@ -633,7 +637,7 @@ class WheelView(context: Context, var attributeSet: AttributeSet?) : View(contex
      */
     private fun getTextWidth(paint: Paint, str: String?): Int {
         var iRet = 0
-        if (str != null && str?.length > 0) {
+        if (str != null && str.isNotEmpty()) {
             val len = str.length
             val widths = FloatArray(len)
             paint.getTextWidths(str, widths)
