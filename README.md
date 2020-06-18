@@ -56,10 +56,52 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
 * NoScrollViewPager  禁止滑动的ViewPager
 * RichTextView  标题和内容同行不同样式
 * FixedGridView/FixedListView  解决ScrollView中嵌套高度显示不正常的问题（1行半）
+* AdaptiveWithListView  宽度自适应ListView
 * SyncHorizontalScrollView  实现同步滚动HorizontalScrollView
 * CornerImageView  圆角矩形/圆形头像
 * Banner  广告轮播
 * WaterMarkView  自定义水印
+* OptionsPickerView  仿ios参数选择
+```
+ var mOptionPicker = OptionsPickerView<String>(this).apply {
+          //参数及样式设置
+          titleBackgroundColor = Color.parseColor("#FFFFFF")
+      }.create(object :
+      OptionsPickerView.OnOptionsSelectListener {
+           override fun onOptionsSelect(
+                options1: Int,
+                options2: Int,
+                options3: Int,
+                v: View?
+           ) {
+                    //回调
+           }
+      }).apply {
+            setPicker(mOptions!!, mOptions2Opt)//设置数据 必须再create()后调用才有效
+      }
+      mOptionPicker.show()
+```
+* TimePickerView  仿ios时间选择
+```
+  var mOptionPickerDate = TimePickerView(this).apply {
+                //设置参数
+                type = WheelTime.Type.YEAR_MONTH_DAY //选择日期类型
+                titleText = "请选择日期"
+                titleBackgroundColor = Color.parseColor("#FFFFFF")
+                submitTextColor = Color.parseColor("#1E90FF")
+                cancelTextColor = Color.parseColor("#B0C4DE")
+                isDialogM = true  //窗口样式
+                cancelable = true  //点击外部可取消
+            }.create(object : TimePickerView.OnTimeSelectListener {
+                @SuppressLint("SimpleDateFormat")
+                override fun onTimeSelect(date: Date?, v: View?) {
+                    date?.let {
+                        //回调
+                    }
+                }
+            })
+            mOptionPickerDate.show()
+```
 
 ## 系统工具
 * SystemHttp 网络请求工具系统

@@ -63,7 +63,6 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        LogG.loge(TAG, "with：$width  height:$height")
         val rectText = Rect()
         paint.textSize = markerTextSize
         paint.getTextBounds(markText.toString(), 0, markText.toString().length, rectText)
@@ -74,20 +73,13 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
         repeatSpace = markerSpace / rectText.width()
         repeatCountX = ceil(width * 1.0 / cos(radian) / (singleMarkerWidth + markerSpace)).toInt()
         repeatCountY = floor(height * 1.0 / lineHeight).toInt()
-        LogG.loge(
-            TAG,
-            "repeatCountX = $repeatCountX ,repeatCountY = $repeatCountY ,lineHeight = $lineHeight"
-        )
-
         val itemStdHeight = getItemHeight()
-
         for (i in 1..repeatCountY) {
             path.reset()
             path.moveTo(0f + deltaFixSpace, i * lineHeight.toFloat())
             val x = getEndX(itemStdHeight, i) + deltaFixSpace
             val y = getEndY(itemStdHeight, i)
             path.lineTo(x, y)
-            LogG.loge(TAG, "x=$x y=$y")
             canvas.drawTextOnPath(getLineText(), path, 0f, 0f, paint)
         }
 
