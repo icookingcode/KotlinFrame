@@ -6,7 +6,6 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.guc.kframe.R
-import com.guc.kframe.utils.LogG
 import kotlin.math.*
 
 /**
@@ -45,12 +44,10 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     init {
         val a = context.obtainStyledAttributes(attrs, R.styleable.WaterMarkView)
         markText = a.getString(R.styleable.WaterMarkView_markerText) ?: "水印"
-        LogG.loge(TAG, "获取前：$lineHeight")
         lineHeight = a.getDimensionPixelOffset(
             R.styleable.WaterMarkView_lineHeight,
             dp2px(50f)
         )
-        LogG.loge(TAG, "获取后：$lineHeight")
         markerTextSize = a.getDimension(R.styleable.WaterMarkView_markerTextSize, 48f)
         markerSpace =
             a.getDimension(R.styleable.WaterMarkView_markerSpace, dp2px(30f).toFloat()).toInt()

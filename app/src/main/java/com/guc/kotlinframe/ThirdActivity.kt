@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import com.guc.kframe.base.BaseActivity
+import com.guc.kframe.utils.quickStartActivity
 import com.guc.kframe.widget.pickerview.OptionsPickerView
 import com.guc.kframe.widget.pickerview.TimePickerView
 import com.guc.kframe.widget.pickerview.view.WheelTime
@@ -82,5 +83,6 @@ class ThirdActivity : BaseActivity() {
             })
             mOptionPickerDate.show()
         }
+        tvNextPage.setOnClickListener { quickStartActivity<ForthActivity>(this) {} }
     }
 }
