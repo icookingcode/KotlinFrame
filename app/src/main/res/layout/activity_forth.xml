@@ -13,4 +13,11 @@
         android:layout_height="wrap_content"
         app:leftType="finish"
         app:title="@string/forth_page" />
+    <TextView
+        android:id="@+id/tvCounter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:gravity="center_horizontal"
+        android:textSize="30sp"/>
 </LinearLayout>

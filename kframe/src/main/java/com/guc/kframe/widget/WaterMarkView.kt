@@ -53,7 +53,7 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
             a.getDimension(R.styleable.WaterMarkView_markerSpace, dp2px(30f).toFloat()).toInt()
         deltaFixSpace =
             a.getDimension(R.styleable.WaterMarkView_fixSpace, markerSpace.toFloat() / 2).toInt()
-        radian = a.getFloat(R.styleable.WaterMarkView_radian, DEFAULT_RADIAN)
+        radian = a.getFloat(R.styleable.WaterMarkView_radian, radian)
         a.recycle()
     }
 
@@ -71,7 +71,10 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
         repeatCountX = ceil(width * 1.0 / cos(radian) / (singleMarkerWidth + markerSpace)).toInt()
         repeatCountY = floor(height * 1.0 / lineHeight).toInt()
         val itemStdHeight = getItemHeight()
-        for (i in 1..repeatCountY) {
+        var start = 1
+        var end = repeatCountY
+        if (radian>0) end+= width/lineHeight else start-= width/lineHeight
+        for (i in start..end) {
             path.reset()
             path.moveTo(0f + deltaFixSpace, i * lineHeight.toFloat())
             val x = getEndX(itemStdHeight, i) + deltaFixSpace

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.guc.kframe.R
 import com.guc.kframe.base.BaseSystem
 import com.guc.kframe.widget.WaterMarkView
+import kotlin.math.PI
 
 /**
  * Created by guc on 2020/6/12.
@@ -20,6 +21,7 @@ class SystemWaterMark : BaseSystem() {
 
     var enable = false
     var text = "水印"
+    var angle = 30
     override fun initSystem() {
     }
 
@@ -35,6 +37,7 @@ class SystemWaterMark : BaseSystem() {
                     .inflate(R.layout.layout_water_mark, null) as WaterMarkView
             waterMarkView.tag = VIEW_TAG
             waterMarkView.markText = text
+            waterMarkView.radian = (angle/180.0* PI).toFloat()
             rootView.addView(waterMarkView)
         }
 
