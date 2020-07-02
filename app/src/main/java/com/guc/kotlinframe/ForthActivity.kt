@@ -3,7 +3,9 @@ package com.guc.kotlinframe
 import android.os.Bundle
 import com.guc.kframe.base.BaseActivity
 import com.guc.kframe.utils.LogG
+import com.guc.kframe.utils.TimeFormatUtils
 import kotlinx.android.synthetic.main.activity_forth.*
+import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
@@ -18,12 +20,22 @@ class ForthActivity : BaseActivity() {
         setContentView(R.layout.activity_forth)
         mFuture = mExecutor.scheduleWithFixedDelay({
             runOnUiThread {
-                tvCounter.text = count.toString()  //不安全，不能在主线程更新UI，即使不崩
+                tvCounter.text = TimeFormatUtils.date2String(Date())
             }
 //            tvCounter.text = count.toString()  //不安全，不能在主线程更新UI，即使不崩
             count++
         }, 1000, 1000, TimeUnit.MILLISECONDS)
 
+        btnFormat.setOnClickListener {
+            timeFormat()
+        }
+    }
+
+    private fun timeFormat() {
+        val timeString: String = etTimeString.text.toString()
+        val oldPattern: String = etOldPattern.text.toString()
+        val newPattern: String = etNewPattern.text.toString()
+        etTimeString.setText(TimeFormatUtils.formatConversion(timeString, oldPattern, newPattern))
     }
 
     override fun onDestroy() {

@@ -171,7 +171,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-        dialog.datas = listOf("Kotlin", "Java", "JavaScript", "c", "c++")
+        dialog.datas = listOf("Kotlin", "Java", "JavaScript", "c", "c++","C#","Dart")
         dialog.show()
     }
 

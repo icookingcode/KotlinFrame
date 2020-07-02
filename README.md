@@ -125,6 +125,9 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
 * ViewPager2FragmentStateAdapter  通用ViewPager2+Fragment适配器封装
 * ViewPagerAdapter  通用ViewPagerAdapter封装
 
+## 工具类
+* TimeFormatUtils  时间格式转换工具
+
 ## Android 进程间通讯
 * Intent
 * 使用文件共享

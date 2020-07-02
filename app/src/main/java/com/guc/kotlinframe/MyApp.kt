@@ -16,9 +16,9 @@ class MyApp : Application() {
         super.onCreate()
         val config = Config().apply {
             currentMode = Config.MODEL_DEBUG
-            urlDebug = "http://192.168.44.141:8099/"
-            urlBeta = "http://192.168.44.141:8099/"
-            urlRelease = "http://192.168.44.141:8099/"
+            urlDebug = "http://192.168.181.128/"
+            urlBeta = "http://192.168.181.128/"
+            urlRelease = "http://192.168.181.128/"
         }
         Engine.init(this, config)
 

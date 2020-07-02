@@ -20,4 +20,29 @@
         android:text="0"
         android:gravity="center_horizontal"
         android:textSize="30sp"/>
+    <EditText
+        android:id="@+id/etTimeString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入时间字符串"
+        android:text="2020年5月21日 13:14:00"/>
+    <EditText
+        android:id="@+id/etOldPattern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入原时间格式"
+        android:text="yyyy年MM月dd日 HH:mm:ss"/>
+    <EditText
+        android:id="@+id/etNewPattern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入新的时间格式"
+        android:text="yyyyMMddHHmmss"
+        />
+    <Button
+        android:id="@+id/btnFormat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="转换"/>
+
 </LinearLayout>
