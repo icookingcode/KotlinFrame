@@ -7,12 +7,18 @@
     android:orientation="vertical"
     tools:context=".SecondActivity">
 
-    <com.guc.kframe.widget.TitleLayout
+    <com.guc.kframe.widget.toolbar.TitleLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/colorPrimary"
         app:leftType="finish"
-        app:title="@string/second_page" />
+        app:rightSpinnerType="text"
+        app:rightText="更多"
+        app:rightTextColor="#FFFFFF"
+        app:rightType="text_spinner"
+        app:title="@string/second_page"
+        app:titleTextColor="#FFFFFF" />
 
     <TextView
         android:layout_width="wrap_content"

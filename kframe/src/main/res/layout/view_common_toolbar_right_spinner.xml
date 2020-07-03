@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llay_common_toolbar_right"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/blank_m"
+    android:paddingRight="@dimen/blank_m">
+
+    <ImageView
+        android:layout_width="@dimen/spinner_head_size"
+        android:layout_height="@dimen/spinner_head_size"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/blank_m"
+        android:src="@drawable/dra_spinner_head" />
+
+    <com.guc.kframe.widget.AdaptiveWithListView
+        android:id="@+id/lsv_spinner"
+        style="@style/DefaultListView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@drawable/dra_spinner_bg"
+        android:divider="@drawable/dra_divider_spinner_listview" />
+</LinearLayout>

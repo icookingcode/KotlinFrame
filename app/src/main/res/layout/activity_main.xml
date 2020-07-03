@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.guc.kframe.widget.TitleLayout
+    <com.guc.kframe.widget.toolbar.TitleLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"

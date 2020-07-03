@@ -5,6 +5,20 @@
     <dimen name="loading_dialog_icon_size">50dp</dimen>
     <dimen name="radius">4dp</dimen>        <!--圆角 -->
     <dimen name="blank_s">5dp</dimen>
+    <dimen name="blank_m">10dp</dimen>
+    <dimen name="blank_l">15dp</dimen>
     <dimen name="text_s">12sp</dimen>
     <dimen name="text_m">14sp</dimen>
+
+
+    <dimen name="divier_h">0.75dp</dimen>
+
+    <!--spinner-->
+    <dimen name="spinner_head_size">15dp</dimen>
+    <dimen name="spinner_content_w">60dp</dimen>
+
+    <!--toolbar-->
+    <dimen name="toolbar_image_size">20dp</dimen>
+    <dimen name="toolbar_normal_text">16sp</dimen>
+    <dimen name="toolbar_center_text">20sp</dimen>
 </resources>

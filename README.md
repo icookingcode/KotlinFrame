@@ -31,6 +31,19 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
 
 ## 自定义控件
 * TitleLayout   自定义标题栏
+```
+#自定义xml属性
+leftType ：左侧图标类型。（none:不显示  finish:返回）
+leftImage：设置左侧图标。
+title：设置标题。
+titleGravity：设置标题位置。（start：左侧，左图标右侧  center：居中）
+titleTextColor：设置标题颜色。
+rightType：右侧功能样式。（none：不显示  text：文字样式  image：图标样式  image_text：图标文字样式  text_spinner：文字带功能弹窗样式  image_spinner：图标文字带功能弹窗样式）
+rightSpinnerType：右侧功能弹窗样式。（text：文字样式  image_text：图标文字样式）
+rightText：右侧功能文字。
+rightTextColor：设置右侧文字颜色。
+rightImage：设置右侧图标。
+```
 * LoadingDialog 加载框
 * DialogSelect  单选/多选框
 * DialogUpdate  升级框，带下载功能

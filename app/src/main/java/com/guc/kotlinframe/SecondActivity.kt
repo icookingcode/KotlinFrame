@@ -4,7 +4,9 @@ import android.os.Bundle
 import com.guc.kframe.adapter.ViewPager2FragmentStateAdapter
 import com.guc.kframe.adapter.ViewPagerAdapter
 import com.guc.kframe.base.BaseActivity
+import com.guc.kframe.utils.ToastUtil
 import com.guc.kframe.utils.quickStartActivity
+import com.guc.kframe.widget.toolbar.ToolbarSpinnerBean
 import com.guc.kotlinframe.ui.fragment.FragmentContent
 import kotlinx.android.synthetic.main.activity_second.*
 
@@ -14,7 +16,27 @@ class SecondActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-
+        titleLayout.onRightClicked = { ToastUtil.toast("点击了更多") }
+        titleLayout.onRightSpinnerClicked = { i, bean -> ToastUtil.toast("点击了第${i + 1}选项") }
+        titleLayout.setRightSpinnerData(
+            listOf(
+                ToolbarSpinnerBean(
+                    "1",
+                    getDrawable(R.drawable.back_arrow),
+                    "新增"
+                ),
+                ToolbarSpinnerBean(
+                    "2",
+                    getDrawable(R.drawable.back_arrow),
+                    "编辑"
+                ),
+                ToolbarSpinnerBean(
+                    "3",
+                    getDrawable(R.drawable.back_arrow),
+                    "备份"
+                )
+            )
+        )
         adapter2 = ViewPager2FragmentStateAdapter(
             this,
             listOf(

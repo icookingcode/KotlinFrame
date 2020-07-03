@@ -5,4 +5,8 @@
     <color name="colorAccent">#56C8B9</color>
 
     <color name="colorTrans60">#99000000</color>
+    <color name="colorDivider">#dee2eb</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorTrans1">#40000000</color>
 </resources>
