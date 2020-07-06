@@ -17,7 +17,7 @@ class SecondActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
         titleLayout.onRightClicked = { ToastUtil.toast("点击了更多") }
-        titleLayout.onRightSpinnerClicked = { i, bean -> ToastUtil.toast("点击了第${i + 1}选项") }
+        titleLayout.onRightSpinnerClicked = { i, _ -> ToastUtil.toast("点击了第${i + 1}选项") }
         titleLayout.setRightSpinnerData(
             listOf(
                 ToolbarSpinnerBean(

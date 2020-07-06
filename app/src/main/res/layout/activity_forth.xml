@@ -37,12 +37,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入新的时间格式"
-        android:text="yyyyMMddHHmmss"
-        />
+        android:text="yyyyMMddHHmmss" />
+
     <Button
         android:id="@+id/btnFormat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="转换"/>
+        android:text="转换" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvFloat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="漂浮TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

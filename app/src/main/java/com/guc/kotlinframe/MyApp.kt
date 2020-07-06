@@ -15,7 +15,7 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         val config = Config().apply {
-            currentMode = Config.MODEL_DEBUG
+            currentMode = BuildConfig.MODE
             urlDebug = "http://192.168.181.128/"
             urlBeta = "http://192.168.181.128/"
             urlRelease = "http://192.168.181.128/"

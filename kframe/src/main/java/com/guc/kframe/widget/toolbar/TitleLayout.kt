@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 import com.guc.kframe.R
 import com.guc.kframe.adapter.CommonAdapter4ListView
 import com.guc.kframe.adapter.ViewHolder4ListView
@@ -73,12 +74,12 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
     var leftType: Int = TYPE_NONE
     var rightType: Int = TYPE_NONE
 
-    var rightImageDrawable: Drawable = resources.getDrawable(R.drawable.more)
+    var rightImageDrawable: Drawable? = getDrawable(R.drawable.more)
         set(value) {
             rightImgV.setImageDrawable(value)
             field = value
         }
-    var leftImageDrawable: Drawable = resources.getDrawable(R.drawable.back_arrow)
+    var leftImageDrawable: Drawable? = getDrawable(R.drawable.back_arrow)
         set(value) {
             leftImgV.setImageDrawable(value)
             field = value
@@ -117,9 +118,9 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
         titleGravity = array.getInt(R.styleable.TitleLayout_titleGravity, GRAVITY_CENTER)
 
         leftImageDrawable = array.getDrawable(R.styleable.TitleLayout_leftImage)
-            ?: resources.getDrawable(R.drawable.back_arrow)
+            ?: getDrawable(R.drawable.back_arrow)
         rightImageDrawable = array.getDrawable(R.styleable.TitleLayout_rightImage)
-            ?: resources.getDrawable(R.drawable.more)
+            ?: getDrawable(R.drawable.more)
 
         titleTextColor = array.getColor(R.styleable.TitleLayout_titleTextColor, DEFAULT_TEXT_COLOR)
         rightTextColor = array.getColor(R.styleable.TitleLayout_rightTextColor, DEFAULT_TEXT_COLOR)
@@ -217,7 +218,7 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
                     if (rightSpinnerType == SPINNER_TYPE_IMAGE_TEXT) {
                         viewHolder.apply {
                             getView<TextView>(R.id.txtv_spinner_list).gravity =
-                                Gravity.LEFT or Gravity.CENTER_VERTICAL
+                                Gravity.START or Gravity.CENTER_VERTICAL
                             setVisible(R.id.imgv_spinner_list, true)
                             setImageDrawable(R.id.imgv_spinner_list, data?.drawable)
                             setText(R.id.txtv_spinner_list, data?.text)
@@ -261,7 +262,15 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
                 true
             ).apply {
                 isOutsideTouchable = true
-                setBackgroundDrawable(ColorDrawable(resources.getColor(android.R.color.transparent)))
+                setBackgroundDrawable(
+                    ColorDrawable(
+                        ResourcesCompat.getColor(
+                            resources,
+                            android.R.color.transparent,
+                            null
+                        )
+                    )
+                )
             }
             view.findViewById<View>(R.id.llay_common_toolbar_right)
                 .setOnClickListener { popSpinnerRight!!.dismiss() }
@@ -274,5 +283,7 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
     private fun getContentHeight(): Int {
         return ScreenUtil.dp2px(200)
     }
+
+    private fun getDrawable(resId: Int) = ResourcesCompat.getDrawable(resources, resId, null)
 
 }

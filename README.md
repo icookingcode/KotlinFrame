@@ -140,6 +140,8 @@ rightImage：设置右侧图标。
 
 ## 工具类
 * TimeFormatUtils  时间格式转换工具
+* ImageUtils  图片处理工具
+* KeyWordUtils  文本关键字改色处理工具
 
 ## Android 进程间通讯
 * Intent
