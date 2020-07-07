@@ -142,6 +142,7 @@ rightImage：设置右侧图标。
 * TimeFormatUtils  时间格式转换工具
 * ImageUtils  图片处理工具
 * KeyWordUtils  文本关键字改色处理工具
+* SPUtils  SharedPreferences操作工具，请在使用前调用 SPUtils.getSharedPreferences()获取preference实例
 
 ## Android 进程间通讯
 * Intent

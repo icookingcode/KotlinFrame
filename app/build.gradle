@@ -1,7 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+//读取签名配置并返回Properties
+def buildSign() {
+    def Properties buildProperties = new Properties()
+    buildProperties.load(new FileInputStream(file("../local.properties")))
+    return buildProperties
+}
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -17,10 +22,11 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file('../my.jks')
-            keyAlias 'key0'
-            keyPassword '111111'
-            storePassword '111111'
+            def Properties buildPro = buildSign()
+            storeFile file(buildPro["store_file"])
+            keyAlias buildPro["key_alias"]
+            keyPassword buildPro["key_password"]
+            storePassword buildPro["store_password"]
             // 如果要支持最新版的系统 Android 7.0
             // 这一行必须加，否则安装时会提示没有签名
             // 作用是只使用旧版签名，禁用V2版签名模式
