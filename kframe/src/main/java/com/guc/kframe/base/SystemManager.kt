@@ -23,6 +23,8 @@ object SystemManager {
         mSystemPool.clear()
     }
 
+    inline fun <reified T : BaseSystem> getSystem() = getSystem(T::class.java)
+
     fun <T : BaseSystem> getSystem(className: Class<T>?): T? {
         if (className == null) {
             return null

@@ -4,7 +4,6 @@ import android.content.Context
 import com.guc.kframe.base.ActivityCollector
 import com.guc.kframe.base.SystemManager
 import com.guc.kframe.system.SystemCrash
-import com.guc.kframe.utils.SharedPreferencesUtils
 
 /**
  * Created by guc on 2020/5/22.
@@ -21,7 +20,6 @@ object Engine {
                 context.externalCacheDir?.absolutePath ?: context.cacheDir.absolutePath
         }
         this.config = config
-        SharedPreferencesUtils.init()
         //启动必要system
         SystemManager.getSystem(SystemCrash::class.java)
     }
@@ -30,5 +28,6 @@ object Engine {
     //退出应用
     fun exit() {
         ActivityCollector.finishAll()
+        SystemManager.destroyAllSystem()
     }
 }
