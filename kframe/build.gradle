@@ -17,6 +17,14 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        beta {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -75,7 +83,7 @@ publish{
     userOrg = 'guchao'
     groupId = 'com.guc.kframe'
     artifactId = 'kframe'
-    publishVersion = '1.0.2'
+    publishVersion = '1.0.3'
     desc = 'Kotlin Frame '
     website = 'https://github.com/icookingcode/KotlinFrame'
 }
