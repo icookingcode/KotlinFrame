@@ -17,6 +17,10 @@ class AppInfoViewModel : ViewModel() {
         Repository.getAppInfo()
     }
 
+    val appInfo2 = Transformations.switchMap(tag) {
+        Repository.getAppInfo2()
+    }
+
     fun getAppInfo() {
         tag.value = "AppInfoViewModel"
     }

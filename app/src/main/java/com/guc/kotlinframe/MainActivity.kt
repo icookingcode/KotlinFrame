@@ -74,6 +74,16 @@ class MainActivity : BaseActivity() {
                 result.exceptionOrNull()?.printStackTrace()
             }
         })
+        viewModel.appInfo2.observe(this, Observer { result ->
+            val apps = result.getOrNull()
+            if (apps?.data != null) {
+                viewModel.appInfoList.addAll(apps.data!!)
+                rcvContent.adapter?.notifyDataSetChanged()
+            } else {
+                ToastUtil.toast("未能获取数据")
+                result.exceptionOrNull()?.printStackTrace()
+            }
+        })
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = true
             thread {

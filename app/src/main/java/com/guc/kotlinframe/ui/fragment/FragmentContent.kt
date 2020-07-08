@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.guc.kframe.base.BaseLazyFragment
+import com.guc.kframe.utils.LogG
 import com.guc.kotlinframe.R
 import kotlinx.android.synthetic.main.fragment_content.*
 
@@ -14,7 +15,7 @@ private const val ARG_PARAM2 = "param2"
 /**
  *
  */
-class FragmentContent : Fragment() {
+class FragmentContent : BaseLazyFragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -47,5 +48,9 @@ class FragmentContent : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvContent.text = param1 + param2
+    }
+
+    override fun onLazyLoad() {
+        LogG.loge("Frag", "onLazyLoad() $param1 $param2")
     }
 }

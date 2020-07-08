@@ -2,6 +2,7 @@ package com.guc.kotlinframe.logic
 
 import androidx.lifecycle.liveData
 import com.guc.kotlinframe.logic.model.AppInfo
+import com.guc.kotlinframe.logic.model.BaseModel
 import com.guc.kotlinframe.logic.network.ApiNetwork
 import kotlinx.coroutines.Dispatchers
 
@@ -16,6 +17,16 @@ object Repository {
             Result.success(resp)
         } catch (e: Exception) {
             Result.failure<List<AppInfo>>(e)
+        }
+        emit(result)
+    }
+
+    fun getAppInfo2() = liveData(Dispatchers.IO) {
+        val result = try {
+            val resp = ApiNetwork.getAppInfoData2()
+            Result.success(resp)
+        } catch (e: Exception) {
+            Result.failure<BaseModel<List<AppInfo>>>(e)
         }
         emit(result)
     }

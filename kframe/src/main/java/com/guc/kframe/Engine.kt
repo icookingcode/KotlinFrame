@@ -4,6 +4,7 @@ import android.content.Context
 import com.guc.kframe.base.ActivityCollector
 import com.guc.kframe.base.SystemManager
 import com.guc.kframe.system.SystemCrash
+import com.guc.kframe.utils.LogG
 
 /**
  * Created by guc on 2020/5/22.
@@ -20,6 +21,8 @@ object Engine {
                 context.externalCacheDir?.absolutePath ?: context.cacheDir.absolutePath
         }
         this.config = config
+        //设置log开关
+        LogG.logOpen = config.logEnable
         //启动必要system
         SystemManager.getSystem(SystemCrash::class.java)
     }

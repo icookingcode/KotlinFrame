@@ -11,8 +11,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 class ViewPagerAdapter(
     fm: FragmentManager,
     private val fragments: List<Fragment>,
-    private var titles: List<String>?
-) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private var titles: List<String>?,
+    behavior: Int = BEHAVIOR_SET_USER_VISIBLE_HINT //支持懒加载
+) : FragmentPagerAdapter(fm, behavior) {
     constructor(fm: FragmentManager, fragments: List<Fragment>) : this(fm, fragments, null)
 
     override fun getCount(): Int = fragments.size
