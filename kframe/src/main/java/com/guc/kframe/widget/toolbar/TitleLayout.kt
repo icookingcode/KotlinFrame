@@ -27,6 +27,7 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
     companion object {
         const val TYPE_NONE = 0
         const val LEFT_TYPE_FINISH = 1
+        const val LEFT_TYPE_CLICKED = 2
         const val GRAVITY_START = 0
         const val GRAVITY_CENTER = 1
 
@@ -43,6 +44,8 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
 
     }
 
+
+    var onLeftClicked: ((View?) -> Unit)? = null
     var onRightClicked: ((View?) -> Unit)? = null
     var onRightSpinnerClicked: ((Int, ToolbarSpinnerBean) -> Unit)? = null
 
@@ -138,7 +141,7 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
         llRight.setOnClickListener(this)
         when (leftType) {
             TYPE_NONE -> leftImgV.visibility = View.GONE
-            LEFT_TYPE_FINISH -> {
+            LEFT_TYPE_FINISH, LEFT_TYPE_CLICKED -> {
                 leftImgV.visibility = View.VISIBLE
                 leftImgV.setOnClickListener(this)
             }
@@ -170,7 +173,12 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.leftImgV -> (context as Activity).finish()
+            R.id.leftImgV -> {
+                when (leftType) {
+                    LEFT_TYPE_FINISH -> (context as Activity).finish()
+                    LEFT_TYPE_CLICKED -> onLeftClicked?.let { it(v) }
+                }
+            }
             R.id.llRight -> {
                 when (rightType) {
                     TYPE_RIGHT_TEXT, TYPE_RIGHT_IMAGE, TYPE_RIGHT_IMAGE_TEXT -> onRightClicked?.let {

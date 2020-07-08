@@ -8,6 +8,7 @@
         <attr name="leftType" format="enum">
             <enum name="none" value="0" />
             <enum name="finish" value="1" />
+            <enum name="clicked" value="2" />
         </attr>
         <attr name="leftImage" format="reference" />
         <attr name="title" />

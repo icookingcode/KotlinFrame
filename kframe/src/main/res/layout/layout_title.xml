@@ -21,7 +21,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:text="Title"
-        android:textColor="#333" />
+        android:textColor="#333"
+        android:textSize="20sp" />
 
     <!--右侧-->
     <LinearLayout
