@@ -98,10 +98,17 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun showLoading(isShow: Boolean) {
+    /**
+     * 显示加载提示框
+     */
+    protected fun showLoading(isShow: Boolean) {
         if (isShow) loadingDialog = loadingDialog.let {
             it ?: LoadingDialog(this)
-        }.apply { show() }
+        }.apply {
+            if (!isShowing) {
+                show()
+            }
+        }
         else loadingDialog?.dismiss()
     }
 
