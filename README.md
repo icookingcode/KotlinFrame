@@ -152,3 +152,21 @@ rightImage：设置右侧图标。
 * 使用AIDL
 * 使用ContentProvider
 * 使用Socket
+
+## Kotlin协程知识
+* GlobalScope.launch{}  创建一个顶级协程 //不阻塞当前线程
+* runBlocking{}  创建一个协程作用域 //阻塞当前线程 
+* launch{}  在协程作用域内创建一个协程  
+* coroutineScope{}  在协程作用域内创建一个子协程作用域 //阻塞当前协程
+* async{}.await()  代码块中的代码会立刻执行，当调用await()时，会阻塞当前协程，直到获取结果
+* withContext(Dispatchers.Default){} 代码块会立即执行，同时阻塞协程，知道获取结果
+```
+//协程作用域的常用创建方式(实际项目中)
+    val job = Job()
+    val scope = CoroutineScope(job)
+    scope.launch {//不阻塞线程
+        //
+    }
+    job.cancel()
+```
+* suspendCoroutine{continuation -> } 必须在挂起函数或协程作用域中才可调用，将当前协程挂起，然后在普通线程中执行lambda表达式中的代码，再调用resume() 或 resumeWithException(e)让协程恢复
