@@ -94,10 +94,10 @@ suspend fun printDot() = coroutineScope {//只阻塞当前协程
 }
 
 suspend fun request(param: Int): String {
-    return suspendCoroutine { c ->
+    return suspendCoroutine { c -> //线程中执行
         val num = (1..20).random()
         if (param > num) {
-            c.resume("成功 $param > $num")
+            c.resume("成功 $param > $num") //回调协程
         } else {
             c.resumeWithException(Exception("失败$param <= $num"))
         }

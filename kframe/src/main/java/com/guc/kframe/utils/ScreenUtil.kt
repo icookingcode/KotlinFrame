@@ -24,4 +24,16 @@ object ScreenUtil {
      */
     fun px2dp(px: Int, context: Context = Engine.context): Int =
         (px / context.resources.displayMetrics.density + 0.5f).toInt()
+
+    /**
+     * sp -> px
+     */
+    fun sp2px(sp: Int, context: Context = Engine.context): Int =
+        (context.resources.displayMetrics.scaledDensity * sp + 0.5).toInt()
+
+    /**
+     * px -> sp
+     */
+    fun px2sp(px: Int, context: Context = Engine.context): Int =
+        (px / context.resources.displayMetrics.scaledDensity + 0.5f).toInt()
 }

@@ -115,6 +115,7 @@ rightImage：设置右侧图标。
             })
             mOptionPickerDate.show()
 ```
+* SearchView 搜索框
 
 ## 系统工具
 * SystemHttp 网络请求工具系统
@@ -159,7 +160,7 @@ rightImage：设置右侧图标。
 * launch{}  在协程作用域内创建一个协程  
 * coroutineScope{}  在协程作用域内创建一个子协程作用域 //阻塞当前协程
 * async{}.await()  代码块中的代码会立刻执行，当调用await()时，会阻塞当前协程，直到获取结果
-* withContext(Dispatchers.Default){} 代码块会立即执行，同时阻塞协程，知道获取结果
+* withContext(Dispatchers.Default){} 代码块会立即执行，同时阻塞协程，直到获取结果
 ```
 //协程作用域的常用创建方式(实际项目中)
     val job = Job()

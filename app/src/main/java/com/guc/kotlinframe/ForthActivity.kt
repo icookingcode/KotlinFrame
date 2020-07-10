@@ -10,6 +10,7 @@ import android.view.View
 import com.guc.kframe.base.BaseActivity
 import com.guc.kframe.utils.KeyWordUtils
 import com.guc.kframe.utils.TimeFormatUtils
+import com.guc.kframe.utils.ToastUtil
 import kotlinx.android.synthetic.main.activity_forth.*
 import java.util.*
 import java.util.concurrent.Executors
@@ -36,6 +37,15 @@ class ForthActivity : BaseActivity() {
         }
 
         animTest()
+        searchViewTest()
+    }
+
+    private fun searchViewTest() {
+        searchView.onConfirmClicked = { isEmpty, key ->
+            if (!isEmpty) {
+                ToastUtil.toast(key ?: "哈哈")
+            }
+        }
     }
 
     private fun animTest() {
