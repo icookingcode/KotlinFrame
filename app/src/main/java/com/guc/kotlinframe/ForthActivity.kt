@@ -11,6 +11,7 @@ import com.guc.kframe.base.BaseActivity
 import com.guc.kframe.utils.KeyWordUtils
 import com.guc.kframe.utils.TimeFormatUtils
 import com.guc.kframe.utils.ToastUtil
+import com.guc.kframe.widget.chart.PieChartView
 import kotlinx.android.synthetic.main.activity_forth.*
 import java.util.*
 import java.util.concurrent.Executors
@@ -38,6 +39,18 @@ class ForthActivity : BaseActivity() {
 
         animTest()
         searchViewTest()
+        loadPieChartData()
+    }
+
+    private fun loadPieChartData() {
+        val data = listOf<PieChartView.PieData>(
+            PieChartView.PieData(45f, "数据库", Color.GREEN),
+            PieChartView.PieData(65f, "ftp", Color.YELLOW),
+            PieChartView.PieData(60f, "专线接入", Color.RED),
+            PieChartView.PieData(35f, "设备采集", Color.BLACK),
+            PieChartView.PieData(35f, "其他", Color.MAGENTA)
+        )
+        pieChartView.setDatas(data)
     }
 
     private fun searchViewTest() {

@@ -6,7 +6,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import com.guc.kframe.R
-import com.guc.kframe.utils.ScreenUtil
+import com.guc.kframe.utils.ScreenUtils
 
 /**
  * Created by guc on 2020/6/9.
@@ -65,7 +65,7 @@ class CornerImageView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     }
 
     fun setCornerRadius(dp: Int) {
-        this.radius = ScreenUtil.dp2px(dp)
+        this.radius = ScreenUtils.dp2px(dp)
         this.leftTopRadius = this.radius
         this.leftBottomRadius = this.radius
         this.rightTopRadius = this.radius

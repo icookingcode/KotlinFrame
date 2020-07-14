@@ -14,7 +14,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.guc.kframe.R
 import com.guc.kframe.adapter.CommonAdapter4ListView
 import com.guc.kframe.adapter.ViewHolder4ListView
-import com.guc.kframe.utils.ScreenUtil
+import com.guc.kframe.utils.ScreenUtils
 import kotlinx.android.synthetic.main.layout_title.view.*
 
 /**
@@ -289,7 +289,7 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
     }
 
     private fun getContentHeight(): Int {
-        return ScreenUtil.dp2px(200)
+        return ScreenUtils.dp2px(200)
     }
 
     private fun getDrawable(resId: Int) = ResourcesCompat.getDrawable(resources, resId, null)

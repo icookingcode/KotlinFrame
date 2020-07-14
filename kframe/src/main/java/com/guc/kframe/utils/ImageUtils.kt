@@ -190,13 +190,13 @@ object ImageUtils {
         val paint =
             Paint(Paint.ANTI_ALIAS_FLAG)
         paint.color = color
-        paint.textSize = ScreenUtil.dp2px(size, context).toFloat()
+        paint.textSize = ScreenUtils.dp2px(size, context).toFloat()
         val bounds = Rect()
         paint.getTextBounds(text, 0, text.length, bounds)
         return drawTextToBitmap(
             bitmap, text, paint,
-            ScreenUtil.dp2px(paddingLeft, context),
-            ScreenUtil.dp2px(paddingTop, context) + bounds.height()
+            ScreenUtils.dp2px(paddingLeft, context),
+            ScreenUtils.dp2px(paddingTop, context) + bounds.height()
         )
     }
 
@@ -224,12 +224,12 @@ object ImageUtils {
         val paint =
             Paint(Paint.ANTI_ALIAS_FLAG)
         paint.color = color
-        paint.textSize = ScreenUtil.dp2px(size, context).toFloat()
+        paint.textSize = ScreenUtils.dp2px(size, context).toFloat()
         val bounds = Rect()
         paint.getTextBounds(text, 0, text.length, bounds)
         return drawTextToBitmap(
-            bitmap, text, paint, ScreenUtil.dp2px(paddingLeft, context),
-            bitmap.height - ScreenUtil.dp2px(paddingBottom, context)
+            bitmap, text, paint, ScreenUtils.dp2px(paddingLeft, context),
+            bitmap.height - ScreenUtils.dp2px(paddingBottom, context)
         )
     }
 

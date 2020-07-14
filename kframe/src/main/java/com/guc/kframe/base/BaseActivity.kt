@@ -16,7 +16,7 @@ import com.guc.kframe.R
 import com.guc.kframe.system.SystemHttp
 import com.guc.kframe.system.SystemWaterMark
 import com.guc.kframe.utils.LogG
-import com.guc.kframe.widget.LoadingDialog
+import com.guc.kframe.widget.dialog.LoadingDialog
 
 /**
  * Created by guc on 2020/4/28.

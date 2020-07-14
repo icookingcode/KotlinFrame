@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.guc.kframe.base.BaseActivity
 import com.guc.kframe.utils.quickStartActivity
+import com.guc.kframe.widget.dialog.DialogConfirm
 import com.guc.kframe.widget.pickerview.OptionsPickerView
 import com.guc.kframe.widget.pickerview.TimePickerView
 import com.guc.kframe.widget.pickerview.view.WheelTime
@@ -83,6 +84,14 @@ class ThirdActivity : BaseActivity() {
             })
             mOptionPickerDate.show()
         }
+
+        tvShowDialog.setOnClickListener { showDialog() }
         tvNextPage.setOnClickListener { quickStartActivity<ForthActivity>(this) {} }
+    }
+
+    private fun showDialog() {
+        val dialog =
+            DialogConfirm(this, true, canceledOnTouchOutside = true).apply { setTipMsg("确认要退出？") }
+        dialog.show()
     }
 }

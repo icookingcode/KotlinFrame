@@ -1,4 +1,4 @@
-package com.guc.kframe.widget
+package com.guc.kframe.widget.textview
 
 import android.content.Context
 import android.graphics.Color

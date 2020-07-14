@@ -1,4 +1,4 @@
-package com.guc.kframe.widget
+package com.guc.kframe.widget.dialog
 
 import android.app.Dialog
 import android.content.Context

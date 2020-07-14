@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="common_loading">加载中...</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_sure">确定</string>
     <string name="ignore_this_version">忽略此版本</string>
     <string name="update">升级</string>
     <string name="please_input">请输入</string>
@@ -14,4 +16,6 @@
     <string name="pickerview_seconds">秒</string>
     <string name="pickerview_submit">选择</string>
     <string name="pickerview_cancel">取消</string>
+
+    <string name="str_nul">暂无</string>
 </resources>

@@ -11,7 +11,7 @@
     <dimen name="text_m">14sp</dimen>
 
 
-    <dimen name="divier_h">0.75dp</dimen>
+    <dimen name="divider">0.75dp</dimen>
 
     <!--spinner-->
     <dimen name="spinner_head_size">15dp</dimen>

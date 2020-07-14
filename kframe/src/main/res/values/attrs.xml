@@ -3,6 +3,7 @@
     <attr name="title" format="reference|string" />
     <attr name="content" format="reference|string" />
     <attr name="titleTextColor" format="color" />
+    <attr name="radius" format="dimension" />
 
     <declare-styleable name="TitleLayout">
         <attr name="leftType" format="enum">
@@ -45,7 +46,7 @@
 
     <declare-styleable name="CornerImageView">
         <attr name="is_circle" format="boolean" />
-        <attr name="radius" format="dimension" />
+        <attr name="radius" />
         <attr name="left_top_radius" format="dimension" />
         <attr name="right_top_radius" format="dimension" />
         <attr name="right_bottom_radius" format="dimension" />
@@ -59,5 +60,23 @@
         <attr name="markerSpace" format="dimension" />
         <attr name="fixSpace" format="dimension" />
         <attr name="radian" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="PieChartView">
+        <attr name="bgColor" format="color" />
+        <attr name="lineWith" format="dimension" />
+        <!--大圆半径-->
+        <attr name="radius" />
+        <!--内部填充圆半径-->
+        <attr name="radiusInner" format="dimension" />
+        <!--指示圆点半径-->
+        <attr name="radiusCenterPoint" format="dimension" />
+        <!--内圆填充颜色-->
+        <attr name="innerCircleColor" format="dimension" />
+        <attr name="textSize4Describe" format="dimension" />
+        <attr name="textSize4Score" format="dimension" />
+        <attr name="textColor4Describe" format="color" />
+        <attr name="textColor4Score" format="color" />
+        <attr name="isDrawCenterText" format="boolean" />
     </declare-styleable>
 </resources>

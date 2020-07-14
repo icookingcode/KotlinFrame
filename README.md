@@ -116,6 +116,9 @@ rightImage：设置右侧图标。
             mOptionPickerDate.show()
 ```
 * SearchView 搜索框
+* RiseNumberTextView 带自增动画效果的数字展示TextView
+* PieChartView  自定义PieChart
+* DialogConfirm  自定义Dialog
 
 ## 系统工具
 * SystemHttp 网络请求工具系统

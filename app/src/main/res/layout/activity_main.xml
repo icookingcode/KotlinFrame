@@ -45,12 +45,12 @@
         android:layout_height="wrap_content"
         android:text="显示下载框" />
 
-    <com.guc.kframe.widget.LooperTextView
+    <com.guc.kframe.widget.textview.LooperTextView
         android:id="@+id/looperText"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
-    <com.guc.kframe.widget.RichTextView
+    <com.guc.kframe.widget.textview.RichTextView
         android:id="@+id/richTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

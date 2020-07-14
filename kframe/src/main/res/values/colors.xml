@@ -9,4 +9,5 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorTrans1">#40000000</color>
+    <color name="colorGray">#eaeaea</color>
 </resources>

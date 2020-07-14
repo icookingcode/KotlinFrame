@@ -8,7 +8,7 @@ import com.guc.kframe.Engine
  * Created by guc on 2020/4/29.
  * 描述：屏幕工具
  */
-object ScreenUtil {
+object ScreenUtils {
     //判断当前设备是否是平板
     fun isPad(context: Context = Engine.context): Boolean =
         (context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE
@@ -36,4 +36,17 @@ object ScreenUtil {
      */
     fun px2sp(px: Int, context: Context = Engine.context): Int =
         (px / context.resources.displayMetrics.scaledDensity + 0.5f).toInt()
+
+    /**
+     * get status bar height
+     * @param context
+     * @return
+     */
+    fun getStatusBarHeight(context: Context): Int = context.resources.getDimensionPixelSize(
+        context.resources.getIdentifier(
+            "status_bar_height",
+            "dimen",
+            "android"
+        )
+    )
 }

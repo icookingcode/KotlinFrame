@@ -89,9 +89,21 @@
     <!--ListView效果-->
     <style name="DefaultListView">
         <item name="android:divider">@drawable/dra_divider_common_listview</item>
-        <item name="android:dividerHeight">@dimen/divier_h</item>
+        <item name="android:dividerHeight">@dimen/divider</item>
         <item name="android:fastScrollEnabled">false</item>
         <item name="android:listSelector">#00000000</item>>
     </style>
+    <!--分割线横向-->
+    <style name="DividerH">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/divider</item>
+        <item name="android:background">@color/colorDivider</item>
+    </style>
 
+    <!--分割线竖向-->
+    <style name="DividerV">
+        <item name="android:layout_width">@dimen/divider</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorDivider</item>
+    </style>
 </resources>
