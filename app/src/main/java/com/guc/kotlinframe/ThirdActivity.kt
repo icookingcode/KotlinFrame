@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import com.guc.kframe.base.BaseActivity
+import com.guc.kframe.ui.DetailInBrowserActivity
 import com.guc.kframe.utils.quickStartActivity
 import com.guc.kframe.widget.dialog.DialogConfirm
 import com.guc.kframe.widget.pickerview.OptionsPickerView
@@ -87,6 +88,12 @@ class ThirdActivity : BaseActivity() {
 
         tvShowDialog.setOnClickListener { showDialog() }
         tvNextPage.setOnClickListener { quickStartActivity<ForthActivity>(this) {} }
+        tvOpenBaidu.setOnClickListener {
+            DetailInBrowserActivity.showDetail(
+                this,
+                "https://www.baidu.com"
+            )
+        }
     }
 
     private fun showDialog() {

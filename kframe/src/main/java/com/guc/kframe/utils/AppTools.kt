@@ -1,5 +1,6 @@
 package com.guc.kframe.utils
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -7,6 +8,7 @@ import android.os.Build
 import android.text.TextUtils
 import com.guc.kframe.Engine
 import java.io.File
+
 
 /**
  * Created by guc on 2020/5/29.
@@ -34,6 +36,37 @@ object AppTools {
         Engine.context.startActivity(intent)
     }
 
+    /**
+     * 启动APP
+     */
+    fun startAPP(appPackageName: String, context: Context = Engine.context) {
+        try {
+            val intent: Intent? = context.packageManager.getLaunchIntentForPackage(appPackageName)
+            context.startActivity(intent)
+        } catch (e: Exception) {
+            ToastUtil.toast("未安装")
+        }
+    }
+
+    /**
+     * 检测是否安装某应用
+     */
+    fun checkAppInstalled(pkgName: String, context: Context = Engine.context): Boolean {
+        if (pkgName.isEmpty()) {
+            return false
+        }
+        val packageManager = context.packageManager
+        // 获取所有已安装程序的包信息
+        val infoList = packageManager.getInstalledPackages(0)
+        if (infoList.isEmpty())
+            return false
+        for (info in infoList) {
+            if (pkgName == info.packageName) {
+                return true
+            }
+        }
+        return false
+    }
 
     private fun getVersionName(packageName: String): String =
         if (TextUtils.isEmpty(packageName)) "" else {

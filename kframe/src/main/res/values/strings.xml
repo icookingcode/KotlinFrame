@@ -18,4 +18,6 @@
     <string name="pickerview_cancel">取消</string>
 
     <string name="str_nul">暂无</string>
+    <string name="str_detail">详情</string>
+    <string name="reboot">程序重启</string>
 </resources>

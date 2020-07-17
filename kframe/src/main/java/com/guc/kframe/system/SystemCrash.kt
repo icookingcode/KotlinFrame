@@ -1,13 +1,19 @@
 package com.guc.kframe.system
 
+import android.annotation.SuppressLint
 import android.os.Build
+import android.os.Looper
 import com.guc.kframe.Engine
+import com.guc.kframe.R
 import com.guc.kframe.base.BaseSystem
 import com.guc.kframe.utils.AppTools
 import com.guc.kframe.utils.FileUtils
+import com.guc.kframe.utils.ToastUtil
 import com.guc.kframe.utils.hashMap
 import java.io.PrintWriter
 import java.io.StringWriter
+import kotlin.concurrent.thread
+
 
 /**
  * Created by guc on 2020/5/29.
@@ -16,6 +22,8 @@ import java.io.StringWriter
 class SystemCrash : BaseSystem() {
     var defaultHandler: Thread.UncaughtExceptionHandler? = null
     var baseMsg: String? = null
+
+    @SuppressLint("WrongConstant")
     override fun initSystem() {
         baseMsg = getBaseMessage()
         defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
@@ -28,7 +36,21 @@ class SystemCrash : BaseSystem() {
                     FileUtils.writeStr2File(logFile, msg, true)
                 }
                 if (Engine.config.enableCrashReset) {
-                    //崩溃重启
+                    thread {
+                        Looper.prepare()
+                        ToastUtil.toast(R.string.reboot)
+                        Looper.loop()
+                    }
+                    try {
+                        //给Toast留出时间
+                        Thread.sleep(100)
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+//                    //崩溃重启
+                    AppTools.startAPP(Engine.context.packageName)
+                    Engine.exit()
+
                 } else {
                     defaultHandler?.uncaughtException(t, e)
                 }

@@ -11,8 +11,12 @@ import com.guc.kframe.Engine
  * 描述：Toast 封装
  */
 object ToastUtil {
-    fun toast( txt: String, duration: Int = Toast.LENGTH_SHORT,context: Context=Engine.context) {
+    fun toast(txt: String, duration: Int = Toast.LENGTH_SHORT, context: Context = Engine.context) {
         Toast.makeText(context, txt, duration).show()
+    }
+
+    fun toast(txtId: Int, duration: Int = Toast.LENGTH_SHORT, context: Context = Engine.context) {
+        toast(context.getString(txtId), duration, context)
     }
 
     fun snack(

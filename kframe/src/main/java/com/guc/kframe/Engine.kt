@@ -30,7 +30,7 @@ object Engine {
 
     //退出应用
     fun exit() {
-        ActivityCollector.finishAll()
         SystemManager.destroyAllSystem()
+        ActivityCollector.finishAll()
     }
 }
