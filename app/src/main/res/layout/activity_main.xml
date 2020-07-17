@@ -122,6 +122,11 @@
         android:layout_gravity="center_horizontal"
         android:text="next page" />
 
+    <com.guc.kframe.widget.EmptyView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:topIconMargin="40dp" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"

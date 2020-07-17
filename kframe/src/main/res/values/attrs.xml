@@ -79,4 +79,12 @@
         <attr name="textColor4Score" format="color" />
         <attr name="isDrawCenterText" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="EmptyView">
+        <attr name="hintIcon" format="reference" />
+        <attr name="hint1" format="reference|string" />
+        <attr name="hint2" format="reference|string" />
+        <attr name="mulLineHint" format="boolean" />
+        <attr name="topIconMargin" format="dimension" />
+    </declare-styleable>
 </resources>
