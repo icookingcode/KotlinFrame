@@ -87,4 +87,22 @@
         <attr name="mulLineHint" format="boolean" />
         <attr name="topIconMargin" format="dimension" />
     </declare-styleable>
+
+    <!--viewpager指示器-->
+    <declare-styleable name="BannerIndicator">
+        <!--指示器之间的间隙-->
+        <attr name="gap" format="dimension" />
+        <!--指示器的宽度-->
+        <attr name="slider_width" format="dimension" />
+        <!--指示器的高度-->
+        <attr name="slider_height" format="dimension" />
+        <!--指示器大小变化方向-->
+        <attr name="slider_align">
+            <enum name="Left" value="1" />
+            <enum name="Center" value="0" />
+            <enum name="Right" value="2" />
+        </attr>
+        <!--是否循环指示-->
+        <attr name="isLoop" format="boolean" />
+    </declare-styleable>
 </resources>

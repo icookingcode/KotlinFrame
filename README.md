@@ -120,6 +120,7 @@ rightImage：设置右侧图标。
 * PieChartView  自定义PieChart
 * DialogConfirm  自定义Dialog
 * EmptyView  空提示控件
+* BannerIndicator  轮播指示控件
 
 ## 系统工具
 * SystemHttp 网络请求工具系统
@@ -142,6 +143,7 @@ rightImage：设置右侧图标。
 * CommonAdapter4Rcv  通用RecyclerView适配器封装
 * ViewPager2FragmentStateAdapter  通用ViewPager2+Fragment适配器封装
 * ViewPagerAdapter  通用ViewPagerAdapter封装
+* CommonPagerAdapter  通用ViewPagerAdapter封装
 
 ## 工具类
 * TimeFormatUtils  时间格式转换工具

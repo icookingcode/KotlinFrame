@@ -1,6 +1,9 @@
 package com.guc.kotlinframe
 
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import com.guc.kframe.adapter.CommonPagerAdapter
 import com.guc.kframe.adapter.ViewPager2FragmentStateAdapter
 import com.guc.kframe.adapter.ViewPagerAdapter
 import com.guc.kframe.base.BaseActivity
@@ -59,6 +62,18 @@ class SecondActivity : BaseActivity() {
         viewPager.adapter = adapter
 
         tvNextPage.setOnClickListener { quickStartActivity<ThirdActivity>(this) {} }
+
+        val adapter3 = object : CommonPagerAdapter<String>(
+            this,
+            listOf("第十三页", "第八页", "第九页", "第十页", "第十一页", "第十二页", "第十三页", "第八页"),
+            R.layout.item_select
+        ) {
+            override fun bindData(parent: View, position: Int, data: String) {
+                parent.findViewById<TextView>(R.id.tvName).text = data
+            }
+        }
+        viewPager3.adapter = adapter3
+        bannerIndicator.setUpWidthViewPager(viewPager3)
     }
 
 }
