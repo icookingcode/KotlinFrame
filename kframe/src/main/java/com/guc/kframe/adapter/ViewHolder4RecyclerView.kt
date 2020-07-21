@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 class ViewHolder4RecyclerView(
     private val rootView: View,
     private val views: SparseArray<View> = SparseArray(),
-    val onItemClicked: ((View?, position: Int) -> Unit)? = null
-) : RecyclerView.ViewHolder(rootView), View.OnClickListener {
+    val onItemClicked: ((View?, position: Int) -> Unit)? = null,
+    val onItemLongClicked: ((View?, position: Int) -> Unit)? = null
+) : RecyclerView.ViewHolder(rootView), View.OnClickListener, View.OnLongClickListener {
 
     var onItemClickListener: ((View?, Int) -> Unit)? = null
         set(value) {
@@ -22,9 +23,16 @@ class ViewHolder4RecyclerView(
                 rootView.setOnClickListener(this)
             field = value
         }
+    var onItemLongClickListener: ((View?, Int) -> Unit)? = null
+        set(value) {
+            if (value != null)
+                rootView.setOnLongClickListener(this)
+            field = value
+        }
 
     init {
         onItemClickListener = onItemClicked
+        onItemLongClickListener = onItemLongClicked
     }
 
     fun <T : View> getView(resId: Int): T {
@@ -39,6 +47,12 @@ class ViewHolder4RecyclerView(
     override fun onClick(v: View?) {
         onItemClicked?.let { it(v, adapterPosition) }
         onItemClickListener?.let { it(v, adapterPosition) }
+    }
+
+    override fun onLongClick(v: View?): Boolean {
+        onItemLongClicked?.let { it(v, adapterPosition) }
+        onItemLongClickListener?.let { it(v, adapterPosition) }
+        return true
     }
 
     fun setText(resId: Int, content: CharSequence?): ViewHolder4RecyclerView {

@@ -88,6 +88,13 @@
         <attr name="topIconMargin" format="dimension" />
     </declare-styleable>
 
+    <!--自定义SearchView-->
+    <declare-styleable name="SearchView">
+        <attr name="isCheckNull" format="boolean" />
+        <attr name="hintText" format="reference|string" />
+        <attr name="nullTip" format="reference|string" />
+    </declare-styleable>
+
     <!--viewpager指示器-->
     <declare-styleable name="BannerIndicator">
         <!--指示器之间的间隙-->

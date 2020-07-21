@@ -43,7 +43,7 @@ class ForthActivity : BaseActivity() {
     }
 
     private fun loadPieChartData() {
-        val data = listOf<PieChartView.PieData>(
+        val data = listOf(
             PieChartView.PieData(45f, "数据库", Color.GREEN),
             PieChartView.PieData(65f, "ftp", Color.YELLOW),
             PieChartView.PieData(60f, "专线接入", Color.RED),

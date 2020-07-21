@@ -81,6 +81,7 @@ fun main() {
         }
     }
     Thread.sleep(2000)
+    job.cancel()
 
 }
 

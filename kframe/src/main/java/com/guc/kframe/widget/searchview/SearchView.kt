@@ -18,17 +18,26 @@ import kotlinx.android.synthetic.main.view_search.view.*
 class SearchView(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
     companion object {
         const val DEFAULT_NULL_TIPS = "您尚未输入，请输入"
+        const val DEFAULT_HINT_TIPS = "请输入"
     }
 
     var isCheckNull = true // 是否检测输入为空
     var onConfirmClicked: ((Boolean, String?) -> Unit)? = null
+    var hintText: CharSequence
+    var nullTip: CharSequence
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_search, this)
+        val a = context.obtainStyledAttributes(attrs, R.styleable.SearchView)
+        hintText = a.getText(R.styleable.SearchView_hintText) ?: DEFAULT_HINT_TIPS
+        nullTip = a.getText(R.styleable.SearchView_nullTip) ?: DEFAULT_NULL_TIPS
+        isCheckNull = a.getBoolean(R.styleable.SearchView_isCheckNull, true)
+        a.recycle()
         initView()
     }
 
     private fun initView() {
+        etKeyWord.hint = hintText
         etKeyWord.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == KeyEvent.KEYCODE_ENTER || actionId == KeyEvent.KEYCODE_HOME) {
                 search()
@@ -46,7 +55,7 @@ class SearchView(context: Context, attrs: AttributeSet) : FrameLayout(context, a
         val isEmpty = TextUtils.isEmpty(keyword)
         if (isCheckNull) {
             if (isEmpty) {
-                ToastUtil.toast(DEFAULT_NULL_TIPS)
+                ToastUtil.toast(nullTip.toString())
                 return
             }
         }
