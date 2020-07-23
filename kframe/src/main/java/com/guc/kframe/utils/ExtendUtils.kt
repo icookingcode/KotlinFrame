@@ -1,9 +1,13 @@
 package com.guc.kframe.utils
 
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 
 /**
  * Created by guc on 2020/5/6.
@@ -46,8 +50,37 @@ fun SharedPreferences.Editor.put(key: String, value: Any): SharedPreferences.Edi
 }
 
 //泛型实化
-inline fun <reified T> quickStartActivity(context: Context, block: Intent.() -> Unit) {
+inline fun <reified T> quickStartActivity(
+    context: Context,
+    block: Intent.() -> Unit
+) {
     val intent = Intent(context, T::class.java)
     intent.block()
     context.startActivity(intent)
+}
+
+//泛型实化
+inline fun <reified T> quickStartActivityForResult(
+    activity: Activity,
+    requestCode: Int = Int.MAX_VALUE,
+    block: Intent.() -> Unit
+) {
+    val intent = Intent(activity, T::class.java)
+    intent.block()
+    activity.startActivityForResult(intent, requestCode)
+}
+
+/**
+ * 给EditText设置输入改变监听
+ */
+fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(editable: Editable?) {
+            afterTextChanged.invoke(editable.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+    })
 }

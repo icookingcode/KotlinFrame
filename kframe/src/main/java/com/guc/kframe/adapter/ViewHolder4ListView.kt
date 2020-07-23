@@ -1,7 +1,9 @@
 package com.guc.kframe.adapter
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.SparseArray
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,9 +13,31 @@ import android.widget.TextView
  * 描述：通用ListView的ViewHolder
  */
 class ViewHolder4ListView(
-    private val parent: View,
+    val parent: View,
     private val views: SparseArray<View> = SparseArray()
 ) {
+    init {
+        parent.tag = this
+    }
+
+    companion object {
+        @JvmStatic
+        fun get(
+            context: Context,
+            convertView: View?,
+            parent: View?,
+            layoutId: Int
+        ): ViewHolder4ListView {
+            val holder: ViewHolder4ListView
+            holder = if (convertView == null) {
+                val item = LayoutInflater.from(context).inflate(layoutId, null, false)
+                ViewHolder4ListView(item)
+            } else {
+                convertView.tag as ViewHolder4ListView
+            }
+            return holder
+        }
+    }
 
     fun <T : View> getView(resId: Int): T {
         var view = views.get(resId)

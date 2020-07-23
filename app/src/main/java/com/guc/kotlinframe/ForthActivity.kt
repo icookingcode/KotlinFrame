@@ -11,6 +11,7 @@ import com.guc.kframe.base.BaseActivity
 import com.guc.kframe.utils.KeyWordUtils
 import com.guc.kframe.utils.TimeFormatUtils
 import com.guc.kframe.utils.ToastUtil
+import com.guc.kframe.utils.quickStartActivity
 import com.guc.kframe.widget.chart.PieChartView
 import kotlinx.android.synthetic.main.activity_forth.*
 import java.util.*
@@ -40,6 +41,7 @@ class ForthActivity : BaseActivity() {
         animTest()
         searchViewTest()
         loadPieChartData()
+        btnNext.setOnClickListener { quickStartActivity<FifthActivity>(this) {} }
     }
 
     private fun loadPieChartData() {

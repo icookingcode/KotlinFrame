@@ -1,8 +1,11 @@
 package com.guc.kframe.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Point
 import com.guc.kframe.Engine
+import com.guc.kframe.base.ActivityCollector
 
 /**
  * Created by guc on 2020/4/29.
@@ -49,4 +52,22 @@ object ScreenUtils {
             "android"
         )
     )
+
+    /**
+     * get screen width
+     */
+    fun getScreenWidth(activity: Activity? = ActivityCollector.getCurrentActivity()): Int {
+        val point = Point()
+        activity?.windowManager!!.defaultDisplay.getSize(point)
+        return point.x
+    }
+
+    /**
+     * get screen height
+     */
+    fun getScreenHeight(activity: Activity? = ActivityCollector.getCurrentActivity()): Int {
+        val point = Point()
+        activity?.windowManager!!.defaultDisplay.getSize(point)
+        return point.y
+    }
 }

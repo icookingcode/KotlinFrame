@@ -144,6 +144,7 @@ rightImage：设置右侧图标。
 * ViewPager2FragmentStateAdapter  通用ViewPager2+Fragment适配器封装
 * ViewPagerAdapter  通用ViewPagerAdapter封装
 * CommonPagerAdapter  通用ViewPagerAdapter封装
+* GroupAdapter  ExpandableListView 分组Adapter封装
 
 ## 工具类
 * TimeFormatUtils  时间格式转换工具

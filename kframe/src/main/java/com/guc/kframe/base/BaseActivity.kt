@@ -101,10 +101,11 @@ open class BaseActivity : AppCompatActivity() {
     /**
      * 显示加载提示框
      */
-    protected fun showLoading(isShow: Boolean) {
+    protected fun showLoading(isShow: Boolean, msg: String = getString(R.string.common_loading)) {
         if (isShow) loadingDialog = loadingDialog.let {
             it ?: LoadingDialog(this)
         }.apply {
+            setTips(msg)
             if (!isShowing) {
                 show()
             }
