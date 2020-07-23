@@ -152,6 +152,7 @@ rightImage：设置右侧图标。
 * KeyWordUtils  文本关键字改色处理工具
 * SPUtils  SharedPreferences操作工具，请在使用前调用 SPUtils.getSharedPreferences()获取preference实例
 * CacheManagerUtils  缓存管理工具（获取缓存大小/清理缓存） 
+* AssetsUtils  读取assets资源
 
 ## Android 进程间通讯
 * Intent

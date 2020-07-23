@@ -14,10 +14,28 @@
         app:leftType="finish"
         app:title="@string/forth_page" />
 
+    <TextView
+        android:id="@+id/tvShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnGetAssets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取Assets文件" />
+
+    <Button
+        android:id="@+id/btnGetAssetsObject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取Assets中对象" />
+
     <ExpandableListView
         android:id="@+id/expandableListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null" />
+
 
 </LinearLayout>

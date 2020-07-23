@@ -26,4 +26,9 @@ class ExampleUnitTest {
         println(cache)
         println(CacheManagerUtils.getFormatSize(cache.toDouble()))
     }
+
+    @Test
+    fun testAssets() {
+
+    }
 }

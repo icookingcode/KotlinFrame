@@ -8,6 +8,7 @@ import android.content.SharedPreferences
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 
 /**
  * Created by guc on 2020/5/6.
@@ -60,14 +61,23 @@ inline fun <reified T> quickStartActivity(
 }
 
 //泛型实化
-inline fun <reified T> quickStartActivityForResult(
-    activity: Activity,
-    requestCode: Int = Int.MAX_VALUE,
+inline fun <reified T> Activity.quickStartActivityForResult(
+    requestCode: Int = 1024,
     block: Intent.() -> Unit
 ) {
-    val intent = Intent(activity, T::class.java)
+    val intent = Intent(this, T::class.java)
     intent.block()
-    activity.startActivityForResult(intent, requestCode)
+    this.startActivityForResult(intent, requestCode)
+}
+
+//泛型实化
+inline fun <reified T> Fragment.quickStartActivityForResult(
+    requestCode: Int = 1024,
+    block: Intent.() -> Unit
+) {
+    val intent = Intent(this.context, T::class.java)
+    intent.block()
+    this.startActivityForResult(intent, requestCode)
 }
 
 /**

@@ -4,6 +4,9 @@ import android.os.Bundle
 import com.guc.kframe.adapter.GroupAdapter
 import com.guc.kframe.adapter.ViewHolder4ListView
 import com.guc.kframe.base.BaseActivity
+import com.guc.kframe.utils.AssetsUtils
+import com.guc.kframe.utils.LogG
+import com.guc.kotlinframe.logic.model.KeyValue
 import kotlinx.android.synthetic.main.activity_fifth.*
 
 /**
@@ -17,6 +20,17 @@ class FifthActivity : BaseActivity() {
         setContentView(R.layout.activity_fifth)
 
         loadData()
+        getAssets2String()
+    }
+
+    private fun getAssets2String() {
+        btnGetAssets.setOnClickListener {
+            tvShow.text = AssetsUtils.getAssets2String(this, "control_degree.json")
+        }
+        btnGetAssetsObject.setOnClickListener {
+            val list = AssetsUtils.getAssets2Object<List<KeyValue>>(this, "control_degree.json")
+            LogG.loge("Assets", list.toString())
+        }
     }
 
     private fun loadData() {
