@@ -10,7 +10,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_margin="10dp"
-        android:background="@drawable/back_arrow"
+        android:src="@drawable/back_arrow"
         android:visibility="invisible" />
 
     <TextView
@@ -37,8 +37,7 @@
             android:id="@+id/rightImgV"
             android:layout_width="30dp"
             android:layout_height="30dp"
-
-            android:background="@drawable/more" />
+            android:src="@drawable/more" />
 
         <TextView
             android:id="@+id/rightText"

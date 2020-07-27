@@ -22,10 +22,8 @@ object AssetsUtils {
                     context.assets.open(assetFile)
                 )
             ).use {
-                var line: String? = it.readLine()
-                while (line != null) {
+                it.forEachLine { line ->
                     sb.append(line)
-                    line = it.readLine()
                 }
             }
         } catch (e: Exception) {
