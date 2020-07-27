@@ -50,7 +50,7 @@ class WheelOptions<T>(view: View, val linkage: Boolean) {
         wv_option1.adapter = ArrayWheelAdapter(mOptions1Items!!)
         wv_option1.selectedItem = 0
         //选项2
-        if (mOptions1Items != null) {
+        if (mOptions2Items != null) {
             wv_option2.adapter = ArrayWheelAdapter(mOptions2Items!![0])
             wv_option2.selectedItem = wv_option1.selectedItem
         }
