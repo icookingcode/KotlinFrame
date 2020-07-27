@@ -22,6 +22,7 @@ class ThirdActivity : BaseActivity() {
         null
     private lateinit var mOptionPicker: OptionsPickerView<String>
     private lateinit var mOptionPickerDate: TimePickerView
+    private var dateSelected: Calendar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_third)
@@ -74,12 +75,16 @@ class ThirdActivity : BaseActivity() {
                 titleBackgroundColor = Color.parseColor("#FFFFFF")
                 submitTextColor = Color.parseColor("#1E90FF")
                 cancelTextColor = Color.parseColor("#B0C4DE")
+                date = dateSelected
                 isDialogM = true
             }.create(object : TimePickerView.OnTimeSelectListener {
                 @SuppressLint("SimpleDateFormat")
                 override fun onTimeSelect(date: Date?, v: View?) {
                     date?.let {
                         tvShow.text = SimpleDateFormat("yyyy-MM-dd").format(it)
+                        dateSelected = Calendar.getInstance().apply {
+                            time = it
+                        }
                     }
                 }
             })
