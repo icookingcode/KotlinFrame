@@ -2,6 +2,7 @@ package com.guc.kframe.utils
 
 import android.content.Context
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -33,7 +34,9 @@ object AssetsUtils {
     }
 
     inline fun <reified T> getAssets2Object(context: Context, assetFile: String): T {
-        return Gson().fromJson(getAssets2String(context, assetFile), T::class.java)
+        return Gson().fromJson(getAssets2String(context, assetFile),
+            object : TypeToken<T>() {}.type
+        )
     }
 
 }

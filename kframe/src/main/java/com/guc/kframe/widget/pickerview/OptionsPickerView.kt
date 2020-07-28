@@ -3,6 +3,7 @@ package com.guc.kframe.widget.pickerview
 import android.content.Context
 import android.graphics.Typeface
 import android.text.TextUtils
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -57,7 +58,14 @@ class OptionsPickerView<T>(context: Context) : BasePickerView(context), View.OnC
 
     // 条目间距倍数 默认1.6
     var lineSpacingMultiplier = 1.6f
-    var isDialogM: Boolean = false//是否是对话框模式
+    var isDialogM: Boolean = false
+        //是否是对话框模式 Boolean = false
+        set(value) {
+            field = value
+            if (value) {
+                gravity = Gravity.CENTER
+            }
+        }
     var label1: String? = null
     var label2: String? = null
     var label3: String? = null
@@ -86,7 +94,7 @@ class OptionsPickerView<T>(context: Context) : BasePickerView(context), View.OnC
         init()
         initEvents()
         if (customListener == null) {
-            LayoutInflater.from(context).inflate(layoutRes, contentContainer)
+            LayoutInflater.from(context).inflate(R.layout.pickerview_options, contentContainer)
 
             //顶部标题
             tvTitle = findViewById(R.id.tvTitle) as TextView

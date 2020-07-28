@@ -50,6 +50,7 @@ class ThirdActivity : BaseActivity() {
             mOptionPicker = OptionsPickerView<String>(this).apply {
                 //参数设置
                 titleBackgroundColor = Color.parseColor("#FFFFFF")
+                isDialogM = true
             }.create(object :
                 OptionsPickerView.OnOptionsSelectListener {
                 override fun onOptionsSelect(

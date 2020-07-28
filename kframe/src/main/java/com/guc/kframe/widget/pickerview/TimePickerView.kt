@@ -27,7 +27,7 @@ class TimePickerView(context: Context) : BasePickerView(context), View.OnClickLi
         private const val TAG_CANCEL = "cancel"
     }
 
-    var layoutRes = R.layout.pickerview_options
+    var layoutRes = R.layout.pickerview_time
     var timeSelectListener: OnTimeSelectListener? = null
     var customListener: CustomListener? = null
     var submitText: String? = null //确定按钮文字
@@ -80,11 +80,11 @@ class TimePickerView(context: Context) : BasePickerView(context), View.OnClickLi
             }
         }
     private var labelYear: String? = null
-    private var labelMonth: kotlin.String? = null
-    private var labelDay: kotlin.String? = null
-    private var labelHours: kotlin.String? = null
-    private var labelMinutes: kotlin.String? = null
-    private var labelSeconds: kotlin.String? = null
+    private var labelMonth: String? = null
+    private var labelDay: String? = null
+    private var labelHours: String? = null
+    private var labelMinutes: String? = null
+    private var labelSeconds: String? = null
     private var dividerType //分隔线类型
             : WheelView.DividerType = WheelView.DividerType.FILL
     private lateinit var btnSubmit: Button
