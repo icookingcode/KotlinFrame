@@ -38,6 +38,7 @@ leftImage：设置左侧图标。
 title：设置标题。
 titleGravity：设置标题位置。（start：左侧，左图标右侧  center：居中）
 titleTextColor：设置标题颜色。
+titleTextSize：设置标题字体大小。
 rightType：右侧功能样式。（none：不显示  text：文字样式  image：图标样式  image_text：图标文字样式  text_spinner：文字带功能弹窗样式  image_spinner：图标文字带功能弹窗样式）
 rightSpinnerType：右侧功能弹窗样式。（text：文字样式  image_text：图标文字样式）
 rightText：右侧功能文字。

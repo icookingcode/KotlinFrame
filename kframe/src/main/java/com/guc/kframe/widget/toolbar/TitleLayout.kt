@@ -14,7 +14,6 @@ import androidx.core.content.res.ResourcesCompat
 import com.guc.kframe.R
 import com.guc.kframe.adapter.CommonAdapter4ListView
 import com.guc.kframe.adapter.ViewHolder4ListView
-import com.guc.kframe.utils.ScreenUtils
 import kotlinx.android.synthetic.main.layout_title.view.*
 
 /**
@@ -88,9 +87,22 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
             field = value
         }
 
+    private var imageSize = 0
+        set(value) {
+            field = if (value > dp2px(40))
+                dp2px(40)
+            else
+                value
+        }
     var titleTextColor = DEFAULT_TEXT_COLOR
         set(value) {
             titleText.setTextColor(value)
+            field = value
+        }
+
+    var titleTextSize = sp2px(20)
+        set(value) {
+            titleText.textSize = px2sp(value).toFloat()
             field = value
         }
     var rightTextColor = DEFAULT_TEXT_COLOR
@@ -126,6 +138,10 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
             ?: getDrawable(R.drawable.more)
 
         titleTextColor = array.getColor(R.styleable.TitleLayout_titleTextColor, DEFAULT_TEXT_COLOR)
+        imageSize =
+            array.getDimensionPixelSize(R.styleable.TitleLayout_imageSize, dp2px(30))
+        titleTextSize =
+            array.getDimensionPixelSize(R.styleable.TitleLayout_titleTextSize, sp2px(20))
         rightTextColor = array.getColor(R.styleable.TitleLayout_rightTextColor, DEFAULT_TEXT_COLOR)
         rightType = array.getInt(
             R.styleable.TitleLayout_rightType,
@@ -137,6 +153,14 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
     }
 
     private fun initView() {
+        leftImgV.layoutParams.apply {
+            width = imageSize
+            height = imageSize
+        }
+        rightImgV.layoutParams.apply {
+            width = imageSize
+            height = imageSize
+        }
         rightSpinnerDataList = ArrayList()
         llRight.setOnClickListener(this)
         when (leftType) {
@@ -289,9 +313,24 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
     }
 
     private fun getContentHeight(): Int {
-        return ScreenUtils.dp2px(200)
+        return dp2px(200)
     }
 
     private fun getDrawable(resId: Int) = ResourcesCompat.getDrawable(resources, resId, null)
+
+    /**
+     * sp -> px
+     */
+    fun sp2px(sp: Int): Int =
+        (context.resources.displayMetrics.scaledDensity * sp + 0.5).toInt()
+
+    fun dp2px(dp: Int): Int =
+        (context.resources.displayMetrics.density * dp + 0.5).toInt()
+
+    /**
+     * px -> sp
+     */
+    fun px2sp(px: Int): Int =
+        (px / context.resources.displayMetrics.scaledDensity + 0.5f).toInt()
 
 }

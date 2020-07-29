@@ -12,8 +12,10 @@
             <enum name="clicked" value="2" />
         </attr>
         <attr name="leftImage" format="reference" />
+        <attr name="imageSize" format="dimension" />
         <attr name="title" />
         <attr name="titleTextColor" />
+        <attr name="titleTextSize" format="dimension" />
         <attr name="titleGravity">
             <enum name="start" value="0" />
             <enum name="center" value="1" />

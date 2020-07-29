@@ -2,6 +2,7 @@ package com.guc.kframe.utils
 
 import android.content.Context
 import android.os.Environment
+import com.guc.kframe.Engine
 import java.io.File
 import java.math.BigDecimal
 
@@ -15,7 +16,7 @@ object CacheManagerUtils {
      * 获取缓存大小
      * @context Context
      */
-    fun getTotalCacheSize(context: Context): String {
+    fun getTotalCacheSize(context: Context = Engine.context): String {
         var cacheSize = getFolderSize(context.cacheDir)
         if (Environment.getExternalStorageState() == (Environment.MEDIA_MOUNTED)) {
             cacheSize += getFolderSize(context.externalCacheDir)
@@ -28,7 +29,7 @@ object CacheManagerUtils {
      *
      * @param context
      */
-    fun clearAllCache(context: Context) {
+    fun clearAllCache(context: Context = Engine.context) {
         deleteFile(context.cacheDir)
         if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             deleteFile(context.externalCacheDir)
@@ -41,15 +42,16 @@ object CacheManagerUtils {
     fun deleteFile(file: File?): Boolean {
         if (file == null) return false
         if (file.isFile) {
-            file.delete()
+            return file.delete()
         } else {
             val children: Array<String> = file.list() ?: Array(0) { "" }
             for (child in children) {
                 val success = deleteFile(File(file, child))
                 if (!success) return false
             }
+            file.delete()
         }
-        return file.delete()
+        return true
     }
 
     /**
