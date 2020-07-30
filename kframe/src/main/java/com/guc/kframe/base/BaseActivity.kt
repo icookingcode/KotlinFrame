@@ -74,12 +74,15 @@ open class BaseActivity : AppCompatActivity() {
     /**
      * 设置沉浸式状态栏
      */
-    protected fun setImmerseStatusBar() { //目前只适配5.0以上系统
+    protected fun setImmerseStatusBar(isDarkText: Boolean = false) { //目前只适配5.0以上系统
         // 设置图片沉浸式状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val option =
+            var option =
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             val decorView = window.decorView
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isDarkText) {
+                option = option or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
             window.statusBarColor = Color.TRANSPARENT
             decorView.systemUiVisibility = option
         }
