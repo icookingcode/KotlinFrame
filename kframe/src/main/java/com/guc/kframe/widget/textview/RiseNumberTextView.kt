@@ -17,6 +17,8 @@ class RiseNumberTextView(context: Context, attr: AttributeSet?, defStyle: Int) :
     constructor(context: Context, attr: AttributeSet) : this(context, attr, 0)
     constructor(context: Context) : this(context, null, 0)
 
+    private lateinit var valueAnimator: ValueAnimator
+
     companion object {
         private const val TYPE_INT = 1
         private const val TYPE_FLOAT = 2
@@ -37,6 +39,11 @@ class RiseNumberTextView(context: Context, attr: AttributeSet?, defStyle: Int) :
 
 
     fun start() {
+        if (isRunning()) {
+            if (::valueAnimator.isInitialized)
+                valueAnimator.removeAllUpdateListeners()
+            playState = STOPPED
+        }
         if (!isRunning()) {
             playState = RUNNING
             if (numberType == 1) runInt() else runFloat()
@@ -67,7 +74,7 @@ class RiseNumberTextView(context: Context, attr: AttributeSet?, defStyle: Int) :
     private fun isRunning(): Boolean = playState == RUNNING
 
     private fun runFloat() {
-        val valueAnimator = ValueAnimator.ofFloat(fromNumber, number)
+        valueAnimator = ValueAnimator.ofFloat(fromNumber, number)
         valueAnimator.duration = duration
         valueAnimator.addUpdateListener { valueAnimator ->
             if (flags) {
@@ -104,7 +111,7 @@ class RiseNumberTextView(context: Context, attr: AttributeSet?, defStyle: Int) :
     }
 
     private fun runInt() {
-        val valueAnimator = ValueAnimator.ofInt(fromNumber.toInt(), number.toInt())
+        valueAnimator = ValueAnimator.ofInt(fromNumber.toInt(), number.toInt())
         valueAnimator.duration = duration
         valueAnimator.addUpdateListener { valueAnimator ->
             if (flags) {
