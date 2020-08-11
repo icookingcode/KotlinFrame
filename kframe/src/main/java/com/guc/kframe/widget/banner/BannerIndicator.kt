@@ -57,7 +57,7 @@ class BannerIndicator(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
     }
 
     //和viewpager联动,根据viewpager页面动态生成相应的小圆点
-    fun setUpWidthViewPager(viewPager: ViewPager?) {
+    fun setUpWithViewPager(viewPager: ViewPager?) {
         removeAllViews()
         if (viewPager == null) return
         if (viewPager.adapter == null || viewPager.adapter!!.count < 2

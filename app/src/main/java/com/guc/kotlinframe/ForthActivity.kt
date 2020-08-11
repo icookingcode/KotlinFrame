@@ -8,8 +8,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import com.guc.kframe.base.BaseActivity
+import com.guc.kframe.utils.DateTimeUtils
 import com.guc.kframe.utils.KeyWordUtils
-import com.guc.kframe.utils.TimeFormatUtils
 import com.guc.kframe.utils.ToastUtil
 import com.guc.kframe.utils.quickStartActivityForResult
 import com.guc.kframe.widget.chart.PieChartView
@@ -28,7 +28,7 @@ class ForthActivity : BaseActivity() {
         setContentView(R.layout.activity_forth)
         mFuture = mExecutor.scheduleWithFixedDelay({
             runOnUiThread {
-                tvCounter.text = TimeFormatUtils.date2String(Date())
+                tvCounter.text = DateTimeUtils.date2String(Date())
             }
 //            tvCounter.text = count.toString()  //不安全，不能在主线程更新UI，即使不崩
             count++
@@ -72,7 +72,7 @@ class ForthActivity : BaseActivity() {
         val timeString: String = etTimeString.text.toString()
         val oldPattern: String = etOldPattern.text.toString()
         val newPattern: String = etNewPattern.text.toString()
-        etTimeString.setText(TimeFormatUtils.formatConversion(timeString, oldPattern, newPattern))
+        etTimeString.setText(DateTimeUtils.formatConversion(timeString, oldPattern, newPattern))
     }
 
     override fun onDestroy() {

@@ -162,48 +162,49 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
             height = imageSize
         }
         rightSpinnerDataList = ArrayList()
-        llRight.setOnClickListener(this)
+        rightLayout.setOnClickListener(this)
         when (leftType) {
             TYPE_NONE -> leftImgV.visibility = View.GONE
             LEFT_TYPE_FINISH, LEFT_TYPE_CLICKED -> {
                 leftImgV.visibility = View.VISIBLE
                 leftImgV.setOnClickListener(this)
+                leftLayout.setOnClickListener(this)
             }
 
         }
         when (rightType) {
-            TYPE_NONE -> llRight.visibility = View.GONE
+            TYPE_NONE -> rightLayout.visibility = View.GONE
             TYPE_RIGHT_IMAGE, TYPE_RIGHT_IMAGE_SPINNER -> {
-                llRight.visibility = View.VISIBLE
+                rightLayout.visibility = View.VISIBLE
                 rightImgV.visibility = View.VISIBLE
                 rightText.visibility = View.GONE
             }
             TYPE_RIGHT_TEXT, TYPE_RIGHT_TEXT_SPINNER -> {
-                llRight.visibility = View.VISIBLE
+                rightLayout.visibility = View.VISIBLE
                 rightImgV.visibility = View.GONE
                 rightText.visibility = View.VISIBLE
             }
             TYPE_RIGHT_IMAGE_TEXT -> {
-                llRight.visibility = View.VISIBLE
+                rightLayout.visibility = View.VISIBLE
                 rightImgV.visibility = View.VISIBLE
                 rightText.visibility = View.VISIBLE
             }
             else -> {
-                llRight.visibility = View.GONE
-                llRight.setOnClickListener(null)
+                rightLayout.visibility = View.GONE
+                rightLayout.setOnClickListener(null)
             }
         }
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.leftImgV -> {
+            R.id.leftImgV, R.id.leftLayout -> {
                 when (leftType) {
                     LEFT_TYPE_FINISH -> (context as Activity).finish()
                     LEFT_TYPE_CLICKED -> onLeftClicked?.let { it(v) }
                 }
             }
-            R.id.llRight -> {
+            R.id.rightLayout -> {
                 when (rightType) {
                     TYPE_RIGHT_TEXT, TYPE_RIGHT_IMAGE, TYPE_RIGHT_IMAGE_TEXT -> onRightClicked?.let {
                         it(
@@ -308,7 +309,7 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
                 .setOnClickListener { popSpinnerRight!!.dismiss() }
 
         }
-        popSpinnerRight?.showAsDropDown(llRight)
+        popSpinnerRight?.showAsDropDown(rightLayout)
 
     }
 

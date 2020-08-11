@@ -1,7 +1,6 @@
 package com.guc.kframe.base
 
 import android.app.Activity
-import android.os.Process
 
 /**
  * Created by guc on 2020/4/28.
@@ -33,7 +32,6 @@ object ActivityCollector {
         }
         activities.clear()
         currentActivity = null
-        Process.killProcess(Process.myPid())
     }
 
 }

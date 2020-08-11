@@ -73,7 +73,7 @@ class SecondActivity : BaseActivity() {
             }
         }
         viewPager3.adapter = adapter3
-        bannerIndicator.setUpWidthViewPager(viewPager3)
+        bannerIndicator.setUpWithViewPager(viewPager3)
     }
 
 }

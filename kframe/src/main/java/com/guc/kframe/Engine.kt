@@ -1,6 +1,7 @@
 package com.guc.kframe
 
 import android.content.Context
+import android.os.Process
 import com.guc.kframe.base.ActivityCollector
 import com.guc.kframe.base.SystemManager
 import com.guc.kframe.system.SystemCrash
@@ -32,5 +33,6 @@ object Engine {
     fun exit() {
         SystemManager.destroyAllSystem()
         ActivityCollector.finishAll()
+        Process.killProcess(Process.myPid())
     }
 }
