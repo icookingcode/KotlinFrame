@@ -1,13 +1,20 @@
 package com.guc.kotlinframe
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.location.Location
 import android.os.Bundle
 import com.guc.kframe.adapter.GroupAdapter
 import com.guc.kframe.adapter.ViewHolder4ListView
 import com.guc.kframe.base.BaseActivity
+import com.guc.kframe.system.SystemPermission
 import com.guc.kframe.utils.AssetsUtils
+import com.guc.kframe.utils.LocationUtils
 import com.guc.kframe.utils.LogG
+import com.guc.kframe.utils.ToastUtil
 import com.guc.kotlinframe.logic.model.KeyValue
 import kotlinx.android.synthetic.main.activity_fifth.*
+
 
 /**
  * Created by Guc on 2020/7/23.
@@ -19,8 +26,64 @@ class FifthActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fifth)
 
+        findLocation()
         loadData()
         getAssets2String()
+    }
+
+    override fun onDestroy() {
+        LocationUtils.unregister()
+        super.onDestroy()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun findLocation() {
+        btnFindLocation.setOnClickListener {
+            getSystem<SystemPermission>()?.request(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) { granted, _ ->
+                if (granted) {
+                    LocationUtils.register(
+                        this,
+                        5000,
+                        5f,
+                        object : LocationUtils.OnLocationChangeListener {
+                            override fun getLastKnownLocation(location: Location) {
+                                LogG.loge("findLocation", location.toString())
+                            }
+
+                            override fun onLocationChanged(location: Location) {
+                                LogG.loge("findLocation", location.toString())
+                                LogG.loge(
+                                    "findLocation",
+                                    LocationUtils.getCountryName(
+                                        this@FifthActivity,
+                                        location.latitude,
+                                        location.longitude
+                                    )
+                                )
+                                LogG.loge(
+                                    "findLocation",
+                                    LocationUtils.getLocality(
+                                        this@FifthActivity,
+                                        location.latitude,
+                                        location.longitude
+                                    )
+                                )
+                            }
+
+                            override fun onStatusChanged(provider: String?, enable: Boolean) {
+                                LogG.loge("findLocation", provider + enable)
+                            }
+
+                        })
+                } else {
+                    ToastUtil.toast("您没有权限")
+                }
+            }
+        }
     }
 
     private fun getAssets2String() {

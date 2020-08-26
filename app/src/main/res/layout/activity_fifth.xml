@@ -31,6 +31,12 @@
         android:layout_height="wrap_content"
         android:text="获取Assets中对象" />
 
+    <Button
+        android:id="@+id/btnFindLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始定位" />
+
     <ExpandableListView
         android:id="@+id/expandableListView"
         android:layout_width="match_parent"
