@@ -17,10 +17,13 @@ object DateTimeUtils {
     fun timeMills2String(
         timeMills: Long,
         pattern: String = YYYY_MM_DD_HH_MM_SS,
-        locale: Locale = Locale.getDefault()
+        locale: Locale = Locale.getDefault(),
+        timeZone: TimeZone = TimeZone.getTimeZone("GMT+8:00")
     ): String {
         val date = Date(timeMills)
-        sdf = SimpleDateFormat(pattern, locale)
+        sdf = SimpleDateFormat(pattern, locale).apply {
+            this.timeZone = timeZone
+        }
         return try {
             sdf.format(date)
         } catch (e: Exception) {
@@ -34,9 +37,12 @@ object DateTimeUtils {
     fun date2String(
         date: Date,
         pattern: String = YYYY_MM_DD_HH_MM_SS,
-        locale: Locale = Locale.getDefault()
+        locale: Locale = Locale.getDefault(),
+        timeZone: TimeZone = TimeZone.getTimeZone("GMT+8:00")
     ): String {
-        sdf = SimpleDateFormat(pattern, locale)
+        sdf = SimpleDateFormat(pattern, locale).apply {
+            this.timeZone = timeZone
+        }
         return try {
             sdf.format(date)
         } catch (e: Exception) {
@@ -71,9 +77,15 @@ object DateTimeUtils {
      * @pattern:格式
      * @return: null if parse except else date
      */
-    fun timeString2Date(time: String, pattern: String): Date? =
+    fun timeString2Date(
+        time: String,
+        pattern: String,
+        timeZone: TimeZone = TimeZone.getTimeZone("GMT+8:00")
+    ): Date? =
         try {
-            sdf = SimpleDateFormat(pattern)
+            sdf = SimpleDateFormat(pattern).apply {
+                this.timeZone = timeZone
+            }
             sdf.parse(time)
         } catch (e: Exception) {
             e.printStackTrace()

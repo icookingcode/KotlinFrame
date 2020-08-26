@@ -28,7 +28,8 @@ class ForthActivity : BaseActivity() {
         setContentView(R.layout.activity_forth)
         mFuture = mExecutor.scheduleWithFixedDelay({
             runOnUiThread {
-                tvCounter.text = DateTimeUtils.date2String(Date())
+                tvCounter.text = DateTimeUtils.date2String(Date().apply {
+                })
             }
 //            tvCounter.text = count.toString()  //不安全，不能在主线程更新UI，即使不崩
             count++
