@@ -36,4 +36,8 @@ abstract class BaseLazyFragment : Fragment() {
 
     @UiThread
     abstract fun onLazyLoad()
+
+
+    fun <T : BaseSystem> getSystem(className: Class<T>?): T? = SystemManager.getSystem(className)
+    inline fun <reified T : BaseSystem> getSystem(): T? = getSystem(T::class.java)
 }

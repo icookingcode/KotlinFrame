@@ -11,6 +11,11 @@ To use this frmame,add this dependency to the build.gradle of the app:
 ```
 implementation 'com.guc.kframe:kframe:1.1.0'
 ```
+### Proguard rule
+```
+-dontwarn com.guc.kframe.**
+-keep class com.guc.kframe.** { *;}
+```
 ### Simple usage
 1. Config Engine at the app entry:
 ```
