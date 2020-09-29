@@ -186,3 +186,12 @@ rightImage：设置右侧图标。
     job.cancel()
 ```
 * suspendCoroutine{continuation -> } 必须在挂起函数或协程作用域中才可调用，将当前协程挂起，然后在普通线程中执行lambda表达式中的代码，再调用resume() 或 resumeWithException(e)让协程恢复
+
+
+# 关于我  
+Name: Guchao  
+Email: happygc913@gmail.com / happygc@126.com  
+CSDN: [snow_lyGirl](https://blog.csdn.net/qq_31028313)  
+GitHub: [GuchaoGit](https://github.com/GuchaoGit?tab=repositories)  
+Gitee:[GuChaoGitee](https://gitee.com/guchaogitee/projects)  
+加入QQ群:128937635  
