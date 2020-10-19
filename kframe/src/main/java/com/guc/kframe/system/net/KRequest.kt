@@ -29,6 +29,7 @@ class KRequest(private val builder: Builder) {
     private val filePaths = builder.filePaths
     val isWrapperResponse = builder.isWrapperResponse
     val fromCache = builder.fromCache
+    val fileParamName = builder.fileParamName  //文件上传文件名 默认:file
 
     fun getRequest(tag: Any): Request {
         val builder2 = Request.Builder()
@@ -73,7 +74,7 @@ class KRequest(private val builder: Builder) {
         }
         for (fp in filePaths) {
             val file = File(fp)
-            formBody.addFormDataPart("files", file.name, file.asRequestBody(MEDIA_TYPE_PNG))
+            formBody.addFormDataPart(fileParamName, file.name, file.asRequestBody(MEDIA_TYPE_PNG))
         }
         return formBody.build()
     }
@@ -116,6 +117,7 @@ class KRequest(private val builder: Builder) {
         var filePaths: List<String> = ArrayList()
         var isWrapperResponse = true
         var fromCache = false
+        var fileParamName = "file"
         fun build(): KRequest {
             url = if (TextUtils.isEmpty(relativeUrl)) {
                 baseUrl
