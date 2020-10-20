@@ -20,6 +20,7 @@ class KRequest(private val builder: Builder) {
         const val TYPE_POST = 1
         const val TYPE_MULTIPART = 2
         const val TYPE_SPECIAL = 3
+        const val TYPE_JSON = 4
         val MEDIA_TYPE_PNG: MediaType? = "image/png".toMediaTypeOrNull()
     }
 
@@ -30,7 +31,7 @@ class KRequest(private val builder: Builder) {
     val isWrapperResponse = builder.isWrapperResponse
     val fromCache = builder.fromCache
     val fileParamName = builder.fileParamName  //文件上传文件名 默认:file
-
+    val jsonParam = builder.jsonParam
     fun getRequest(tag: Any): Request {
         val builder2 = Request.Builder()
         builder2.tag(KTag(tag))
@@ -54,6 +55,14 @@ class KRequest(private val builder: Builder) {
                 val gson = Gson()
                 val p = gson.toJson(params)
                 val body = p.toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+                builder2.post(body)
+                builder2.header("Content-type", "application/json;charset=UTF-8")
+            }
+            TYPE_JSON -> {
+                builder2.url(url)
+                val body =
+                    jsonParam?.toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+                        ?: throw IllegalArgumentException("json param cannot be null")
                 builder2.post(body)
                 builder2.header("Content-type", "application/json;charset=UTF-8")
             }
@@ -118,6 +127,7 @@ class KRequest(private val builder: Builder) {
         var isWrapperResponse = true
         var fromCache = false
         var fileParamName = "file"
+        var jsonParam: String? = null
         fun build(): KRequest {
             url = if (TextUtils.isEmpty(relativeUrl)) {
                 baseUrl

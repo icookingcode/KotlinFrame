@@ -42,7 +42,7 @@ class RichTextView(context: Context, attrs: AttributeSet? = null, defStyleAttr: 
         setContent(mContent.toString())
     }
 
-    fun setContent(content: String) {
+    fun setContent(content: String?) {
         text = if (mTitle == null || "" == mTitle) {
             content
         } else {

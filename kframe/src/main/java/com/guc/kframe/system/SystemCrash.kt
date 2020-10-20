@@ -29,6 +29,7 @@ class SystemCrash : BaseSystem() {
         defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler { t, e ->
             run {
+                e.printStackTrace()
                 if (Engine.config.enableSaveCrashLog) {
                     var msg = getCrashLog(baseMsg, e)
                     var logFile =
