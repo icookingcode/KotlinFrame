@@ -74,7 +74,15 @@ class TitleLayout(context: Context, attrs: AttributeSet) : FrameLayout(context, 
             field = value
         }
     var leftType: Int = TYPE_NONE
+        set(value) {
+            field = value
+            initView()
+        }
     var rightType: Int = TYPE_NONE
+        set(value) {
+            field = value
+            initView()
+        }
 
     var rightImageDrawable: Drawable? = getDrawable(R.drawable.more)
         set(value) {

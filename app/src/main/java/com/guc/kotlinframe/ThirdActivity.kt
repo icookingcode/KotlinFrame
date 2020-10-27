@@ -11,6 +11,7 @@ import com.guc.kframe.widget.dialog.DialogConfirm
 import com.guc.kframe.widget.pickerview.OptionsPickerView
 import com.guc.kframe.widget.pickerview.TimePickerView
 import com.guc.kframe.widget.pickerview.view.WheelTime
+import com.guc.kframe.widget.toolbar.TitleLayout
 import kotlinx.android.synthetic.main.activity_third.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,6 +27,7 @@ class ThirdActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_third)
+        titleLayout.rightType = TitleLayout.TYPE_RIGHT_TEXT
         mOptions = mutableListOf(
             "option1",
             "option2",

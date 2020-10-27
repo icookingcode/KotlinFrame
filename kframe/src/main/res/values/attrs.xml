@@ -42,6 +42,7 @@
     <declare-styleable name="RichTextView">
         <attr name="title" />
         <attr name="content" />
+        <attr name="contentDefault" format="string|reference" />
         <attr name="titleTextColor" />
         <attr name="contentTextColor" format="color" />
     </declare-styleable>

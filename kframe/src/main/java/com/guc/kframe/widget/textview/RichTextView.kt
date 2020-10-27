@@ -15,6 +15,7 @@ import com.guc.kframe.R
  */
 class RichTextView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     AppCompatTextView(context, attrs, defStyleAttr) {
+    private var contentDefault = ""
     private var mTitle: CharSequence? = null
     private var mContent: CharSequence? = null
         set(value) {
@@ -30,6 +31,8 @@ class RichTextView(context: Context, attrs: AttributeSet? = null, defStyleAttr: 
         val a = context.obtainStyledAttributes(attrs, R.styleable.RichTextView)
         mTitle = a.getText(R.styleable.RichTextView_title)
         mContent = a.getText(R.styleable.RichTextView_content)
+        val default = a.getText(R.styleable.RichTextView_contentDefault)
+        contentDefault = default?.toString() ?: ""
         mTitleTextColor = a.getColor(
             R.styleable.RichTextView_titleTextColor,
             Color.parseColor("#666666")
@@ -43,10 +46,12 @@ class RichTextView(context: Context, attrs: AttributeSet? = null, defStyleAttr: 
     }
 
     fun setContent(content: String?) {
+        mContent = content
         text = if (mTitle == null || "" == mTitle) {
+            mTitle = ""
             content
         } else {
-            val str = mTitle.toString() + content
+            val str = mTitle.toString() + mContent
             val spannableString = SpannableString(str)
             spannableString.setSpan(
                 ForegroundColorSpan(mTitleTextColor),
