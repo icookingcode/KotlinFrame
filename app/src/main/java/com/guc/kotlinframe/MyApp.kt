@@ -5,6 +5,8 @@ import com.guc.kframe.Config
 import com.guc.kframe.Engine
 import com.guc.kframe.base.SystemManager
 import com.guc.kframe.system.SystemWaterMark
+import com.guc.kframe.utils.RunStateRegister
+import com.guc.kframe.utils.ToastUtil
 
 /**
  * Created by guc on 2020/5/22.
@@ -27,5 +29,13 @@ class MyApp : Application() {
             enable = true
             text = "自定义水印"
         }
+        RunStateRegister.register(this, object : RunStateRegister.StateCallback {
+            override fun onBackground() {
+                ToastUtil.toast("KotlinFrame已后台运行")
+            }
+
+            override fun onForeground() {
+            }
+        })
     }
 }

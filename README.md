@@ -160,6 +160,7 @@ rightImage：设置右侧图标。
 * CacheManagerUtils  缓存管理工具（获取缓存大小/清理缓存） 
 * AssetsUtils  读取assets资源
 * LocationUtils  原生定位工具
+* RunStateRegister  监听App前台/后台运行
 
 ## Android 进程间通讯
 * Intent
