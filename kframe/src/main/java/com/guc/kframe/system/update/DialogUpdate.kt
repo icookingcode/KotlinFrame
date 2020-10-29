@@ -49,7 +49,7 @@ class DialogUpdate : DialogFragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         beanVersion = arguments?.getParcelable(DATA)
-        task = Task(beanVersion?.fileUrl ?: "")
+        task = Task(beanVersion?.fileUrl ?: "", downloadPath = beanVersion?.mSaveFileDir)
         btnIgnore.setOnClickListener(this)
         btnUpdate.setOnClickListener(this)
         ivClose.setOnClickListener(this)
