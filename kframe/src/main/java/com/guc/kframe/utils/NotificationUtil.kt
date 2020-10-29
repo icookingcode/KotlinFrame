@@ -18,7 +18,7 @@ object NotificationUtil {
     const val channelId_IMPORTANT = "2"
     private const val channelName_IMPORTANT = "重要通知"
 
-    fun createChannel(context: Context = Engine.context) {
+    fun createChannel(context: Context = Engine.context): NotificationManager {
         //获取NotificationManager
         val manager = context.getSystemService(Service.NOTIFICATION_SERVICE) as NotificationManager
         //创建通知渠道 大于等于Android8.0
@@ -37,6 +37,7 @@ object NotificationUtil {
                 )
             manager.createNotificationChannels(listOf(channel1, channel2))
         }
+        return manager
     }
 
     fun createNotification(
@@ -45,12 +46,14 @@ object NotificationUtil {
         text: String,
         smallIcon: Int = R.drawable.orange,
         largeIcon: Int = R.drawable.large_orange,
+        autoCancel: Boolean = true,
         pi: PendingIntent? = null
     ): Notification = NotificationCompat.Builder(Engine.context, channelId).run {
         setContentTitle(title)
         setContentText(text)
         setSmallIcon(smallIcon)
         setLargeIcon(BitmapFactory.decodeResource(Engine.context.resources, largeIcon))
+        setAutoCancel(autoCancel)
         pi?.let { this.setContentIntent(it) }
         val notification = build()
         notification

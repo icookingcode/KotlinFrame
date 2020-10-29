@@ -15,6 +15,7 @@ object Api {
     fun getBooks(tag: Any, callback: KCallback<List<AppInfo>>) {
         val request = KRequest.Builder().apply {
             relativeUrl = "get_data.json"
+            headers = mapOf("itoken" to "abasdfoeiajdfhaghog")
         }.build()
         getHttpSystem()
             ?.request(tag, request, callback)

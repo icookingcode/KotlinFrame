@@ -27,6 +27,7 @@ class KRequest(private val builder: Builder) {
     val url: String = builder.url ?: ""
     val requestType = builder.requestType
     private val params = builder.params
+    private val headers: Map<String, String>? = builder.headers
     private val filePaths = builder.filePaths
     val isWrapperResponse = builder.isWrapperResponse
     val fromCache = builder.fromCache
@@ -65,6 +66,11 @@ class KRequest(private val builder: Builder) {
                         ?: throw IllegalArgumentException("json param cannot be null")
                 builder2.post(body)
                 builder2.header("Content-type", "application/json;charset=UTF-8")
+            }
+        }
+        if (!headers.isNullOrEmpty()) {
+            headers.forEach { entry ->
+                builder2.addHeader(entry.key, entry.value)
             }
         }
         return builder2.build()
@@ -123,6 +129,7 @@ class KRequest(private val builder: Builder) {
         var url: String? = null
         var requestType = TYPE_GET
         var params: Map<String, String> = HashMap()
+        var headers: Map<String, String>? = null
         var filePaths: List<String> = ArrayList()
         var isWrapperResponse = true
         var fromCache = false

@@ -2,16 +2,16 @@ package com.guc.kotlinframe
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_ONE_SHOT
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import com.guc.kframe.adapter.GroupAdapter
 import com.guc.kframe.adapter.ViewHolder4ListView
 import com.guc.kframe.base.BaseActivity
 import com.guc.kframe.system.SystemPermission
-import com.guc.kframe.utils.AssetsUtils
-import com.guc.kframe.utils.LocationUtils
-import com.guc.kframe.utils.LogG
-import com.guc.kframe.utils.ToastUtil
+import com.guc.kframe.utils.*
 import com.guc.kotlinframe.logic.model.KeyValue
 import kotlinx.android.synthetic.main.activity_fifth.*
 
@@ -29,6 +29,22 @@ class FifthActivity : BaseActivity() {
         findLocation()
         loadData()
         getAssets2String()
+        sendNotice()
+    }
+
+    private fun sendNotice() {
+        val manager = NotificationUtil.createChannel(this)
+        btnSendNotice.setOnClickListener {
+            val notice = NotificationUtil.createNotification(
+                title = "通知标题", text = "通知的内容", pi = PendingIntent.getActivity(
+                    this, 1,
+                    Intent(this, NoticeDetailActivity::class.java).apply {
+                        putExtra("data", "通知的内容")
+                    }, FLAG_ONE_SHOT
+                )
+            )
+            manager.notify(1, notice)
+        }
     }
 
     override fun onDestroy() {

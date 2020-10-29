@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:leftType="finish"
-        app:title="@string/forth_page" />
+        app:title="@string/fifth_page" />
 
     <TextView
         android:id="@+id/tvShow"
@@ -36,6 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="开始定位" />
+
+    <Button
+        android:id="@+id/btnSendNotice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送通知" />
 
     <ExpandableListView
         android:id="@+id/expandableListView"

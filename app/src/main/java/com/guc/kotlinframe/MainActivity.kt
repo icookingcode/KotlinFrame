@@ -178,6 +178,7 @@ class MainActivity : BaseActivity() {
             run {
                 if (isSel) selDatas?.apply {
                     tvSelFav.text = this[0]
+                    getNetData()
                 }
             }
         }
