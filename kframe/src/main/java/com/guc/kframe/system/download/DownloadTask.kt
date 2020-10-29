@@ -46,8 +46,9 @@ class DownloadTask(val context: Context, val callback: (Task) -> Unit) :
             task = params[0]
             val url = task?.url ?: throw IllegalArgumentException("file url is null")
             val fileName = url.substring(url.lastIndexOf("/"))
-            val dictionary =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path
+            val dictionary = task.downloadPath ?: Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS
+            ).path
             file = File(dictionary + fileName)
 
             if (file.exists()) {

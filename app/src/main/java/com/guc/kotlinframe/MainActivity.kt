@@ -19,6 +19,7 @@ import com.guc.kframe.system.net.KCallback
 import com.guc.kframe.system.net.KResponse
 import com.guc.kframe.system.update.BeanVersion
 import com.guc.kframe.system.update.DialogUpdate
+import com.guc.kframe.utils.LogG
 import com.guc.kframe.utils.ToastUtil
 import com.guc.kframe.utils.quickStartActivity
 import com.guc.kframe.widget.selectdialog.DialogSelect
@@ -148,8 +149,14 @@ class MainActivity : BaseActivity() {
         ).setAutoPlay(false).start()
         banner.onPageClicked = { index -> ToastUtil.toast("点击了$index") }
 
+        val downloadPath = externalCacheDir.toString()
+
+        LogG.loge("MainActivity", downloadPath)
         val task =
-            Task("https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.3.6.4590_537064458.apk")
+            Task(
+                "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.3.6.4590_537064458.apk",
+                downloadPath = downloadPath
+            )
         tvDownload.setOnClickListener {
             getSystem(SystemDownload::class.java)?.download(task) {
                 when (it.status) {
@@ -182,7 +189,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-        dialog.datas = listOf("Kotlin", "Java", "JavaScript", "c", "c++","C#","Dart")
+        dialog.datas = listOf("Kotlin", "Java", "JavaScript", "c", "c++", "C#", "Dart")
         dialog.show()
     }
 
