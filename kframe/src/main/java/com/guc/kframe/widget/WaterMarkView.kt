@@ -23,6 +23,7 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     }
 
     var markText: CharSequence = "水印"
+    var lineSpace: Int = 5 //行间距
     private val path = Path()
     private var lineHeight = 0  //px
     private var markerTextSize = 0f
@@ -33,7 +34,13 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     var radian = DEFAULT_RADIAN//弧度
     private var repeatCountX = 1
     private var repeatCountY = 1
-    private var repeatSpace = 1
+
+    //多行修正
+    private var fixedX: Int = 0
+    private var fixedY: Int = 0
+    private var fixedStartX: Int = 0
+    private var fixedStartY: Int = 0
+    private var hasCalculatorMarkerWidth: Boolean = false
 
     private val paint = Paint().apply {
         isAntiAlias = true
@@ -60,30 +67,68 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        val markerTexts = markText.split("\n")
+        if (!hasCalculatorMarkerWidth) {
+            calculatorMarkerWidth(markerTexts)
+        }
+        canvas.rotate(radian)
+        for ((index, value) in markerTexts.withIndex()) {
+            drawWaterMarker(value, index, canvas)
+        }
+    }
+
+    /**
+     * 计算水印每行宽度、高度 获取最大值
+     */
+    private fun calculatorMarkerWidth(markerTexts: List<String>) {
         val rectText = Rect()
-        paint.textSize = markerTextSize
-        paint.getTextBounds(markText.toString(), 0, markText.toString().length, rectText)
-        singleMarkerWidth = rectText.width()
-        singleMarkerHeight = rectText.height()
-        val space = "a"
-        paint.getTextBounds(space, 0, space.length, rectText)
-        repeatSpace = markerSpace / rectText.width()
-        repeatCountX = ceil(width * 1.0 / cos(radian) / (singleMarkerWidth + markerSpace)).toInt()
+        var tempWidth: Int
+        var tempHeight: Int
+        markerTexts.forEach {
+            paint.textSize = markerTextSize
+            paint.getTextBounds(it, 0, it.length, rectText)
+            tempWidth = rectText.width()
+            tempHeight = rectText.height()
+            singleMarkerWidth = if (tempWidth > singleMarkerWidth) tempWidth else singleMarkerWidth
+            singleMarkerHeight =
+                if (tempHeight > singleMarkerHeight) tempHeight else singleMarkerHeight
+        }
+        repeatCountX =
+            ceil(width * 1.0 / abs(cos(radian)) / (singleMarkerWidth + markerSpace)).toInt()
         repeatCountY = floor(height * 1.0 / lineHeight).toInt()
+        fixedX = ((singleMarkerHeight + lineSpace) * sin(radian)).toInt()
+        fixedY = ((singleMarkerHeight + lineSpace) * cos(radian)).toInt()
+        fixedStartX = ((singleMarkerWidth + markerSpace) * cos(radian)).toInt()
+        fixedStartY = abs(((singleMarkerWidth + markerSpace) * sin(radian)).toInt())
+        hasCalculatorMarkerWidth = true
+    }
+
+    private fun drawWaterMarker(text: String, lineNumber: Int, canvas: Canvas) {
+        val rectText = Rect()
+        paint.getTextBounds(text, 0, text.length, rectText)
+        paint.textSize = markerTextSize
         val itemStdHeight = getItemHeight()
         var start = 1
         var end = repeatCountY
-        if (radian>0) end+= width/lineHeight else start-= width/lineHeight
+        val flag = if (radian > 0) -1 else 1
+        if (radian > 0) end += width / lineHeight else start -= width / lineHeight
         for (i in start..end) {
-            path.reset()
-            path.moveTo(0f + deltaFixSpace, i * lineHeight.toFloat())
-            val x = getEndX(itemStdHeight, i) + deltaFixSpace
-            val y = getEndY(itemStdHeight, i)
-            path.lineTo(x, y)
-            canvas.drawTextOnPath(getLineText(), path, 0f, 0f, paint)
+            val x = getEndX(itemStdHeight, i) + deltaFixSpace + fixedX * lineNumber
+            val y = getEndY(itemStdHeight, i) + fixedY * lineNumber
+            var sx: Float
+            var sy: Float
+            for (j in 0..repeatCountX) {
+                path.reset()
+                sx = 0f + deltaFixSpace + fixedX * lineNumber + fixedStartX * j
+                sy = i * lineHeight.toFloat() + fixedY * lineNumber + flag * fixedStartY * j
+                if (sx >= x) continue
+                path.moveTo(sx, sy)
+                path.lineTo(x, y)
+                canvas.drawTextOnPath(text, path, 0f, 0f, paint)
+            }
         }
-
     }
+
 
     private fun isEnoughHeight(itemHeight: Float, times: Int) = itemHeight <= times * lineHeight
 
@@ -101,17 +146,6 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
 
     private fun getItemHeight(): Float {
         return width * tan(radian)
-    }
-
-    private fun getLineText(): String {
-        val sb = StringBuilder()
-        repeat(repeatCountX) {
-            sb.append(markText)
-            repeat(repeatSpace) {
-                sb.append(" ")
-            }
-        }
-        return sb.toString()
     }
 
     private fun dp2px(dipValue: Float): Int {

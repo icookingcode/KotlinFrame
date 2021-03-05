@@ -25,7 +25,7 @@ class MyApp : Application() {
         Engine.init(this, config)
 
         SystemManager.getSystem<SystemWaterMark>()?.apply {
-            angle = -30
+            angle = 30
             enable = true
             text = "自定义水印"
         }
