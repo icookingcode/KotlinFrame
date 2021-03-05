@@ -37,7 +37,7 @@ val http = SystemManager.getSystem(SystemHttp::class.java)
 ## 自定义控件
 * TitleLayout   自定义标题栏
 ```
-#自定义xml属性
+自定义xml属性
 leftType ：左侧图标类型。（none:不显示  finish:返回）
 leftImage：设置左侧图标。
 title：设置标题。
@@ -189,7 +189,7 @@ rightImage：设置右侧图标。
 * suspendCoroutine{continuation -> } 必须在挂起函数或协程作用域中才可调用，将当前协程挂起，然后在普通线程中执行lambda表达式中的代码，再调用resume() 或 resumeWithException(e)让协程恢复
 
 
-# 关于我  
+## 关于我
 Name: Guchao  
 Email: happygc913@gmail.com / happygc@126.com  
 CSDN: [snow_lyGirl](https://blog.csdn.net/qq_31028313)  

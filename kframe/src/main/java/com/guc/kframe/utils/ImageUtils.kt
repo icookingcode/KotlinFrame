@@ -5,15 +5,13 @@ import android.content.Context
 import android.graphics.*
 import android.media.ExifInterface
 import android.net.Uri
+import android.util.Base64
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import java.io.*
 
 /**
  * Created by guc on 2020/5/8.
@@ -253,5 +251,23 @@ object ImageUtils {
         }
         bitmap.recycle()
         return bitmapNew
+    }
+
+
+    /**
+     * 图片转为base64
+     */
+    fun picture2Base64(path: String): String? {
+        var base64: String? = null
+        try {
+            FileInputStream(File(path)).use {
+                val buffer = ByteArray(it.available())
+                it.read(buffer)
+                base64 = Base64.encodeToString(buffer, Base64.DEFAULT)
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return base64
     }
 }

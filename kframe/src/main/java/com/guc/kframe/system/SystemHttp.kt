@@ -14,10 +14,7 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Response
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
 import java.lang.reflect.Type
@@ -169,18 +166,25 @@ class SystemHttp : BaseSystem() {
         }
     }
 
-    private fun createOkHttpClient(): OkHttpClient = OkHttpClient.Builder().addInterceptor(
-        HttpLoggingInterceptor() { log ->
-            run {
-                LogG.logi(TAG, log)
+    fun createOkHttpClient(interceptors: List<Interceptor>? = null): OkHttpClient =
+        OkHttpClient.Builder().addInterceptor(
+            HttpLoggingInterceptor() { log ->
+                run {
+                    LogG.logi(TAG, log)
+                }
+            }.apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }).apply {
+            if (interceptors != null) {
+                for (interceptor in interceptors) {
+                    addInterceptor(interceptor)
+                }
             }
-        }.apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        })
-        .connectTimeout(Constant.TIME_OUT_CONNECT.toLong(), TimeUnit.SECONDS)
-        .readTimeout(Constant.TIME_OUT_READ.toLong(), TimeUnit.SECONDS)
-        .writeTimeout(Constant.TIME_OUT_WRITE.toLong(), TimeUnit.SECONDS)
-        .build()
+        }
+            .connectTimeout(Constant.TIME_OUT_CONNECT.toLong(), TimeUnit.SECONDS)
+            .readTimeout(Constant.TIME_OUT_READ.toLong(), TimeUnit.SECONDS)
+            .writeTimeout(Constant.TIME_OUT_WRITE.toLong(), TimeUnit.SECONDS)
+            .build()
 
     private fun removeCall(tag: Any, call: Call) {
         poolCall[tag]?.remove(call)
