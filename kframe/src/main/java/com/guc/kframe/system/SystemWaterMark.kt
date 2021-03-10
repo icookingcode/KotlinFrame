@@ -24,6 +24,7 @@ class SystemWaterMark : BaseSystem() {
     var angle = 30
     var color: Int = -1
     var textSize: Int = -1
+    var lineHeight: Int = -1
     override fun initSystem() {
     }
 
@@ -45,6 +46,9 @@ class SystemWaterMark : BaseSystem() {
             }
             if (textSize != -1) {
                 waterMarkView.markerTextSize = textSize.toFloat()
+            }
+            if (lineHeight != -1) {
+                waterMarkView.lineHeight = lineHeight
             }
             rootView.addView(waterMarkView)
         }

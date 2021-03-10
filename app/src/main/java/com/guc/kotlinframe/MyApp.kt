@@ -6,6 +6,7 @@ import com.guc.kframe.Engine
 import com.guc.kframe.base.SystemManager
 import com.guc.kframe.system.SystemWaterMark
 import com.guc.kframe.utils.RunStateRegister
+import com.guc.kframe.utils.ScreenUtils
 import com.guc.kframe.utils.ToastUtil
 
 /**
@@ -28,6 +29,7 @@ class MyApp : Application() {
             angle = 30
             enable = true
             text = "自定义水印"
+            lineHeight = ScreenUtils.dp2px(100)
         }
         RunStateRegister.register(this, object : RunStateRegister.StateCallback {
             override fun onBackground() {

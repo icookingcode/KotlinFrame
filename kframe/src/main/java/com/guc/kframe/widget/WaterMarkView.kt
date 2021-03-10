@@ -28,7 +28,7 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     var markerTextColor: Int = DEFAULT_COLOR
     var markerTextSize = 0f
     private val path = Path()
-    private var lineHeight = 0  //px
+    var lineHeight = 0  //px
     private var singleMarkerWidth = 0
     private var singleMarkerHeight = 0
     private var markerSpace = 0//间距
