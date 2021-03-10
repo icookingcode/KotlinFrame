@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
+import android.view.View.GONE
 import com.guc.kframe.R
 import kotlinx.android.synthetic.main.layout_dialog_confirm.*
 
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.layout_dialog_confirm.*
 class DialogConfirm(
     context: Context,
     cancelable: Boolean = true,
+    buttonType: Type = Type.DOUBLE,
     canceledOnTouchOutside: Boolean = false,
     themeResId: Int = R.style.MyCustomDialog
 ) :
@@ -28,6 +30,11 @@ class DialogConfirm(
         setCanceledOnTouchOutside(canceledOnTouchOutside)
         tvCancel.setOnClickListener(this)
         tvSure.setOnClickListener(this)
+        if (buttonType == Type.SINGLE) {
+            tvCancel.visibility = GONE
+            vDivider.visibility = GONE
+            tvSure.background = context.getDrawable(R.drawable.selector_oval_bottom)
+        }
     }
 
     /**
@@ -69,5 +76,10 @@ class DialogConfirm(
     interface OnClickedListener {
         fun onCancelClicked()
         fun onConfirmClicked()
+    }
+
+    enum class Type {
+        SINGLE,
+        DOUBLE
     }
 }

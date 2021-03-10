@@ -60,6 +60,7 @@
         <attr name="markerText" format="reference|string" />
         <attr name="lineHeight" format="dimension" />
         <attr name="markerTextSize" format="dimension" />
+        <attr name="markerTextColor" format="color" />
         <attr name="markerSpace" format="dimension" />
         <attr name="fixSpace" format="dimension" />
         <attr name="radian" format="float" />

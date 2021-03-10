@@ -106,7 +106,12 @@ class ThirdActivity : BaseActivity() {
 
     private fun showDialog() {
         val dialog =
-            DialogConfirm(this, true, canceledOnTouchOutside = true).apply { setTipMsg("确认要退出？") }
+            DialogConfirm(
+                this,
+                true,
+                DialogConfirm.Type.SINGLE,
+                canceledOnTouchOutside = true
+            ).apply { setTipMsg("请退出应用重新登录\n确认要退出？") }
         dialog.show()
     }
 }

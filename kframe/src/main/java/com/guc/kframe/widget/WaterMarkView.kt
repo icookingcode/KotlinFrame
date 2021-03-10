@@ -20,13 +20,15 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     companion object {
         const val TAG = "WaterMarkView"
         const val DEFAULT_RADIAN: Float = (PI / 6).toFloat()
+        private var DEFAULT_COLOR: Int = Color.parseColor("#808080")
     }
 
     var markText: CharSequence = "水印"
     var lineSpace: Int = 5 //行间距
+    var markerTextColor: Int = DEFAULT_COLOR
+    var markerTextSize = 0f
     private val path = Path()
     private var lineHeight = 0  //px
-    private var markerTextSize = 0f
     private var singleMarkerWidth = 0
     private var singleMarkerHeight = 0
     private var markerSpace = 0//间距
@@ -56,6 +58,7 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
             dp2px(50f)
         )
         markerTextSize = a.getDimension(R.styleable.WaterMarkView_markerTextSize, 48f)
+        markerTextColor = a.getColor(R.styleable.WaterMarkView_markerTextColor, DEFAULT_COLOR)
         markerSpace =
             a.getDimension(R.styleable.WaterMarkView_markerSpace, dp2px(30f).toFloat()).toInt()
         deltaFixSpace =
@@ -67,6 +70,7 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        paint.color = markerTextColor
         val markerTexts = markText.split("\n")
         if (!hasCalculatorMarkerWidth) {
             calculatorMarkerWidth(markerTexts)

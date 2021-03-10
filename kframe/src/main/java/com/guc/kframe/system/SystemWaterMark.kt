@@ -22,6 +22,8 @@ class SystemWaterMark : BaseSystem() {
     var enable = false
     var text = "水印"
     var angle = 30
+    var color: Int = -1
+    var textSize: Int = -1
     override fun initSystem() {
     }
 
@@ -37,7 +39,13 @@ class SystemWaterMark : BaseSystem() {
                     .inflate(R.layout.layout_water_mark, null) as WaterMarkView
             waterMarkView.tag = VIEW_TAG
             waterMarkView.markText = text
-            waterMarkView.radian = (angle/180.0* PI).toFloat()
+            waterMarkView.radian = (angle / 180.0 * PI).toFloat()
+            if (color != -1) {
+                waterMarkView.markerTextColor = color
+            }
+            if (textSize != -1) {
+                waterMarkView.markerTextSize = textSize.toFloat()
+            }
             rootView.addView(waterMarkView)
         }
 

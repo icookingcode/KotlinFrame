@@ -49,7 +49,9 @@
             android:text="@string/common_cancel"
             android:textSize="16sp" />
 
-        <View style="@style/DividerV" />
+        <View
+            android:id="@+id/vDivider"
+            style="@style/DividerV" />
 
         <TextView
             android:id="@+id/tvSure"
