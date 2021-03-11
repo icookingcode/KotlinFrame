@@ -83,7 +83,7 @@ publish{
     userOrg = 'guchao'
     groupId = 'com.guc.kframe'
     artifactId = 'kframe'
-    publishVersion = '1.1.8'
+    publishVersion = '1.1.9'
     desc = 'Kotlin Frame '
     website = 'https://github.com/icookingcode/KotlinFrame'
 }
