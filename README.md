@@ -26,8 +26,9 @@ implementation 'com.guc.kframe:kframe:1.1.9'
             urlRelease = "http://192.168.44.141:8099/"
         }
  Engine.init(this, config)
+
 ```
-2. Your Activity inheritance BaseActiviy,then you can use AcitvityCollector to manage you App.
+2. Your Activity inheritance BaseActivity,then you can use ActivityCollector to manage you App.
 3. Get the http system:
 ```
 val http = SystemManager.getSystem(SystemHttp::class.java)
@@ -124,7 +125,7 @@ rightImage：设置右侧图标。
 * SearchView 搜索框
 * RiseNumberTextView 带自增动画效果的数字展示TextView
 * PieChartView  自定义PieChart
-* DialogConfirm  自定义Dialog
+* DialogConfirm  自定义Dialog,支持单按钮
 * EmptyView  空提示控件
 * BannerIndicator  轮播指示控件
 
@@ -161,6 +162,10 @@ rightImage：设置右侧图标。
 * AssetsUtils  读取assets资源
 * LocationUtils  原生定位工具
 * RunStateRegister  监听App前台/后台运行
+* ToastUtil  快速Toast,支持显示、隐藏应用名
+* FileUtils  快速读写文件
+* FormatterUtils 字符串格式化
+* ScreenUtils  屏幕单位转换，获取状态栏高度等工具
 
 ## Android 进程间通讯
 * Intent

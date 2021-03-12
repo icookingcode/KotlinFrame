@@ -17,7 +17,7 @@ object ToastUtil {
         duration: Int = Toast.LENGTH_SHORT,
         context: Context = Engine.context
     ) {
-        Toast.makeText(context, if (isShowAppName) txt else null, duration).apply {
+        Toast.makeText(context, txt, duration).apply {
             if (!isShowAppName) {
                 setText(txt)
             }

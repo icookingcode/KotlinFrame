@@ -104,14 +104,19 @@ class ThirdActivity : BaseActivity() {
         }
     }
 
+    private var dialogConfirm: DialogConfirm? = null
     private fun showDialog() {
-        val dialog =
-            DialogConfirm(
+        dialogConfirm = dialogConfirm.let {
+            it ?: DialogConfirm(
                 this,
                 true,
-                DialogConfirm.Type.SINGLE,
-                canceledOnTouchOutside = true
-            ).apply { setTipMsg("请退出应用重新登录\n确认要退出？") }
-        dialog.show()
+                DialogConfirm.Type.DOUBLE,
+                canceledOnTouchOutside = true,
+                widthPercent = 80
+            )
+        }.apply {
+            setTipMsg("是否退出应用？")
+            show()
+        }
     }
 }

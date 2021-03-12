@@ -149,7 +149,8 @@ object LocationUtils {
         longitude: Double
     ): String {
         val address = getAddress(context, latitude, longitude)
-        return if (address == null) "unknown" else address.countryName
+        return if (address == null) "unknown" else address.countryName ?: address.countryCode
+        ?: "unknown"
     }
 
     /**

@@ -147,7 +147,7 @@ class MainActivity : BaseActivity() {
                 "https://img.51miz.com/Element/00/59/47/06/40456783_E594706_33c392a8.jpg!/quality/90/unsharp/true/compress/true/format/jpg"
             )
         ).setAutoPlay(false).start()
-        banner.onPageClicked = { index -> ToastUtil.toast("点击了$index", true) }
+        banner.onPageClicked = { index -> ToastUtil.toast("点击了$index", false) }
 
         val downloadPath = externalCacheDir.toString()
 

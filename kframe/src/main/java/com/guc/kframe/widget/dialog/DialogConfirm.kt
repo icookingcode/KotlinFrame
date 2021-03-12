@@ -2,10 +2,12 @@ package com.guc.kframe.widget.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.text.TextUtils
 import android.view.View
 import android.view.View.GONE
 import com.guc.kframe.R
+import com.guc.kframe.utils.ScreenUtils
 import kotlinx.android.synthetic.main.layout_dialog_confirm.*
 
 /**
@@ -17,7 +19,8 @@ class DialogConfirm(
     cancelable: Boolean = true,
     buttonType: Type = Type.DOUBLE,
     canceledOnTouchOutside: Boolean = false,
-    themeResId: Int = R.style.MyCustomDialog
+    themeResId: Int = R.style.MyCustomDialog,
+    widthPercent: Int = 80
 ) :
     Dialog(context, themeResId), View.OnClickListener {
     constructor(context: Context) : this(context, false)
@@ -26,6 +29,13 @@ class DialogConfirm(
 
     init {
         setContentView(R.layout.layout_dialog_confirm)
+        window?.decorView?.apply {
+            background = ColorDrawable()
+        }
+        window?.attributes?.apply {
+            val wp = if (widthPercent > 100) 100 else widthPercent
+            width = (ScreenUtils.getScreenWidth() * wp / 100.0).toInt()
+        }
         setCancelable(cancelable)
         setCanceledOnTouchOutside(canceledOnTouchOutside)
         tvCancel.setOnClickListener(this)
@@ -81,5 +91,9 @@ class DialogConfirm(
     enum class Type {
         SINGLE,
         DOUBLE
+    }
+
+    private fun dp2px(dp: Int): Int {
+        return (context.resources.displayMetrics.density * dp + 0.5).toInt()
     }
 }

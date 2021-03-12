@@ -2,6 +2,7 @@ package com.guc.kframe.widget.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import com.guc.kframe.R
 import kotlinx.android.synthetic.main.view_loading_dialog.*
 
@@ -22,6 +23,7 @@ class LoadingDialog(
 
     init {
         setContentView(R.layout.view_loading_dialog)
+        window?.decorView?.background = ColorDrawable()
     }
 
     fun setTips(tips: String) {

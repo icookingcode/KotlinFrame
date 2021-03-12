@@ -21,7 +21,9 @@
         <activity android:name=".NoticeDetailActivity"></activity>
         <activity android:name=".FifthActivity" />
         <activity android:name=".ForthActivity" />
-        <activity android:name=".ThirdActivity" />
+        <activity
+            android:name=".ThirdActivity"
+            android:configChanges="orientation|screenSize" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
