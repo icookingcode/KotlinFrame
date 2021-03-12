@@ -25,6 +25,9 @@ class SystemWaterMark : BaseSystem() {
     var color: Int = -1
     var textSize: Int = -1
     var lineHeight: Int = -1
+    var textAlpha: Float = -1f
+    var markerSpace: Int = -1  //水印间距
+    var lineSpace = -1 //多行行间距
     override fun initSystem() {
     }
 
@@ -49,6 +52,15 @@ class SystemWaterMark : BaseSystem() {
             }
             if (lineHeight != -1) {
                 waterMarkView.lineHeight = lineHeight
+            }
+            if (textAlpha >= 0.2) {
+                waterMarkView.textAlpha = textAlpha
+            }
+            if (markerSpace != -1) {
+                waterMarkView.markerSpace = markerSpace
+            }
+            if (lineSpace > 0) {
+                waterMarkView.lineSpace = lineSpace
             }
             rootView.addView(waterMarkView)
         }

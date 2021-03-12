@@ -64,6 +64,7 @@
         <attr name="markerSpace" format="dimension" />
         <attr name="fixSpace" format="dimension" />
         <attr name="radian" format="float" />
+        <attr name="android:alpha" />
     </declare-styleable>
 
     <declare-styleable name="PieChartView">

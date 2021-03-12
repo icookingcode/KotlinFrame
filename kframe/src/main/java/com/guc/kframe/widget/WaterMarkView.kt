@@ -27,11 +27,20 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
     var lineSpace: Int = 5 //行间距
     var markerTextColor: Int = DEFAULT_COLOR
     var markerTextSize = 0f
+    var textAlpha: Float = 0.2f
+        set(value) {
+            field = when {
+                value > 1 -> 1f
+                value < 0.2 -> 0.2f
+                else -> value
+            }
+            alpha = field
+        }
+    var markerSpace = 0//间距
     private val path = Path()
     var lineHeight = 0  //px
     private var singleMarkerWidth = 0
     private var singleMarkerHeight = 0
-    private var markerSpace = 0//间距
     private var deltaFixSpace = 0//修正间距
     var radian = DEFAULT_RADIAN//弧度
     private var repeatCountX = 1
@@ -64,7 +73,9 @@ class WaterMarkView(context: Context, attrs: AttributeSet?, defStyle: Int) :
         deltaFixSpace =
             a.getDimension(R.styleable.WaterMarkView_fixSpace, markerSpace.toFloat() / 2).toInt()
         radian = a.getFloat(R.styleable.WaterMarkView_radian, radian)
+        textAlpha = a.getFloat(R.styleable.WaterMarkView_android_alpha, 0.2f)
         a.recycle()
+        alpha = textAlpha
     }
 
     @SuppressLint("DrawAllocation")

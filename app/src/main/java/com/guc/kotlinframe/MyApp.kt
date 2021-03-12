@@ -28,8 +28,10 @@ class MyApp : Application() {
         SystemManager.getSystem<SystemWaterMark>()?.apply {
             angle = 30
             enable = true
-            text = "自定义水印"
+            text = "自定义水印\n第二行"
             lineHeight = ScreenUtils.dp2px(100)
+            textAlpha = 0.2f
+            lineSpace = 15
         }
         RunStateRegister.register(this, object : RunStateRegister.StateCallback {
             override fun onBackground() {

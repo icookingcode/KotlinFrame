@@ -9,7 +9,7 @@ Kotlin App 框架（MVVM）
 ### adding to project
 To use this frmame,add this dependency to the build.gradle of the app:
 ```
-implementation 'com.guc.kframe:kframe:1.1.6'
+implementation 'com.guc.kframe:kframe:1.1.9'
 ```
 ### Proguard rule
 ```
