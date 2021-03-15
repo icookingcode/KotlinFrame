@@ -135,13 +135,18 @@ class KRequest(private val builder: Builder) {
         var fromCache = false
         var fileParamName = "file"
         var jsonParam: String? = null
-        fun build(): KRequest {
-            url = if (TextUtils.isEmpty(relativeUrl)) {
-                baseUrl
-            } else {
-                baseUrl + relativeUrl
+        fun build(urlCustom: String? = null): KRequest {
+            return urlCustom?.let {
+                url = it
+                KRequest(this)
+            } ?: let {
+                url = if (TextUtils.isEmpty(relativeUrl)) {
+                    baseUrl
+                } else {
+                    baseUrl + relativeUrl
+                }
+                KRequest(this)
             }
-            return KRequest(this)
         }
     }
 }
