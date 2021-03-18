@@ -165,4 +165,19 @@ object FileUtils {
             Uri.fromFile(file)
         }
     }
+
+    /**
+     * @param file 文件或文件夹
+     * @param isDir 修复如果是文件夹时，文件夹创建失败问题
+     */
+    fun createFile(file: File, isDir: Boolean) {
+        if (file.isDirectory || isDir) {
+            file.mkdirs()
+        } else {
+            file.parentFile?.mkdirs()
+            if (!file.exists()) {
+                file.createNewFile()
+            }
+        }
+    }
 }
