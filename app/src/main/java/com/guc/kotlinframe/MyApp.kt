@@ -5,15 +5,22 @@ import com.guc.kframe.Config
 import com.guc.kframe.Engine
 import com.guc.kframe.base.SystemManager
 import com.guc.kframe.system.SystemWaterMark
+import com.guc.kframe.utils.LogG
 import com.guc.kframe.utils.RunStateRegister
 import com.guc.kframe.utils.ScreenUtils
 import com.guc.kframe.utils.ToastUtil
+import com.guc.kotlinframe.db.FileCache
+import com.hnyf.spc.db.MyDataBase
+import kotlin.concurrent.thread
 
 /**
  * Created by guc on 2020/5/22.
  * 描述：程序入口
  */
 class MyApp : Application() {
+    companion object {
+        private val TAG = "MyApp"
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -41,5 +48,26 @@ class MyApp : Application() {
             override fun onForeground() {
             }
         })
+        initDataBase()
+    }
+
+    private fun initDataBase() {
+        thread {
+            val cacheDao = MyDataBase.getInstance(this).fileCacheDao()
+            cacheDao.getCacheByFileId("0001")?.apply {
+                createTime = System.currentTimeMillis()
+                cacheDao.updateCache(this)
+                LogG.loge(TAG, "更新:${this}")
+            } ?: run {
+                cacheDao.insertAll(
+                    FileCache(
+                        "0001",
+                        externalCacheDir?.absolutePath,
+                        System.currentTimeMillis()
+                    )
+                )
+                LogG.loge(TAG, "插入")
+            }
+        }
     }
 }

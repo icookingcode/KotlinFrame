@@ -2,6 +2,7 @@ package com.guc.kotlinframe
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.concurrent.thread
 
 class MainActivity : BaseActivity() {
+    companion object {
+        const val ACTION = "com.guc.firstlinecode.action.MY_BROADCAST"
+    }
 
     private val viewModel by lazy {
         ViewModelProvider.AndroidViewModelFactory(application).create(AppInfoViewModel::class.java)
@@ -147,7 +151,13 @@ class MainActivity : BaseActivity() {
                 "https://img.51miz.com/Element/00/59/47/06/40456783_E594706_33c392a8.jpg!/quality/90/unsharp/true/compress/true/format/jpg"
             )
         ).setAutoPlay(false).start()
-        banner.onPageClicked = { index -> ToastUtil.toast("点击了$index", false) }
+        banner.onPageClicked = { index ->
+            ToastUtil.toast("点击了$index", false)
+            sendBroadcast(Intent().apply {
+                action = ACTION
+                setPackage("com.guc.firstlinecode")
+            })
+        }
 
         val downloadPath = externalCacheDir.toString()
 
@@ -186,6 +196,7 @@ class MainActivity : BaseActivity() {
                 if (isSel) selDatas?.apply {
                     tvSelFav.text = this[0]
                     getNetData()
+
                 }
             }
         }

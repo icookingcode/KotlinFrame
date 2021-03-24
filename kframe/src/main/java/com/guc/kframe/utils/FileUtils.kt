@@ -16,9 +16,9 @@ import java.io.*
 object FileUtils {
     /**
      * 保存字符串到文字
-     * 文件默认保存到 /data/data/<package name>/files/目录下
+     * 文件保存到 /data/data/<package name>/files/目录下
      */
-    fun writeStr2File(
+    fun writeStr2AppFile(
         inputText: String,
         fileName: String,
         context: Context = Engine.context,
@@ -70,11 +70,36 @@ object FileUtils {
 
     /**
      * 读取文件中内容
+     * /data/data/<package name>/files/
+     * @param fileName 文件名
      */
-    fun readFile2String(fileName: String, context: Context = Engine.context): String {
+    fun readAppFile2String(fileName: String, context: Context = Engine.context): String {
         return try {
             val content = StringBuilder()
             val output = context.openFileInput(fileName)
+            val reader = BufferedReader(InputStreamReader(output))
+            reader.use {//kotlin内置的扩展函数，保证lambda表达式中代码执行完毕后自动关闭外层的数据流
+                reader.forEachLine {
+                    content.append(it)
+                }
+            }
+            content.toString()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            "IOException"
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+            "FileNotFoundException"
+        }
+    }
+
+    /**
+     * 读取文件中内容
+     */
+    fun readFile2String(file: String, context: Context = Engine.context): String {
+        return try {
+            val content = StringBuilder()
+            val output = FileInputStream(file)
             val reader = BufferedReader(InputStreamReader(output))
             reader.use {//kotlin内置的扩展函数，保证lambda表达式中代码执行完毕后自动关闭外层的数据流
                 reader.forEachLine {
