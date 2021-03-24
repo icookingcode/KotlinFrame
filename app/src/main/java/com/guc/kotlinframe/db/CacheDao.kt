@@ -1,7 +1,6 @@
-package com.hnyf.spc.db
+package com.guc.kotlinframe.db
 
 import androidx.room.*
-import com.guc.kotlinframe.db.FileCache
 
 /**
  * Created by guc on 2021/3/23.

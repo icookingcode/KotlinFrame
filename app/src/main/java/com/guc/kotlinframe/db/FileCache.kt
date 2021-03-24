@@ -12,7 +12,8 @@ import androidx.room.PrimaryKey
 data class FileCache(
     @ColumnInfo(name = "file_id") val fileId: String?,
     @ColumnInfo(name = "local_path") var localPath: String?,
-    @ColumnInfo(name = "create_time") var createTime: Long
+    @ColumnInfo(name = "create_time") var createTime: Long,
+    @ColumnInfo(name = "update_time") var updateTime: Long?
 ) {
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0

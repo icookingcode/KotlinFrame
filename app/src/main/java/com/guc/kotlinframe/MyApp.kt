@@ -10,7 +10,8 @@ import com.guc.kframe.utils.RunStateRegister
 import com.guc.kframe.utils.ScreenUtils
 import com.guc.kframe.utils.ToastUtil
 import com.guc.kotlinframe.db.FileCache
-import com.hnyf.spc.db.MyDataBase
+import com.guc.kotlinframe.db.MyDataBase
+import java.util.*
 import kotlin.concurrent.thread
 
 /**
@@ -54,16 +55,17 @@ class MyApp : Application() {
     private fun initDataBase() {
         thread {
             val cacheDao = MyDataBase.getInstance(this).fileCacheDao()
-            cacheDao.getCacheByFileId("0001")?.apply {
+            val fileId = UUID.randomUUID().toString()
+            cacheDao.getCacheByFileId(fileId)?.apply {
                 createTime = System.currentTimeMillis()
                 cacheDao.updateCache(this)
                 LogG.loge(TAG, "更新:${this}")
             } ?: run {
                 cacheDao.insertAll(
                     FileCache(
-                        "0001",
+                        fileId,
                         externalCacheDir?.absolutePath,
-                        System.currentTimeMillis()
+                        System.currentTimeMillis(), System.currentTimeMillis()
                     )
                 )
                 LogG.loge(TAG, "插入")
