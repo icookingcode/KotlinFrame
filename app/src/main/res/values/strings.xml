@@ -4,5 +4,6 @@
     <string name="third_page">Third Page</string>
     <string name="forth_page">Forth Page</string>
     <string name="fifth_page">Fifth Page</string>
+    <string name="file_select">文件选择</string>
     <string name="notice_page">Notice Detail Page</string>
 </resources>

@@ -20,6 +20,7 @@ class SystemPermission : BaseSystem() {
     fun request(
         activity: FragmentActivity,
         vararg permissions: String,
+        isAlwaysRequest: Boolean = false,
         callback: PermissionCallback
     ) {
         val fragmentManager = activity.supportFragmentManager
@@ -31,7 +32,7 @@ class SystemPermission : BaseSystem() {
             fragmentManager.beginTransaction().add(invisibleFragment, TAG).commitNow()
             invisibleFragment
         }
-        fragment.requestNow(callback, *permissions)
+        fragment.requestNow(callback, isAlwaysRequest, *permissions)
     }
 
     override fun destroy() {

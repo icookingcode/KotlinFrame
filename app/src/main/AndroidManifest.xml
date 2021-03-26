@@ -18,7 +18,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".NoticeDetailActivity"></activity>
+        <activity android:name=".ui.FileSelectActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NoticeDetailActivity" />
         <activity android:name=".FifthActivity" />
         <activity android:name=".ForthActivity" />
         <activity
@@ -35,7 +46,7 @@
 
         <service
             android:name=".service.MyNavigationService"
-            android:foregroundServiceType="location"></service>
+            android:foregroundServiceType="location" />
     </application>
 
 </manifest>

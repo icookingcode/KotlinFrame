@@ -3,4 +3,7 @@
     <external-path
         name="my_images"
         path="." /><!--将整个SD卡共享-->
+    <files-path
+        name="root_path"
+        path="images/" />
 </paths>

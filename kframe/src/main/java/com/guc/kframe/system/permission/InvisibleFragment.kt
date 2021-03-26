@@ -29,12 +29,22 @@ class InvisibleFragment : Fragment() {
 
     private var callback: PermissionCallback? = null
     private var permissionsL: Array<String>? = null
-    fun requestNow(cb: PermissionCallback, vararg permissions: String) {
+    private var isAlwaysRequest = false
+    fun requestNow(
+        cb: PermissionCallback,
+        alwaysRequest: Boolean = false,
+        vararg permissions: String
+    ) {
         callback = cb
+        isAlwaysRequest = alwaysRequest
         permissionsL = Array(permissions.size) { permissions[it] }
         var rationale = false  //是否显示申请理由提示框
         //如果有拒绝则提示申请理由提示框，否则直接向系统请求权限
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return
+        }
+        if (isAlwaysRequest) {
+            requestPermissions(permissions, REQUEST_CODE)
             return
         }
         for (permission in permissions) {
@@ -52,7 +62,7 @@ class InvisibleFragment : Fragment() {
         when (requestCode) {
             REQUEST_CODE_SETTING -> permissionsL?.let {
                 callback?.let { cb ->
-                    requestNow(cb, *it)
+                    requestNow(cb, isAlwaysRequest, *it)
                 }
             }
         }

@@ -102,7 +102,8 @@ class MainActivity : BaseActivity() {
         tvRequestCall.setOnClickListener {
             getSystem(SystemPermission::class.java)?.request(
                 this,
-                Manifest.permission.CALL_PHONE
+                Manifest.permission.CALL_PHONE,
+                isAlwaysRequest = true
             ) { allGranted, _ ->
                 if (allGranted) {
                     ToastUtil.toast("同意该权限")
@@ -188,6 +189,25 @@ class MainActivity : BaseActivity() {
         }
 
         tvNextPage.setOnClickListener { quickStartActivity<SecondActivity>(this) {} }
+
+        tvShare.setOnClickListener {
+            share()
+        }
+    }
+
+    /**
+     * 分享
+     */
+    private fun share() {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+            putExtra(Intent.EXTRA_TITLE, "分享的标题")
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+
     }
 
     fun showDialog() {
