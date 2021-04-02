@@ -12,8 +12,11 @@
     <application>
         <activity
             android:name=".ui.SelectPictureActivity"
+            android:exported="false"
             android:theme="@style/MyDialogBottom" />
-        <activity android:name=".ui.DetailInBrowserActivity" />
+        <activity
+            android:name=".ui.DetailInBrowserActivity"
+            android:exported="false" />
         <!--数据共享-->
         <provider
             android:name="androidx.core.content.FileProvider"
