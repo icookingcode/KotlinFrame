@@ -61,6 +61,13 @@ class DetailInBrowserActivity : BaseActivity() {
         webSettings.javaScriptCanOpenWindowsAutomatically = true
         webSettings.loadsImagesAutomatically = true
         webSettings.javaScriptEnabled = true
+        try {
+            webViewContent.removeJavascriptInterface("searchBoxJavaBridge")
+            webViewContent.removeJavascriptInterface("accessibilityTraversal")
+            webViewContent.removeJavascriptInterface("accessibility")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         webViewContent.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(
                 view: WebView,
