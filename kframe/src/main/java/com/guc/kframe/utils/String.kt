@@ -1,8 +1,10 @@
 package com.guc.kframe.utils
 
 import android.util.Base64
+import okhttp3.internal.and
 import java.net.URLDecoder
 import java.net.URLEncoder
+import java.security.MessageDigest
 
 /**
  * Created by guc on 2020/4/30.
@@ -51,4 +53,25 @@ fun ByteArray.encodeToBase64String(flags: Int = Base64.DEFAULT): String {
  */
 fun String.base64DecodeToByteArray(flags: Int = Base64.DEFAULT): ByteArray {
     return Base64.decode(this, flags)
+}
+
+/**
+ * md5加密
+ */
+fun String.md5Encrypt() = try {
+    val md5 = MessageDigest.getInstance("MD5").apply {
+        reset()
+    }
+    val bytes = md5.digest(this.toByteArray())
+    val result = StringBuilder()
+    for (b in bytes) {
+        var temp = Integer.toHexString(b and 0xff)
+        if (temp.length == 1) {
+            temp = "0$temp"
+        }
+        result.append(temp)
+    }
+    result.toString()
+} catch (e: Exception) {
+    ""
 }

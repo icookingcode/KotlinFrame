@@ -193,6 +193,60 @@ rightImage：设置右侧图标。
 ```
 * suspendCoroutine{continuation -> } 必须在挂起函数或协程作用域中才可调用，将当前协程挂起，然后在普通线程中执行lambda表达式中的代码，再调用resume() 或 resumeWithException(e)让协程恢复
 
+##NDK程序示例
+* 编写native方法类 HelloJni.java，build生成class文件（build\intermediates\javac\debug\classes\com\guc\kotlinframe\jni\HelloJni.class）
+* Terminal 移动到app/src/main 目录，执行 javah -d jni -classpath F:\workSpace\Android\JNITest\app\build\intermediates\javac\debug\classes com.guc.kotlinframe.jni.HelloJni 命令创建 .h 的头文件
+* 在jni目录下创建 HelloJni.c
+ ```
+ #include<jni.h>
+ #include<stdio.h>
+
+ #include "com_guc_kotlinframe_jni_HelloJni.h"
+ JNIEXPORT jstring JNICALL Java_com_guc_kotlinframe_jni_HelloJni_get
+  (JNIEnv *env, jclass jclass){
+    //返回一个字符串
+          return (*env)->NewStringUTF(env,"This is my first NDK Application");
+  }
+
+ ```
+* jni目录创建 Android.mk
+```
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := JNITest
+LOCAL_SRC_FILES := test.c
+include $(BUILD_SHARED_LIBRARY)
+```
+* jni目录创建 Application.mk
+```
+APP_ABI := all
+```
+* 为了防止 so 库兼容错误，在 gradle.properties 最后一行添加
+```
+android.useDeprecatedNdk=true
+```
+* 为了让项目能够找到我们的 so 库，在 build.gradle 文件夹的 android 下添加
+```
+sourceSets {
+    main() {
+        jniLibs.srcDirs = ['src/main/libs']
+        jni.srcDirs = [] //屏蔽掉默认的jni编译生成过程
+    }
+}
+```
+* 在HelloJni.java 添加
+```
+    // 动态导入 so 库
+    static {
+        System.loadLibrary("HelloJni");
+    }
+
+```
+* 程序调用
+```
+HelloJni.get()
+```
 
 ## 关于我
 Name: Guchao  

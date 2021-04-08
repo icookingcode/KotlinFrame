@@ -24,6 +24,7 @@ import com.guc.kframe.utils.LogG
 import com.guc.kframe.utils.ToastUtil
 import com.guc.kframe.utils.quickStartActivity
 import com.guc.kframe.widget.selectdialog.DialogSelect
+import com.guc.kotlinframe.jni.HelloJni
 import com.guc.kotlinframe.logic.model.AppInfo
 import com.guc.kotlinframe.logic.network.Api
 import com.guc.kotlinframe.ui.AppInfoViewModel
@@ -141,7 +142,7 @@ class MainActivity : BaseActivity() {
 
         }
 
-        looperText.setTipList(listOf("你好啊", "guc"))
+        looperText.setTipList(listOf("你好啊", "guc", "JNI:${HelloJni.get()}"))
         syncView.syncView = syncView2
         syncView2.syncView = syncView
 

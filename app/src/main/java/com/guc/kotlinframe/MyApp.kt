@@ -11,6 +11,7 @@ import com.guc.kframe.utils.ScreenUtils
 import com.guc.kframe.utils.ToastUtil
 import com.guc.kotlinframe.db.FileCache
 import com.guc.kotlinframe.db.MyDataBase
+import com.guc.kotlinframe.utils.SignatureUtil
 import java.util.*
 import kotlin.concurrent.thread
 
@@ -50,6 +51,14 @@ class MyApp : Application() {
             }
         })
         initDataBase()
+        testSignature()
+    }
+
+    /**
+     * 测试签名
+     */
+    private fun testSignature() {
+        SignatureUtil.getSignature(this)
     }
 
     private fun initDataBase() {
