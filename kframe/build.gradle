@@ -1,8 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'android-maven'
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.guc.kframe'
+group='com.github.icookingcode'
 
 android {
     compileSdkVersion 29

@@ -1,3 +1,3 @@
 rootProject.name='KotlinFrame'
-include ':app'
 include ':kframe'
+include ':app'
