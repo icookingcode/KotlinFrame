@@ -3,6 +3,7 @@ package com.guc.kotlinframe
 import com.guc.kframe.utils.CacheManagerUtils
 import com.guc.kframe.utils.DateTimeUtils
 import com.guc.kframe.utils.hashMap
+import com.guc.kotlinframe.coroutine.main
 import org.junit.Test
 import java.io.File
 import java.text.SimpleDateFormat
@@ -50,6 +51,11 @@ class ExampleUnitTest {
         val max = DateTimeUtils.getMaxDayByYearMonth(2019, 2)
         println("最大：$max 号")
 
+    }
+
+    @Test
+    fun testCoroutine() {
+        main()
     }
 
     private fun setDate(year: Int, month: Int, day: Int, calendar: Calendar) {

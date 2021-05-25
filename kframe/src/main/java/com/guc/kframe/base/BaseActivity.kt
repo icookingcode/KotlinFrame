@@ -96,7 +96,7 @@ open class BaseActivity : AppCompatActivity() {
             this.window
                 .decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             this.window.statusBarColor =
-                ResourcesCompat.getColor(resources, R.color.colorWhite, null)
+                ResourcesCompat.getColor(resources, statusBarColorResId, null)
 
         }
     }

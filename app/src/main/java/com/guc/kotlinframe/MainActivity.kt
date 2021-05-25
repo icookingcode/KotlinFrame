@@ -117,7 +117,8 @@ class MainActivity : BaseActivity() {
             getSystem(SystemPermission::class.java)?.request(
                 this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
             ) { bool, _ ->
                 if (bool) {
                     run {
@@ -159,6 +160,7 @@ class MainActivity : BaseActivity() {
                 action = ACTION
                 setPackage("com.guc.firstlinecode")
             })
+            startScan()
         }
 
         val downloadPath = externalCacheDir.toString()
@@ -233,4 +235,13 @@ class MainActivity : BaseActivity() {
             }
         })
     }
+
+    private fun startScan() {
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+
 }
